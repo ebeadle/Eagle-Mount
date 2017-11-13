@@ -24,7 +24,7 @@ export default class SignUp extends Component {
       >
         <Grid.Column style={{ maxWidth: 450 }}>
           <Header as='h2' color='blue' textAlign='center'>
-            <Image src='/logo.png' />
+           
             {' '}Login
           </Header>
           <Form size='large'>

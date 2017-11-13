@@ -5,14 +5,17 @@ var Schema = mongoose.Schema;
 var UserSchema = new mongoose.Schema({
   firstName: String,
   lastName: String,
-  email: {type: String, required: true, unique: true},
-  password: {
-    type: String,
-    set: function(password) {
-      return passwordHash.generate(password);
-    }
-  },
-  admin: String
+  // email: {type: String, required: true, unique: true},
+  email: String,
+  // password: {
+  //   type: String,
+  //   set: function(password) {
+  //     return passwordHash.generate(password);
+  //   }
+  // },
+  password: String,
+  admin: String,
+  skill: String
 
 })
 
