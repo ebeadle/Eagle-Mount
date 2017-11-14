@@ -29,8 +29,6 @@ var Nav = observer(class Nav extends Component {
             <Menu>
              <Link className="item" to="/login"> Login</Link>
              <Link className="item" to="/signup">Sign Up</Link>
-             
-                 
             </Menu>
           )
   }
