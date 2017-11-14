@@ -33,12 +33,12 @@ var Login = observer(class Login extends Component {
       password: this.state.password,
       
     }).then((userStore)=>{
-        console.log(userStore.data.success);
-        // if (res.data.success){
-        //   console.log('!!!!')
-        // this.props.history.push('/dashboard'); 
-        // } 
-        // resolve(res) 
+        console.log(userStore);
+        if (userStore.success){
+          console.log('!!!!')
+        this.props.history.push('/dashboard'); 
+        } 
+        resolve(userStore) 
 
     }).catch((e)=> {
       console.log(e)

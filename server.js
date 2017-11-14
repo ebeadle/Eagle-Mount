@@ -106,7 +106,11 @@ app.post('/login',function(req, res, next){
     }
     req.logIn(user, function(error) {
       if (error) return next(error);
-        res.json(user);
+        res.json({
+          user: user,
+          success: true,
+          message: "Success"
+        });
       });
   })(req,res, next);
 });
