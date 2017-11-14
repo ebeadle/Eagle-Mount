@@ -36,7 +36,7 @@ var Login = observer(class Login extends Component {
         console.log(userStore);
         if (userStore.success){
           console.log('!!!!')
-        this.props.history.push('/dashboard'); 
+        this.props.history.push('/calendar'); 
         } 
         resolve(userStore) 
 

@@ -1,43 +1,40 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
-import { Menu } from 'semantic-ui-react'
+import { withRouter, Link } from 'react-router-dom';
+import { Menu } from 'semantic-ui-react';
+import {inject, observer} from 'mobx-react';
+
 
 // var axios = require('axios');
 
-export default class Nav extends Component {
+var Nav = observer(class Nav extends Component {
   state = {}
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
   render() {
     const { activeItem } = this.state
+    var successLogin = this.props.userStore.user;
+    console.log(successLogin);
+    if(successLogin){    
+      return (
 
-    return (
       <Menu>
-        <Menu.Item
-          name='editorials'
-          active={activeItem === 'editorials'}
-          onClick={this.handleItemClick}
-        >
-          Login
-        </Menu.Item>
-
-        <Menu.Item
-          name='reviews'
-          active={activeItem === 'reviews'}
-          onClick={this.handleItemClick}
-        >
-          Open Shifts
-        </Menu.Item>
-
-        <Menu.Item
-          name='upcomingEvents'
-          active={activeItem === 'upcomingEvents'}
-          onClick={this.handleItemClick}
-        >
-          Admin
-        </Menu.Item>
+       <Link className="item" to="/admin">Admin</Link>
+       <Link className="item" to="/calendar">Open Shifts</Link>
       </Menu>
     )
+  } else {
+    return (
+      
+            <Menu>
+             <Link className="item" to="/login"> Login</Link>
+             <Link className="item" to="/signup">Sign Up</Link>
+             
+                 
+            </Menu>
+          )
   }
-}
+  }
+});
+
+export default withRouter(inject('userStore')(Nav));
