@@ -9,7 +9,8 @@ import {Provider} from 'mobx-react';
 import Login from '../Login/login';
 import Nav from '../NavBar/navBar';
 import UserStore from '../Stores/UserStore';
-import Dashboard from '../Dashboard/dashboard';
+import Calendar from '../Calendar/calendar';
+import Admin from '../Admin/admin';
 
 export default class App extends Component {
   render() {
@@ -19,9 +20,10 @@ export default class App extends Component {
         <Router>
           <div>
             <Nav />
+              <Route path='/Admin' render={()=> <Admin />}/>
               <Route path='/Signup' render={()=> <SignUp />}/> 
               <Route path='/Login' render={()=> <Login />}/> 
-              <Route path='/dashboard' render={()=> <Dashboard />}/> 
+              <Route path='/Calendar' render={()=> <Calendar />}/> 
           </div>
         </ Router>
         </div>

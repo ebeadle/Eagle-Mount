@@ -6,7 +6,7 @@ var axios = require('axios');
 export default class UserStore {
   constructor() {
     extendObservable(this, {
-      user: {},
+      user: null,
       success: null,
       get retrieveUser() {
         return this.user
@@ -50,7 +50,7 @@ export default class UserStore {
       ).then((loggedInUser) => {
         console.log(loggedInUser)
         if (loggedInUser.data.success) {
-          currentUser: loggedInUser.data
+          this.user=loggedInUser.data
         } else {
           console.log('incorrect username or password')
         }
