@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-
 import {
   BrowserRouter as Router,
   Route,
@@ -10,6 +9,7 @@ import {Provider} from 'mobx-react';
 import Login from '../Login/login';
 import Nav from '../NavBar/navBar';
 import UserStore from '../Stores/UserStore';
+import Dashboard from '../Dashboard/dashboard';
 
 export default class App extends Component {
   render() {
@@ -21,6 +21,7 @@ export default class App extends Component {
             <Nav />
               <Route path='/Signup' render={()=> <SignUp />}/> 
               <Route path='/Login' render={()=> <Login />}/> 
+              <Route path='/dashboard' render={()=> <Dashboard />}/> 
           </div>
         </ Router>
         </div>

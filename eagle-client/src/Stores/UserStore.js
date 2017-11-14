@@ -7,7 +7,7 @@ export default class UserStore {
   constructor() {
     extendObservable(this, {
       user: {},
-      message: "null",
+      success: null,
       get retrieveUser() {
         return this.user
       }
@@ -24,7 +24,8 @@ export default class UserStore {
           lastName: newUserObj.lastName,
           email: newUserObj.email,
           password: newUserObj.password,
-          skill: newUserObj.skill
+          skill: newUserObj.skill,
+          message: newUserObj.message
         }
       ).then((userObj) => {
         if (userObj.data) {
