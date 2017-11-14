@@ -7,13 +7,12 @@ var UserSchema = new mongoose.Schema({
   lastName: String,
   // email: {type: String, required: true, unique: true},
   email: String,
-  // password: {
-  //   type: String,
-  //   set: function(password) {
-  //     return passwordHash.generate(password);
-  //   }
-  // },
-  password: String,
+  password: {
+    type: String,
+    set: function(password) {
+      return passwordHash.generate(password);
+    }
+  },
   admin: String,
   skill: String
 

@@ -1,9 +1,53 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { Button, Form, Grid, Header, Image, Message, Segment, Container } from 'semantic-ui-react'
+import {inject, observer} from 'mobx-react';
 // var axios = require('axios');
 
-export default class SignUp extends Component {
+var Login = observer(class Login extends Component {
+  constructor(){
+    super()
+
+    this.handleEmail = this.handleEmail.bind(this);
+    this.handlePassword = this.handlePassword.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+
+    this.state={
+      email: "",
+      password: ""
+    }
+  }
+
+  handleEmail(event){
+    this.setState({email: event.target.value})
+  }
+  handlePassword(event){
+    this.setState({password: event.target.value})
+  }
+
+  handleClick(){
+  return new Promise ((resolve, reject) => {
+    console.log("hello?")
+    this.props.userStore.loginUser({
+      email: this.state.email, 
+      password: this.state.password,
+      
+    }).then((res)=>{
+        console.log(res);
+        if (res.data.success){
+         //this.props.history.push("/dashboard"); 
+        } 
+        resolve(res) 
+
+    }).catch((e)=> {
+      console.log(e)
+    });
+  });
+}
+
+
+  
+
   render() {
     
     return (
@@ -35,6 +79,8 @@ export default class SignUp extends Component {
                 icon='user'
                 iconPosition='left'
                 placeholder='E-mail address'
+                onChange={this.handleEmail}
+                value={this.state.email}
               />
               <Form.Input
                 fluid
@@ -42,9 +88,11 @@ export default class SignUp extends Component {
                 iconPosition='left'
                 placeholder='Password'
                 type='password'
+                onChange={this.handlePassword}
+                value={this.state.password}
               />
   
-              <Button color='blue' fluid size='large'>Login</Button>
+              <Button onClick={this.handleClick} color='blue' fluid size='large'>Login</Button>
             </Segment>
           </Form>
          
@@ -54,4 +102,6 @@ export default class SignUp extends Component {
     </div>
     );
   }
-}
+})
+
+export default withRouter(inject('userStore')(Login));

@@ -13,7 +13,7 @@ export default class UserStore {
       }
     })
     this.signUpUser = this.signUpUser.bind(this);
-    console.log(this.user);
+    this.loginUser = this.loginUser.bind(this);
   }
 
   signUpUser(newUserObj) {
@@ -35,6 +35,25 @@ export default class UserStore {
         }
         console.log(userObj);
         resolve(userObj);
+      })
+    })
+  }
+
+  loginUser(userObj) {
+    return new Promise((resolve, reject) => {
+      axios.post('/login',
+        {
+          username: userObj.email,
+          password: userObj.password
+        }
+      ).then((loggedInUser) => {
+        console.log(loggedInUser)
+        if (loggedInUser.data.success) {
+          currentUser: loggedInUser.data
+        } else {
+          console.log('incorrect username or password')
+        }
+        resolve(loggedInUser.data);
       })
     })
   }

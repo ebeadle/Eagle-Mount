@@ -50,7 +50,7 @@ constructor(props){
     ).then((res)=> {
       if(res.data.email){
         console.log("added user");
-        // this.props.history.push('/login');
+        this.props.history.push('/login');
       } else {
         console.log("failed")
       }
