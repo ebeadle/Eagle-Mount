@@ -11,6 +11,7 @@ import Nav from '../NavBar/navBar';
 import UserStore from '../Stores/UserStore';
 import Calendar from '../Calendar/calendar';
 import Admin from '../Admin/admin';
+import Logout from '../Logout/logout';
 
 
 export default class App extends Component {
@@ -24,6 +25,7 @@ export default class App extends Component {
               <Route path='/Admin' render={()=> <Admin /> }/>
               <Route path='/Signup' render={()=> <SignUp />}/> 
               <Route path='/Login' render={()=> <Login />}/> 
+              <Route path='/Logout' render={()=> <Logout />}/> 
               <Route path='/Calendar' render={()=> <Calendar />}/> 
           </div>
         </ Router>

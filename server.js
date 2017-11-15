@@ -115,6 +115,16 @@ app.post('/login',function(req, res, next){
   })(req,res, next);
 });
 
+app.get('/logout', function(req, res){
+  if(req.user) {
+    req.logout();
+    res.json('user logged out')
+    req.session.destroy();
+  } else {
+    res.json('no user logged in')
+  }
+});
+
 var port = process.env.PORT || 5000;
 
 app.listen(port, function(){

@@ -14,6 +14,7 @@ export default class UserStore {
     })
     this.signUpUser = this.signUpUser.bind(this);
     this.loginUser = this.loginUser.bind(this);
+    this.logout = this.logout.bind(this);
   }
 
   signUpUser(newUserObj) {
@@ -57,5 +58,19 @@ export default class UserStore {
         resolve(loggedInUser.data);
       })
     })
+  }
+  logout() {
+    axios.get('/logout').then((res)=> {
+      console.log(res);
+      if (res) { 
+        this.user = null;  
+        sessionStorage.removeItem('user');
+      }  else {
+        console.log('undefined');
+      }
+    }, function(err){
+      console.log(err);
+    });
+   
   }
 }
