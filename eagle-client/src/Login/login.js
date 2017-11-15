@@ -18,7 +18,7 @@ var Login = observer(class Login extends Component {
     }
   }
 
-  handleEmail(event){
+  handleEmail(event) {
     this.setState({email: event.target.value})
   }
   handlePassword(event){
