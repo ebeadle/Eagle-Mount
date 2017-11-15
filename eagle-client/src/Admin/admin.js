@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-
 import { Button, Checkbox, Form } from 'semantic-ui-react'
+import DateInput from '../SelectDay/selectDay'
 
 export default class Admin extends Component {
   constructor() {
@@ -13,7 +13,8 @@ export default class Admin extends Component {
         <Form>
           <Form.Field>
             <label>Date</label>
-            <input placeholder='02/12/2017' />
+            {/* <input placeholder='02/12/2017' /> */}
+            <DateInput />
           </Form.Field>
           <Form.Field>
             <label>Day</label>
