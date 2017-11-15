@@ -21,6 +21,7 @@ var Nav = observer(class Nav extends Component {
       <Menu>
        <Link className="item" to="/admin">Admin</Link>
        <Link className="item" to="/calendar">Open Shifts</Link>
+       <Link className="item" to="/logout">Log Out</Link>
       </Menu>
     )
   } else {

@@ -1,13 +1,19 @@
 import React, { Component } from 'react';
+import { inject, observer } from 'mobx-react';
 import { withRouter } from 'react-router-dom';
-import { Button, Form, Grid, Header, Image, Message, Segment, Container } from 'semantic-ui-react'
-import {inject, observer, componentByNodeRegistery} from 'mobx-react';
+const axios = require('axios');
 
-
-export default class Logout extends Component {
-  render() {
+var Logout = observer(class Logout extends Component {
+  constructor() {
+    super();
+  }
+  componentDidMount() {
+    this.props.userStore.logout();
+  }
+  render () {
     return (
-      <div></div>
+      <div><p>You have logged out.</p></div>
     );
   }
-}
+});
+export default withRouter(inject('userStore')(Logout));
