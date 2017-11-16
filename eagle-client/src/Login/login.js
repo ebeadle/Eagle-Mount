@@ -29,16 +29,18 @@ var Login = observer(class Login extends Component {
 
   handleClick(){
   return new Promise ((resolve, reject) => {
-    console.log("hello?")
+    
     this.props.userStore.loginUser({
       email: this.state.email, 
       password: this.state.password,
       
     }).then((userStore)=>{
+      console.log(userStore);
         if (userStore.success){
-          console.log('!!!!')
+          
         this.props.history.push('/calendar'); 
         } else {
+          console.log(userStore)
           this.setState({
             message: userStore.message,
             email: "",
