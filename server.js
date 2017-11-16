@@ -38,25 +38,25 @@ app.use(session({ secret: "moby" }));
 app.use(passport.initialize());
 app.use(passport.session());
 
-passport.use(new LocalStrategy(
-  {email:'username', password:'password'}, 
-  function(email, password, done) {
-    
-    User.findOne({ email: email }, function(error, user) {
-      if (user || !error) {
-        done(error, null);
+passport.use(new LocalStrategy({ username: "email", password: "password" },  (email, password, done) => {
+  User.findOne({
+    email: email
+  }, (err, foundUser) => {
+    if (err) {
+      console.log(err);
+      next(err);
+    } else if (foundUser == null){
+      return done(err, null)
+    } else {
+      if (passwordHash.verify(password, foundUser.password)) {
+        return done(null, foundUser);
+      } else {
+        return done(err, null);
       }
-      else if(!user || error ) {
-        done(error, null);
-      }
-        else {(passwordHash.verify(password, user.password)) 
-        console.log('success')
-        done(null, user);
-      }
-      
-    });
+    }
   })
-);
+})
+)
 
 passport.serializeUser(function(user, done) {
   done(null, user._id);
