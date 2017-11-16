@@ -2,6 +2,7 @@ var express = require('express');
 var app = require("express")();
 let bodyParser = require("body-parser");
 var User = require("./models/users");
+var Shift = require('./models/shifts');
 var session = require("express-session");
 var passport = require("passport");
 var LocalStrategy = require("passport-local").Strategy;
@@ -156,6 +157,25 @@ app.get('/logout', function(req, res){
   } else {
     res.json('no user logged in')
   }
+});
+
+app.post('/open-shifts', function(req, res, next){
+  var shift = new Shift();
+  console.log('SHIFT!!!!!!')
+  console.log(shift)
+  shift.date = req.body.date;
+  shift.day = req.body.day;
+  shift.skill = req.body.skill;
+  shift.claimed = req.body.claimed;
+  shift.time = req.body.time;
+  shift.save(function(err, newShift){
+    console.log(newShift);
+    if(err) {
+      console.log(err)
+    } else {
+      res.json(newShift);
+    }
+  })
 });
 
 var port = process.env.PORT || 5000;
