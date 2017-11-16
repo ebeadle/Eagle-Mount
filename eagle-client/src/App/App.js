@@ -13,6 +13,7 @@ import ShiftStore from '../Stores/ShiftStore';
 import Calendar from '../Calendar/calendar';
 import Admin from '../Admin/admin';
 import Logout from '../Logout/logout';
+import Footer from '../Footer/Footer';
 
 
 export default class App extends Component {
@@ -28,6 +29,7 @@ export default class App extends Component {
               <Route path='/Login' render={()=> <Login />}/> 
               <Route path='/Logout' render={()=> <Logout />}/> 
               <Route path='/Calendar' render={()=> <Calendar />}/> 
+              <Footer />
           </div>
         </ Router>
         </div>
