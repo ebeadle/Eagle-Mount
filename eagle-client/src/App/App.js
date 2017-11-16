@@ -9,6 +9,7 @@ import {Provider} from 'mobx-react';
 import Login from '../Login/login';
 import Nav from '../NavBar/navBar';
 import UserStore from '../Stores/UserStore';
+import ShiftStore from '../Stores/ShiftStore';
 import Calendar from '../Calendar/calendar';
 import Admin from '../Admin/admin';
 import Logout from '../Logout/logout';
@@ -17,7 +18,7 @@ import Logout from '../Logout/logout';
 export default class App extends Component {
   render() {
     return (
-      <Provider userStore={new UserStore()}>
+      <Provider userStore={new UserStore()} shiftStore={new ShiftStore()}>
         <div>
         <Router>
           <div>
