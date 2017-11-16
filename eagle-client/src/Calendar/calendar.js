@@ -1,8 +1,27 @@
 import React, { Component } from 'react';
-import { Header, Table, Rating } from 'semantic-ui-react'
+import { Header, Table, Rating } from 'semantic-ui-react';
+import { withRouter } from 'react-router-dom';
+import {inject, observer} from 'mobx-react';
 
-export default class Calendar extends Component {
+var Calendar = observer(class Calendar extends Component {
+  constructor(){
+    super()
+
+
+
+  }
+
+  componentDidMount(){
+    this.props.shiftStore.fetchShift();
+  }
+  
   render() {
+
+    console.log(this.props.shiftStore.fetchShift());
+
+
+
+
     return (
       <Table celled padded>
     <Table.Header>
@@ -68,4 +87,6 @@ export default class Calendar extends Component {
       
     
   }
-}
+})
+
+export default withRouter(inject('shiftStore')(Calendar));
