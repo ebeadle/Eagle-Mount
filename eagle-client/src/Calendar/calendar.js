@@ -18,10 +18,11 @@ var Calendar = observer(class Calendar extends Component {
   componentDidMount(){    
     this.callFetch();
   }
+
   
   render() {
 
-    console.log(this.props.shiftStore.shift)
+    console.log(this.props.shiftStore.shift[0].time);
 
 
 
