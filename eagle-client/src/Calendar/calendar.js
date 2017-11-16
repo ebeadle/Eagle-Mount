@@ -6,18 +6,22 @@ import {inject, observer} from 'mobx-react';
 var Calendar = observer(class Calendar extends Component {
   constructor(){
     super()
-
+    this.callFetch = this.callFetch.bind(this)
 
 
   }
 
-  // componentDidMount(){
-  //   this.props.shiftStore.fetchShift();
-  // }
+  callFetch(){
+    this.props.shiftStore.fetchShift();
+  }
+
+  componentDidMount(){    
+    this.callFetch();
+  }
   
   render() {
-    let needShifts={};
-    console.log(this.props.shiftStore.fetchShift(needShifts));
+
+    console.log(this.props.shiftStore.shift)
 
 
 

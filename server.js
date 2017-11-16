@@ -188,8 +188,9 @@ app.post('/open-shifts', function(req, res, next){
   })
 });
 
-app.get('/shift', (req, res, next)=> {
-  Shift.find((err, shift) =>{
+app.get('/shift', function(req, res, next) {
+  Shift.find(function(err, shift) {
+    console.log(shift);
     if(err){
       next(err)
     } else {

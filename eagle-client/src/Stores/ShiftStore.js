@@ -41,9 +41,9 @@ export default class ShiftStore {
   fetchShift(shiftObj){
     console.log('fetching shift')
     return new Promise((resolve, reject) => {
-      axios.get('/shift', 
-  ).then((shiftObj))
-  console.log(shiftObj);
+      axios.get('/shift').then((shiftObj) => {
+      console.log(shiftObj)
+      console.log('^^^^^^^^^^^')
   if (shiftObj.data) {
     console.log(shiftObj.data);
     this.shift = shiftObj.data;
@@ -55,6 +55,6 @@ export default class ShiftStore {
     }).catch(function (err){
       console.log(err)
     })
+  })
 }
-
 }
