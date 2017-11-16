@@ -178,6 +178,16 @@ app.post('/open-shifts', function(req, res, next){
   })
 });
 
+app.get('/shift', function(req, res, next) {
+  Shift.find(function(err, shift) {
+    if(err){
+      next(err)
+    } else {
+      res.json(shift);
+    }   
+  });
+});
+
 var port = process.env.PORT || 5000;
 
 app.listen(port, function(){

@@ -12,6 +12,7 @@ export default class ShiftStore {
       }
     })
     this.addNewShift = this.addNewShift.bind(this);
+    this.fetchShift = this.fetchShift.bind(this);
   }
 
   addNewShift(newShiftObj) {
@@ -36,4 +37,23 @@ export default class ShiftStore {
       })
     })
   }
+
+  fetchShift(shiftObj){
+    console.log('fetching shift')
+    return new Promise((resolve, reject) => {
+      axios.get('/shift'
+  ).then((shiftObj))
+  if (shiftObj.data) {
+    console.log(shiftObj.data);
+    this.shift = shiftObj.data;
+  } else {
+    console.log('undefined')
+    //reject(shiftObj);
+  }
+  resolve(shiftObj);
+    }).catch(function (err){
+      console.log(err)
+    })
+}
+
 }
