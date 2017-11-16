@@ -43,15 +43,17 @@ passport.use(new LocalStrategy(
   function(email, password, done) {
     
     User.findOne({ email: email }, function(error, user) {
-      
-      if (passwordHash.verify(password, user.password)) {
-        console.log('success')
-        done(null, user);
-      } else if (user || !error) {
-        done(error, null);
-      } else {
+      if (user || !error) {
         done(error, null);
       }
+      else if(!user || error ) {
+        done(error, null);
+      }
+        else {(passwordHash.verify(password, user.password)) 
+        console.log('success')
+        done(null, user);
+      }
+      
     });
   })
 );
@@ -128,25 +130,33 @@ app.post('/login',function(req, res, next){
   passport.authenticate('local', function(err, user){
     if (err){
       res.json({
+        
         success: false,
         message: err
       })
     } else if(user){
-    req.logIn(user, function(error) {
-      if (error) return next(error);
+    req.logIn(user, (err)=> {
+      if (err){ 
+      console.log(err);
+      next(err);
+      } else {
         res.json({
           user: user,
           success: true,
           message: "Success"
         });
+      }
       });
-    }else {
+    
+    } else {
       res.json({
+        
         success: false,
         message: "Incorrect Email or Password"
       })
     }
   })(req,res, next);
+  
 });
 
 app.get('/logout', function(req, res){
