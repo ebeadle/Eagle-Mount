@@ -11,13 +11,13 @@ var Calendar = observer(class Calendar extends Component {
 
   }
 
-  componentDidMount(){
-    this.props.shiftStore.fetchShift();
-  }
+  // componentDidMount(){
+  //   this.props.shiftStore.fetchShift();
+  // }
   
   render() {
-
-    console.log(this.props.shiftStore.fetchShift());
+    let needShifts={};
+    console.log(this.props.shiftStore.fetchShift(needShifts));
 
 
 
