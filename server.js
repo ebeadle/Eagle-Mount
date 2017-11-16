@@ -77,15 +77,39 @@ app.post('/signup', function(req, res, next){
   user.password = req.body.password;
   user.skill = req.body.skill;
   user.admin = req.body.admin;
-  user.save(function(err, newUser){
-    console.log(newUser);
-    if(err) {
-      console.log(err)
-    } else {
-      res.json(newUser);
-    }
-  })
+  User.findOne({email: user.email}, (err, foundUser)=> {
+   console.log(foundUser)
+   console.log("^^ FOUND USER")
+   if(err) {
+     res.json({
+       found: false,
+       message: err,
+       success: false
+     });
+   } else {
+     user.save((error, userReturned)=> {
+       console.log(userReturned);
+       console.log("^USER RETURNED")
+       if(error){
+         console.log(error);
+         res.json({
+           found: true,
+           message: 'An Account is already associated with that email address',
+           success: false
+         })
+       } else {
+         res.json({
+           userReturned: userReturned,
+           found: true,
+           message: "Account Created",
+           success: true
+         });
+       }
+     });
+   }
+  });
 });
+
 
 app.post('/getUser', (req, res, next) => {
   User.findById( req.body.user.id, (err, userObj)=>{
@@ -102,8 +126,11 @@ app.post('/getUser', (req, res, next) => {
 app.post('/login',function(req, res, next){
   passport.authenticate('local', function(err, user){
     if (err){
-      console.log(err);
-    }
+      res.json({
+        success: false,
+        message: err
+      })
+    } else if(user){
     req.logIn(user, function(error) {
       if (error) return next(error);
         res.json({
@@ -112,6 +139,12 @@ app.post('/login',function(req, res, next){
           message: "Success"
         });
       });
+    }else {
+      res.json({
+        success: false,
+        message: "Incorrect Email or Password"
+      })
+    }
   })(req,res, next);
 });
 

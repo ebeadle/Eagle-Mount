@@ -32,7 +32,7 @@ export default class UserStore {
         if (userObj.data) {
           this.user = userObj.data
         } else {
-          console.log("user add failed");
+        
           reject(userObj);
         }
         console.log(userObj);
@@ -53,7 +53,7 @@ export default class UserStore {
         if (loggedInUser.data.success) {
           this.user=loggedInUser.data
         } else {
-          console.log('incorrect username or password')
+          this.message='incorrect username or password'
         }
         resolve(loggedInUser.data);
       })

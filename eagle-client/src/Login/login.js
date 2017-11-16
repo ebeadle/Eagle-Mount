@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { Button, Form, Grid, Header, Image, Message, Segment, Container } from 'semantic-ui-react'
 import {inject, observer} from 'mobx-react';
+import './login.css'
 // var axios = require('axios');
 
 var Login = observer(class Login extends Component {
@@ -14,7 +15,8 @@ var Login = observer(class Login extends Component {
 
     this.state={
       email: "",
-      password: ""
+      password: "",
+      message: ""
     }
   }
 
@@ -33,11 +35,16 @@ var Login = observer(class Login extends Component {
       password: this.state.password,
       
     }).then((userStore)=>{
-        console.log(userStore);
         if (userStore.success){
           console.log('!!!!')
         this.props.history.push('/calendar'); 
-        } 
+        } else {
+          this.setState({
+            message: userStore.message,
+            email: "",
+            password: "",
+        });
+      }
         resolve(userStore) 
 
     }).catch((e)=> {
@@ -50,7 +57,7 @@ var Login = observer(class Login extends Component {
   
 
   render() {
-    
+  
     return (
       <div className='login-form'>
     
@@ -73,6 +80,7 @@ var Login = observer(class Login extends Component {
             {' '}Login
           </Header>
           <Form size='large'>
+          <p className='message'>{this.state.message}</p>
             <Segment stacked>
             
               <Form.Input
@@ -92,7 +100,7 @@ var Login = observer(class Login extends Component {
                 onChange={this.handlePassword}
                 value={this.state.password}
               />
-  
+              
               <Button onClick={this.handleClick} color='blue' fluid size='large'>Login</Button>
             </Segment>
           </Form>
