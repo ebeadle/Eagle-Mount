@@ -17,6 +17,7 @@
   font-size: large;
 } */
 
+<<<<<<< HEAD
 .Home-intro {
   font-size: 2em;
   font-family: 'Sonsie One', cursive;
@@ -25,3 +26,19 @@
   background-repeat: no-repeat;
   background-size: auto;
 }
+=======
+.footer {
+  background-color: #1B7FBD;
+  color: white;
+  font-family: cursive;
+  font-size: 18px;
+  margin-top: 70px;
+  position:relative;  
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+>>>>>>> 319987a1c9697970321ef3c7c18cd130d9d75a45

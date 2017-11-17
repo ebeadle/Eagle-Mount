@@ -2,6 +2,7 @@ var express = require('express');
 var app = require("express")();
 let bodyParser = require("body-parser");
 var User = require("./models/users");
+var Shift = require('./models/shifts');
 var session = require("express-session");
 var passport = require("passport");
 var LocalStrategy = require("passport-local").Strategy;
@@ -37,23 +38,25 @@ app.use(session({ secret: "moby" }));
 app.use(passport.initialize());
 app.use(passport.session());
 
-passport.use(new LocalStrategy(
-  {email:'username', password:'password'}, 
-  function(email, password, done) {
-    
-    User.findOne({ email: email }, function(error, user) {
-      
-      if (passwordHash.verify(password, user.password)) {
-        console.log('success')
-        done(null, user);
-      } else if (user || !error) {
-        done(error, null);
+passport.use(new LocalStrategy({ username: "email", password: "password" },  (email, password, done) => {
+  User.findOne({
+    email: email
+  }, (err, foundUser) => {
+    if (err) {
+      console.log(err);
+      next(err);
+    } else if (foundUser == null){
+      return done(err, null)
+    } else {
+      if (passwordHash.verify(password, foundUser.password)) {
+        return done(null, foundUser);
       } else {
-        done(error, null);
+        return done(err, null);
       }
-    });
+    }
   })
-);
+})
+)
 
 passport.serializeUser(function(user, done) {
   done(null, user._id);
@@ -77,15 +80,39 @@ app.post('/signup', function(req, res, next){
   user.password = req.body.password;
   user.skill = req.body.skill;
   user.admin = req.body.admin;
-  user.save(function(err, newUser){
-    console.log(newUser);
-    if(err) {
-      console.log(err)
-    } else {
-      res.json(newUser);
-    }
-  })
+  User.findOne({email: user.email}, (err, foundUser)=> {
+   console.log(foundUser)
+   console.log("^^ FOUND USER")
+   if(err) {
+     res.json({
+       found: false,
+       message: err,
+       success: false
+     });
+   } else {
+     user.save((error, userReturned)=> {
+       console.log(userReturned);
+       console.log("^USER RETURNED")
+       if(error){
+         console.log(error);
+         res.json({
+           found: true,
+           message: 'An Account is already associated with that email address',
+           success: false
+         })
+       } else {
+         res.json({
+           userReturned: userReturned,
+           found: true,
+           message: "Account Created",
+           success: true
+         });
+       }
+     });
+   }
+  });
 });
+
 
 app.post('/getUser', (req, res, next) => {
   User.findById( req.body.user.id, (err, userObj)=>{
@@ -102,17 +129,34 @@ app.post('/getUser', (req, res, next) => {
 app.post('/login',function(req, res, next){
   passport.authenticate('local', function(err, user){
     if (err){
+      res.json({
+        
+        success: false,
+        message: err
+      })
+    } else if(user){
+    req.logIn(user, (err)=> {
+      if (err){ 
       console.log(err);
-    }
-    req.logIn(user, function(error) {
-      if (error) return next(error);
+      next(err);
+      } else {
         res.json({
           user: user,
           success: true,
           message: "Success"
         });
+      }
       });
+    
+    } else {
+      res.json({
+        
+        success: false,
+        message: "Incorrect Email or Password"
+      })
+    }
   })(req,res, next);
+  
 });
 
 app.get('/logout', function(req, res){
@@ -123,6 +167,36 @@ app.get('/logout', function(req, res){
   } else {
     res.json('no user logged in')
   }
+});
+
+app.post('/open-shifts', function(req, res, next){
+  var shift = new Shift();
+  console.log('SHIFT!!!!!!')
+  console.log(shift)
+  shift.date = req.body.date;
+  shift.day = req.body.day;
+  shift.skill = req.body.skill;
+  shift.claimed = req.body.claimed;
+  shift.time = req.body.time;
+  shift.save(function(err, newShift){
+    console.log(newShift);
+    if(err) {
+      console.log(err)
+    } else {
+      res.json(newShift);
+    }
+  })
+});
+
+app.get('/shift', function(req, res, next) {
+  Shift.find(function(err, shift) {
+    console.log(shift);
+    if(err){
+      next(err)
+    } else {
+      res.json(shift);
+    }   
+  });
 });
 
 var port = process.env.PORT || 5000;

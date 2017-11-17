@@ -5,14 +5,18 @@ import 'react-day-picker/lib/style.css';
 
 export default class DateInput extends React.Component {
   state = {
-    selectedDay: undefined,
+    selectedDate: undefined,
+    value:null
   }
-  handleDayChange = selectedDay => {
-    this.setState({ selectedDay });
+  handleDateChange = selectedDate => {
+    this.props.dateChange(selectedDate.format("MM/DD/YYYY"))
+    this.setState({ selectedDate });
   };
+  
+
   render() {
-    const value = this.state.selectedDay 
-      ? this.state.selectedDay.format('MM/DD/YYYY') 
+    const value = this.state.selectedDate 
+      ? this.state.selectedDate.format('MM/DD/YYYY') 
       : '';
     return (
       <DayPickerInput
@@ -20,7 +24,7 @@ export default class DateInput extends React.Component {
         placeholder="MM/DD/YYYY"
         format="MM/DD/YYYY"
         value={value}
-        onDayChange={this.handleDayChange}
+        onDayChange={this.handleDateChange}
       />
     );
   }

@@ -9,16 +9,28 @@ import {Provider} from 'mobx-react';
 import Login from '../Login/login';
 import Nav from '../NavBar/navBar';
 import UserStore from '../Stores/UserStore';
+import ShiftStore from '../Stores/ShiftStore';
 import Calendar from '../Calendar/calendar';
 import Admin from '../Admin/admin';
 import Logout from '../Logout/logout';
+<<<<<<< HEAD
 import HomePage from '../Home/Home';
+=======
+import Footer from '../Footer/Footer';
+import FancyCalendar from '../FancyCalendar/fancyCalendar';
+
+>>>>>>> 319987a1c9697970321ef3c7c18cd130d9d75a45
 
 export default class App extends React.Component {
   render() {
     return (
+<<<<<<< HEAD
       <Provider userStore={new UserStore()}>
         <div className="Home-intro">
+=======
+      <Provider userStore={new UserStore()} shiftStore={new ShiftStore()}>
+        <div>
+>>>>>>> 319987a1c9697970321ef3c7c18cd130d9d75a45
         <Router>
           <div>
             <Nav />
@@ -27,6 +39,8 @@ export default class App extends React.Component {
               <Route path='/Login' render={()=> <Login />}/> 
               <Route path='/Logout' render={()=> <Logout />}/> 
               <Route path='/Calendar' render={()=> <Calendar />}/> 
+              <Route path='/FancyCalendar' render={()=> <FancyCalendar />}/> 
+              <Footer />
           </div>
         </ Router>
         <HomePage />

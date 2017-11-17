@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
 import {inject, observer} from 'mobx-react';
+import "./signUp.css"
 var axios = require('axios');
 
 var SignUp = observer(class SignUp extends Component {
@@ -12,7 +13,8 @@ constructor(props){
     lastName: "",
     email: "",
     password: "",
-    skill: ""
+    skill: "",
+    message: "",
   }
   this.handleClick = this.handleClick.bind(this);
   this.handleFirstNameChange = this.handleFirstNameChange.bind(this);
@@ -39,7 +41,6 @@ constructor(props){
   }
 
   handleClick(){
-    console.log(this.props.userStore);
     this.props.userStore.signUpUser(
       {firstName: this.state.firstName,
       lastName: this.state.lastName,
@@ -52,7 +53,13 @@ constructor(props){
         console.log("added user");
         this.props.history.push('/login');
       } else {
-        console.log("failed")
+        this.setState({
+          firstName: "",
+          lastName: "",
+          email: "",
+          password: "",
+          skill: "",
+          message: this.props.userStore.user.message});
       }
     }).catch((e)=> {
       console.log(e)
@@ -60,12 +67,10 @@ constructor(props){
   }
 
   render() {
-    console.log(this.state.firstName);
     
     return (
       <div className='login-form'>
-      <p> Eagle Mount considers Expert to be Bi-Ski certified. Intermediate blahhhh and Beginner will hang out with kids.</p>
-    
+      
       <style>{`
         body > div,
         body > div > div,
@@ -83,7 +88,9 @@ constructor(props){
             
             {' '}Sign Up
           </Header>
+
           <Form size='large'>
+          <p className="message"> {this.state.message}   </p>  
             <Segment stacked>
             <Form.Input
                 fluid
@@ -142,8 +149,16 @@ constructor(props){
                 onChange={this.handleSkillChange}
                 value={this.state.skill}
               />
+<<<<<<< HEAD
+=======
+
+             
+  
+>>>>>>> 319987a1c9697970321ef3c7c18cd130d9d75a45
               <Button color='blue' fluid size='large' onClick={this.handleClick} >Sign Up</Button>
             </Segment>
+            <p> Eagle Mount considers Expert to be Bi-Ski certified. Intermediate blahhhh and Beginner will hang out with kids.</p>
+
           </Form>
          
         </Grid.Column>
