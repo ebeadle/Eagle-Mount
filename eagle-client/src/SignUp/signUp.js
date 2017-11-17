@@ -142,9 +142,6 @@ constructor(props){
                 onChange={this.handleSkillChange}
                 value={this.state.skill}
               />
-
-              
-  
               <Button color='blue' fluid size='large' onClick={this.handleClick} >Sign Up</Button>
             </Segment>
           </Form>

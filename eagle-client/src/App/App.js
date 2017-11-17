@@ -12,13 +12,13 @@ import UserStore from '../Stores/UserStore';
 import Calendar from '../Calendar/calendar';
 import Admin from '../Admin/admin';
 import Logout from '../Logout/logout';
+import HomePage from '../Home/Home';
 
-
-export default class App extends Component {
+export default class App extends React.Component {
   render() {
     return (
       <Provider userStore={new UserStore()}>
-        <div>
+        <div className="Home-intro">
         <Router>
           <div>
             <Nav />
@@ -29,11 +29,10 @@ export default class App extends Component {
               <Route path='/Calendar' render={()=> <Calendar />}/> 
           </div>
         </ Router>
+        <HomePage />
         </div>
+        
      </Provider>
     );
   }
 }
-
-
-
