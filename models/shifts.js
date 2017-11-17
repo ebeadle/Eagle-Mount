@@ -5,7 +5,10 @@ var ShiftSchema = new mongoose.Schema({
   day: String,
   time: String,
   skill: String,
-  claimed: Boolean
+  claimed: Boolean,
+  title: String, //this is going to skill I think
+  start: String,
+  
 
 })
 
