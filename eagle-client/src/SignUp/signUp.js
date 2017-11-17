@@ -149,12 +149,7 @@ constructor(props){
                 onChange={this.handleSkillChange}
                 value={this.state.skill}
               />
-<<<<<<< HEAD
-=======
-
-             
-  
->>>>>>> 319987a1c9697970321ef3c7c18cd130d9d75a45
+              
               <Button color='blue' fluid size='large' onClick={this.handleClick} >Sign Up</Button>
             </Segment>
             <p> Eagle Mount considers Expert to be Bi-Ski certified. Intermediate blahhhh and Beginner will hang out with kids.</p>
