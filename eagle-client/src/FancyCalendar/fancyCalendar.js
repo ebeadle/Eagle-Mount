@@ -32,7 +32,15 @@ var FancyCalendar = observer(class FancyCalendar extends Component {
 
     render() {
         console.log(this.props.shiftStore.shift[0]);
-        if (this.props.shiftStore.shift) {
+//if (this.props.shiftStore.shift) {
+    //let events = [{start: '2017-11-21',
+            //title: 'Intermediate' }]
+
+      
+
+    //this.props.shiftStore.shift
+    //console.log(events);
+    if(true) {
             return (
                 <div id="example-component">
                     <FullCalendar
@@ -46,7 +54,7 @@ var FancyCalendar = observer(class FancyCalendar extends Component {
                         navLinks={true} // can click day/week names to navigate views
                         editable={true}
                         eventLimit={true} // allow "more" link when too many events
-                        events={this.props.shiftStore.shift[0]} //{this.state.events}is the original
+                        events={this.props.shiftStore.retrieveShift} //{this.state.events}is the original
                     />
                 </div>
             );
