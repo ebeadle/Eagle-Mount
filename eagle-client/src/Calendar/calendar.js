@@ -21,6 +21,7 @@ var Calendar = observer(class Calendar extends Component {
     this.callFetch();
   
   }
+
   
   render() {
     console.log(this.props.shiftStore.shift);
