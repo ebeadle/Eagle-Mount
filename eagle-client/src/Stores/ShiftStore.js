@@ -24,7 +24,9 @@ export default class ShiftStore {
           day: newShiftObj.day,
           skill: newShiftObj.skill,
           claimed: newShiftObj.claimed,
-          time: newShiftObj.time
+          time: newShiftObj.time,
+          title: newShiftObj.skill,
+          start: newShiftObj.date
         }
       ).then((shiftObj) => {
         if (shiftObj.data) {

@@ -3,6 +3,7 @@ import { Button, Checkbox, Form } from 'semantic-ui-react'
 import DateInput from '../SelectDate/selectDate'
 import {inject, observer} from 'mobx-react';
 import { withRouter } from 'react-router-dom';
+import moment from 'moment';
 
 
 
@@ -14,7 +15,9 @@ var Admin = observer(class Admin extends Component {
       day: '',
       skill: '',
       claimed: false,
-      time: ''
+      time: '',
+      title: '',
+      start: ''
     }
     this.date = null;
     this.dateChange = this.dateChange.bind(this);
@@ -27,7 +30,10 @@ var Admin = observer(class Admin extends Component {
   }
 
   dateChange(date){
-    this.date = date;   
+    this.date = date; 
+    console.log(date);
+    //date.format()
+    //date.toISOString();  
   }
   handleDay(event){
     console.log(event.target.value)

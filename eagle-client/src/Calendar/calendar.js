@@ -7,19 +7,14 @@ var Calendar = observer(class Calendar extends Component {
   constructor(){
     super()
     this.callFetch = this.callFetch.bind(this)
-    
-
-    
   }
 
   callFetch(){
     this.props.shiftStore.fetchShift();
-    
   }
 
   componentDidMount(){    
     this.callFetch();
-  
   }
 
   

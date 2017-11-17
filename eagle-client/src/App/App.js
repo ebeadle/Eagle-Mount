@@ -13,7 +13,7 @@ import ShiftStore from '../Stores/ShiftStore';
 import Calendar from '../Calendar/calendar';
 import Admin from '../Admin/admin';
 import Logout from '../Logout/logout';
-import Footer from '../Footer/Footer';
+import Footer from '../Footer/footer';
 import FancyCalendar from '../FancyCalendar/fancyCalendar';
 
 
