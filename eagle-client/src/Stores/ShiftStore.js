@@ -7,8 +7,10 @@ export default class ShiftStore {
     extendObservable(this, {
       shift: [],
       success: null,
-      get retrieveShift() {
-        return this.shift
+      get retrieveShift() { //this used to have just this.shift but it didn't render. Mobx wants the data filtered?
+        return this.shift.map((s)=> {
+          return s
+        })
       }
     })
     this.addNewShift = this.addNewShift.bind(this);
@@ -24,7 +26,9 @@ export default class ShiftStore {
           day: newShiftObj.day,
           skill: newShiftObj.skill,
           claimed: newShiftObj.claimed,
-          time: newShiftObj.time
+          time: newShiftObj.time,
+          title: newShiftObj.skill,
+          start: newShiftObj.date
         }
       ).then((shiftObj) => {
         if (shiftObj.data) {
