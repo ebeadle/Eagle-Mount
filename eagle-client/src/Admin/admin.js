@@ -58,7 +58,8 @@ var Admin = observer(class Admin extends Component {
       day: this.state.day,
       claimed: this.state.claimed,
       time: this.state.time,
-      skill: this.state.skill
+      skill: this.state.skill,
+      start: this.date
       }
     ).then((res)=> {
       if(res.data){
