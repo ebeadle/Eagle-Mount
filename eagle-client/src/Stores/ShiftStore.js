@@ -5,7 +5,7 @@ var axios = require('axios');
 export default class ShiftStore {
   constructor() {
     extendObservable(this, {
-      shift: null,
+      shift: [],
       success: null,
       get retrieveShift() {
         return this.shift
@@ -13,6 +13,7 @@ export default class ShiftStore {
     })
     this.addNewShift = this.addNewShift.bind(this);
     this.fetchShift = this.fetchShift.bind(this);
+    
   }
 
   addNewShift(newShiftObj) {
@@ -49,7 +50,7 @@ export default class ShiftStore {
     this.shift = shiftObj.data;
   } else {
     console.log('undefined')
-    //reject(shiftObj);
+    reject(shiftObj);
   }
   resolve(shiftObj);
     }).catch(function (err){
@@ -57,4 +58,12 @@ export default class ShiftStore {
     })
   })
 }
+
+
+  
+  
+  
+
 }
+
+
