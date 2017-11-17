@@ -14,6 +14,8 @@ import Calendar from '../Calendar/calendar';
 import Admin from '../Admin/admin';
 import Logout from '../Logout/logout';
 import Footer from '../Footer/Footer';
+import FancyCalendar from '../FancyCalendar/fancyCalendar';
+
 
 
 export default class App extends Component {
@@ -29,6 +31,7 @@ export default class App extends Component {
               <Route path='/Login' render={()=> <Login />}/> 
               <Route path='/Logout' render={()=> <Logout />}/> 
               <Route path='/Calendar' render={()=> <Calendar />}/> 
+              <Route path='/FancyCalendar' render={()=> <FancyCalendar />}/> 
               <Footer />
           </div>
         </ Router>
