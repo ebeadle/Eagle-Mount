@@ -5,16 +5,16 @@ var axios = require('axios');
 export default class ShiftStore {
   constructor() {
     extendObservable(this, {
-      shift: [],
+      shifts: [],
       success: null,
       get retrieveShift() { //this used to have just this.shift but it didn't render. Mobx wants the data filtered?
-        return this.shift.map((s)=> {
+      return this.shifts.map((s)=> {
           return s
         })
       }
     })
     this.addNewShift = this.addNewShift.bind(this);
-    this.fetchShift = this.fetchShift.bind(this);
+    this.fetchShifts = this.fetchShifts.bind(this);
     
   }
 
@@ -32,7 +32,12 @@ export default class ShiftStore {
         }
       ).then((shiftObj) => {
         if (shiftObj.data) {
-          this.shift = shiftObj.data
+          axios.get("/shift").then((shiftObj) =>{
+            console.log(shiftObj);
+            this.shifts = shiftObj.data
+          })
+        
+          
         } else {
           console.log("shift add failed");
           reject(shiftObj);
@@ -43,7 +48,7 @@ export default class ShiftStore {
     })
   }
 
-  fetchShift(shiftObj){
+  fetchShifts(shiftObj){
     console.log('fetching shift')
     return new Promise((resolve, reject) => {
       axios.get('/shift').then((shiftObj) => {
@@ -62,6 +67,10 @@ export default class ShiftStore {
      })
    })
   }
+
+
+
+
 }
 
 
