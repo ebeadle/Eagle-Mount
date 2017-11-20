@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Checkbox, Form } from 'semantic-ui-react'
+import { Button, Checkbox, Form, Dropdown } from 'semantic-ui-react'
 import DateInput from '../SelectDate/selectDate'
 import {inject, observer} from 'mobx-react';
 import { withRouter } from 'react-router-dom';
@@ -9,13 +9,37 @@ var Admin = observer(class Admin extends Component {
   constructor() {
     super()
     this.state={
+<<<<<<< HEAD
       date: '',
       title: '',
       start: ''
+=======
+       
+      title: '', //skill
+      start: '',
+      end: '',
+      time: ''
+>>>>>>> 76a7cd75fef64460479be7c473e3fd61d1b409d3
     }
+    this.shiftTime = [
+      {
+        text: 'Morning',
+        value: 'morning',
+     },
+    {
+      text: 'Afternoon',
+      value: 'afternoon'
+    }]
+   console.log(this.time)
     this.date = null;
+    this.time = null;
     this.dateChange = this.dateChange.bind(this);
+<<<<<<< HEAD
     this.handleTitle = this.handleTitle.bind(this);
+=======
+    this.handleSkill = this.handleSkill.bind(this);
+    this.handleTime = this.handleTime.bind(this);
+>>>>>>> 76a7cd75fef64460479be7c473e3fd61d1b409d3
     this.handleClick = this.handleClick.bind(this);
 
   }
@@ -23,21 +47,36 @@ var Admin = observer(class Admin extends Component {
   dateChange(date){
     this.date = date; 
     console.log(date);
+<<<<<<< HEAD
     //date.format()
     //date.toISOString();  
   }
 
   handleTitle(event){
     this.setState({ title: event.target.value});
+=======
+  }
+
+  handleSkill(event){
+    this.setState({ title: event.target.value});
+  }
+  
+  handleTime(event, d){
+   this.setState({time: d.value})
+>>>>>>> 76a7cd75fef64460479be7c473e3fd61d1b409d3
   }
 
   
   handleClick(){  
     //console.log(this.props)
-    console.log(this.date)
+    console.log(this.state)
     //console.log(this.props.shiftStore);
     this.props.shiftStore.addNewShift(
       {date: this.date,
+<<<<<<< HEAD
+=======
+      time: this.state.time,
+>>>>>>> 76a7cd75fef64460479be7c473e3fd61d1b409d3
       title: this.state.title,
       start: this.date
       }
@@ -53,6 +92,8 @@ var Admin = observer(class Admin extends Component {
     })
   }
 
+
+
   render() {
     return (
       <div>
@@ -63,16 +104,17 @@ var Admin = observer(class Admin extends Component {
             <DateInput type='text'
                 dateChange={this.dateChange} />
           </Form.Field>
-         
-          {/* <Form.Field>
+          
+          <Form.Field>
+
             <label>Shift</label>
-            <input placeholder='Morning' type='text'
-                value={this.state.time} onChange={this.handleTime}/>
-          </Form.Field> */}
+            <Dropdown onChange={this.handleTime} placeholder='Morning or Afternoon' fluid selection options={this.shiftTime} />
+            
+          </Form.Field>
           <Form.Field>
             <label>Skill</label>
             <input placeholder='Expert' type='text'
-                value={this.state.title} onChange={this.handleTitle}/>
+                value={this.state.title} onChange={this.handleSkill}/>
           </Form.Field>
          
           <Button onClick={this.handleClick} color='blue' fluid size='large'>Submit</Button>

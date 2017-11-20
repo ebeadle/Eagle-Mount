@@ -173,9 +173,10 @@ app.post('/open-shifts', function(req, res, next){
   var shift = new Shift();
   console.log('SHIFT!!!!!!')
   console.log(shift)
+  shift.date = req.body.date;
+ 
+  shift.skill = req.body.skill;
   
-  shift.day = req.body.day;
-  shift.claimed = req.body.claimed;
   shift.time = req.body.time;
   shift.title = req.body.title;
   shift.start = req.body.start

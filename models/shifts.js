@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var ShiftSchema = new mongoose.Schema({
   date: String,
-  claimed: Boolean,
+  time: String,
   title: String, //this is going to skill I think
   start: String,
   
