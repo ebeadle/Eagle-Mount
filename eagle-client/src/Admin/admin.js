@@ -63,8 +63,8 @@ var Admin = observer(class Admin extends Component {
       }
     ).then((res)=> {
       if(res.data){
-        console.log("added shift");
-        //this.props.history.push('/login');
+        console.log("added shift"); 
+       this.props.history.push('/fancycalendar'); 
       } else {
         console.log("failed")
       }
