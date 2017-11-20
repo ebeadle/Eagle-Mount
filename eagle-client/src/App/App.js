@@ -15,6 +15,7 @@ import Admin from '../Admin/admin';
 import Logout from '../Logout/logout';
 import HomePage from '../Home/Home';
 import Footer from '../Footer/Footer';
+//import Footer from '../Footer/footer';
 import FancyCalendar from '../FancyCalendar/fancyCalendar';
 
 

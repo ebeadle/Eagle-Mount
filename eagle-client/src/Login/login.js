@@ -38,7 +38,7 @@ var Login = observer(class Login extends Component {
       console.log(userStore);
         if (userStore.success){
           
-        this.props.history.push('/calendar'); 
+        this.props.history.push('/fancycalendar'); 
         } else {
           console.log(userStore)
           this.setState({

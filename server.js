@@ -178,6 +178,8 @@ app.post('/open-shifts', function(req, res, next){
   shift.skill = req.body.skill;
   shift.claimed = req.body.claimed;
   shift.time = req.body.time;
+  shift.title = req.body.title;
+  shift.start = req.body.start
   shift.save(function(err, newShift){
     console.log(newShift);
     if(err) {

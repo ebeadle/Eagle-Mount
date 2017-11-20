@@ -3,74 +3,67 @@ import ReactDOM from 'react-dom';
 import FullCalendar from 'fullcalendar-reactwrapper';
 import 'fullcalendar-reactwrapper/dist/css/fullcalendar.min.css'
 import moment from 'moment';
+import { withRouter } from 'react-router-dom';
+import { inject, observer } from 'mobx-react';
 
+var FancyCalendar = observer(class FancyCalendar extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            events: []
+            // [
+            //     {
+            //         title: 'All Day Event',
+            //         start: '2017-05-01'
+            //     }
+            // ]
 
-
-export default class FancyCalendar extends React.Component{
-  constructor(props) {
-    super(props);
-    this.state = {
-    events:[
-                {
-                    title: 'All Day Event',
-                    start: '2017-05-01'
-                },
-                {
-                    title: 'Long Event',
-                    start: '2017-05-07',
-                    end: '2017-05-10'
-                },
-                {
-                    id: 999,
-                    title: 'Repeating Event',
-                    start: '2017-11-12T10:00:00',
-                    end: '2017-11-12T12:00:00'
-                },
-                {
-                    id: 999,
-                    title: 'Repeating Event',
-                    start: '2017-05-16T16:00:00'
-                },
-                {
-                    title: 'Conference',
-                    start: '2017-05-11',
-                    end: '2017-05-13'
-                },
-                {
-                    title: 'Meeting',
-                    start: '2017-05-12T10:30:00',
-                    end: '2017-05-12T12:30:00'
-                },
-                {
-                    title: 'Birthday Party',
-                    start: '2017-05-13T07:00:00'
-                },
-                {
-                    title: 'Click for Google',
-                    url: 'http://google.com/',
-                    start: '2017-05-28'
-                }
-            ],		
+        }
+        this.callFetch = this.callFetch.bind(this)
     }
-  }
- 
-  render() {
-    return (
-      <div id="example-component">
-        <FullCalendar
-             id = "your-custom-ID"
-         header = {{
-            left: 'prev,next today myCustomButton',
-            center: 'title',
-            right: 'month,basicWeek,basicDay'
-        }}
-         defaultDate={moment()}
-        navLinks= {true} // can click day/week names to navigate views
-        editable= {true}
-        eventLimit= {true} // allow "more" link when too many events
-        events = {this.state.events}	
-    />
-      </div>
-    );
-  }
-}
+
+    callFetch() {
+        this.props.shiftStore.fetchShift();
+    }
+
+    componentDidMount() {
+        this.callFetch();
+    }
+
+    render() {
+        console.log(this.props.shiftStore.shift[0]);
+//if (this.props.shiftStore.shift) {
+    //let events = [{start: '2017-11-21',
+            //title: 'Intermediate' }]
+
+      
+
+    //this.props.shiftStore.shift
+    //console.log(events);
+    if(true) {
+            return (
+                <div id="example-component">
+                    <FullCalendar
+                        id="your-custom-ID"
+                        header={{
+                            left: 'prev,next today myCustomButton',
+                            center: 'title',
+                            right: 'month,basicWeek,basicDay'
+                        }}
+                        defaultDate={moment()}
+                        navLinks={true} // can click day/week names to navigate views
+                        editable={true}
+                        eventLimit={true} // allow "more" link when too many events
+                        events={this.props.shiftStore.retrieveShift} //{this.state.events}is the original
+                    />
+                </div>
+            );
+        } else {
+            return (
+                <div>Loading</div>
+            )
+        }
+    }
+})
+
+export default withRouter(inject('shiftStore')(FancyCalendar));
