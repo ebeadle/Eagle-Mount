@@ -15,19 +15,16 @@ export default class ShiftStore {
     })
     this.addNewShift = this.addNewShift.bind(this);
     this.fetchShifts = this.fetchShifts.bind(this);
-    
   }
 
   addNewShift(newShiftObj) {
     return new Promise((resolve, reject) => {
+      console.log(newShiftObj);
       axios.post("/open-shifts",
         {
           date: newShiftObj.date,
-          day: newShiftObj.day,
-          skill: newShiftObj.skill,
-          claimed: newShiftObj.claimed,
           time: newShiftObj.time,
-          title: newShiftObj.skill,
+          title: newShiftObj.title,
           start: newShiftObj.date
         }
       ).then((shiftObj) => {
@@ -36,8 +33,6 @@ export default class ShiftStore {
             console.log(shiftObj);
             this.shifts = shiftObj.data
           })
-        
-          
         } else {
           console.log("shift add failed");
           reject(shiftObj);
