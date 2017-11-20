@@ -59,15 +59,9 @@ export default class ShiftStore {
   resolve(shiftObj);
     }).catch(function (err){
       console.log(err)
-    })
-  })
-}
-
-
-  
-  
-  
-
+     })
+   })
+  }
 }
 
 
