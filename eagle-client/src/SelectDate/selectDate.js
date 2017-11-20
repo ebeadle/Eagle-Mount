@@ -9,14 +9,14 @@ export default class DateInput extends React.Component {
     value:null
   }
   handleDateChange = selectedDate => {
-    this.props.dateChange(selectedDate.format("YYYY-MM-DD"))
+    this.props.dateChange(selectedDate.format("YYYY-MM-DDThh:mm:ss"))
     this.setState({ selectedDate });
   };
   
 
   render() {
     const value = this.state.selectedDate 
-      ? this.state.selectedDate.format('YYYY-MM-DD') 
+      ? this.state.selectedDate.format('YYYY-MM-DDThh:mm:ss') 
       : '';
     return (
       <DayPickerInput

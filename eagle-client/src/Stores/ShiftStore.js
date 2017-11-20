@@ -23,11 +23,8 @@ export default class ShiftStore {
       axios.post("/open-shifts",
         {
           date: newShiftObj.date,
-          day: newShiftObj.day,
-          skill: newShiftObj.skill,
-          claimed: newShiftObj.claimed,
           time: newShiftObj.time,
-          title: newShiftObj.skill,
+          title: newShiftObj.title,
           start: newShiftObj.date
         }
       ).then((shiftObj) => {

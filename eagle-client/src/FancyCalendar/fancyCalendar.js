@@ -31,7 +31,7 @@ var FancyCalendar = observer(class FancyCalendar extends Component {
     }
 
     render() {
-        console.log(this.props.shiftStore.shift[0]);
+       
 //if (this.props.shiftStore.shift) {
     //let events = [{start: '2017-11-21',
             //title: 'Intermediate' }]
@@ -42,7 +42,7 @@ var FancyCalendar = observer(class FancyCalendar extends Component {
     //console.log(events);
     if(true) {
             return (
-                <div id="example-component">
+              <div id="example-component">
                     <FullCalendar
                         id="your-custom-ID"
                         header={{
@@ -53,8 +53,15 @@ var FancyCalendar = observer(class FancyCalendar extends Component {
                         defaultDate={moment()}
                         navLinks={true} // can click day/week names to navigate views
                         editable={true}
+                        allDay={false}
                         eventLimit={true} // allow "more" link when too many events
                         events={this.props.shiftStore.retrieveShift} //{this.state.events}is the original
+                        defaultTimedEventDuration={'02:00:00'}  
+                        displayEventEnd={true}
+                        defaultView={'agendaWeek'}   
+                        slotDuration= {'00:30:00'}
+                        slotLabelInterval= {'30'}
+                        slotLabelFormat= {'h(:mm)a'}
                     />
                 </div>
             );
