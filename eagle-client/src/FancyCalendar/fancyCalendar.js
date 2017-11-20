@@ -23,7 +23,7 @@ var FancyCalendar = observer(class FancyCalendar extends Component {
     }
 
     callFetch() {
-        this.props.shiftStore.fetchShift();
+        this.props.shiftStore.fetchShifts();
     }
 
     componentDidMount() {
@@ -31,7 +31,6 @@ var FancyCalendar = observer(class FancyCalendar extends Component {
     }
 
     render() {
-       
 //if (this.props.shiftStore.shift) {
     //let events = [{start: '2017-11-21',
             //title: 'Intermediate' }]
