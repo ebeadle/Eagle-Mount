@@ -9,17 +9,11 @@ var Admin = observer(class Admin extends Component {
   constructor() {
     super()
     this.state={
-<<<<<<< HEAD
-      date: '',
-      title: '',
-      start: ''
-=======
        
       title: '', //skill
       start: '',
       end: '',
       time: ''
->>>>>>> 76a7cd75fef64460479be7c473e3fd61d1b409d3
     }
     this.shiftTime = [
       {
@@ -34,12 +28,8 @@ var Admin = observer(class Admin extends Component {
     this.date = null;
     this.time = null;
     this.dateChange = this.dateChange.bind(this);
-<<<<<<< HEAD
-    this.handleTitle = this.handleTitle.bind(this);
-=======
     this.handleSkill = this.handleSkill.bind(this);
     this.handleTime = this.handleTime.bind(this);
->>>>>>> 76a7cd75fef64460479be7c473e3fd61d1b409d3
     this.handleClick = this.handleClick.bind(this);
 
   }
@@ -47,14 +37,6 @@ var Admin = observer(class Admin extends Component {
   dateChange(date){
     this.date = date; 
     console.log(date);
-<<<<<<< HEAD
-    //date.format()
-    //date.toISOString();  
-  }
-
-  handleTitle(event){
-    this.setState({ title: event.target.value});
-=======
   }
 
   handleSkill(event){
@@ -63,7 +45,6 @@ var Admin = observer(class Admin extends Component {
   
   handleTime(event, d){
    this.setState({time: d.value})
->>>>>>> 76a7cd75fef64460479be7c473e3fd61d1b409d3
   }
 
   
@@ -73,10 +54,7 @@ var Admin = observer(class Admin extends Component {
     //console.log(this.props.shiftStore);
     this.props.shiftStore.addNewShift(
       {date: this.date,
-<<<<<<< HEAD
-=======
       time: this.state.time,
->>>>>>> 76a7cd75fef64460479be7c473e3fd61d1b409d3
       title: this.state.title,
       start: this.date
       }
