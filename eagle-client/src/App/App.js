@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {
   BrowserRouter as Router,
-  Route,
+  Route, Redirect,
 } from 'react-router-dom';
 import './App.css';
 import SignUp from '../SignUp/signUp';
@@ -16,6 +16,7 @@ import Logout from '../Logout/logout';
 import Footer from '../Footer/footer';
 import FancyCalendar from '../FancyCalendar/fancyCalendar';
 import HomePage from '../Home/home';
+//import 'react-router';
 
 
 export default class App extends Component {
@@ -32,11 +33,12 @@ export default class App extends Component {
               <Route path='/Logout' render={() => <Logout />} />
               <Route path='/Calendar' render={() => <Calendar />} />
               <Route path='/FancyCalendar' render={() => <FancyCalendar />} />
-              <Route path='/Home' render={() => <HomePage />} />
+              <Route path='/Home' render={() =><HomePage />} />
+              <Redirect from='/' to="/Home"/>
               <Footer />
             </div>
           </ Router>
-          
+
         </div>
       </Provider>
     );
