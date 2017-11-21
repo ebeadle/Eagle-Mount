@@ -42,6 +42,7 @@ export default class ShiftStore {
       })
     })
   }
+  
 
   fetchShifts(shiftObj){
     console.log('fetching shift')

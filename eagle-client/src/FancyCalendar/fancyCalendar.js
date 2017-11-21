@@ -5,21 +5,28 @@ import 'fullcalendar-reactwrapper/dist/css/fullcalendar.min.css'
 import moment from 'moment';
 import { withRouter } from 'react-router-dom';
 import { inject, observer } from 'mobx-react';
+import { Button, Form, Grid, Header, Image, Message, Segment, Modal, Icon } from 'semantic-ui-react'
+import PopUp from "../Modal/modal"
+
 
 var FancyCalendar = observer(class FancyCalendar extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            events: []
-            // [
-            //     {
-            //         title: 'All Day Event',
-            //         start: '2017-05-01'
-            //     }
-            // ]
-
+            events: [],
+            modalOpen: false,
+             
         }
-        this.callFetch = this.callFetch.bind(this)
+        
+        this.eventClick = this.eventClick.bind(this);
+        this.callFetch = this.callFetch.bind(this);
+       
+    }
+
+    
+    eventClick(e, jsE, v) {
+        console.log(e)
+        this.setState({modalOpen: true})
     }
 
     callFetch() {
@@ -31,17 +38,10 @@ var FancyCalendar = observer(class FancyCalendar extends Component {
     }
 
     render() {
-//if (this.props.shiftStore.shift) {
-    //let events = [{start: '2017-11-21',
-            //title: 'Intermediate' }]
-
-      
-
-    //this.props.shiftStore.shift
-    //console.log(events);
-    if(true) {
+        if (true) {
             return (
-              <div id="example-component">
+                <div id="example-component">
+                    
                     <FullCalendar
                         id="your-custom-ID"
                         header={{
@@ -49,19 +49,22 @@ var FancyCalendar = observer(class FancyCalendar extends Component {
                             center: 'title',
                             right: 'month,basicWeek,basicDay'
                         }}
+                        eventClick={this.eventClick}
                         defaultDate={moment()}
                         navLinks={true} // can click day/week names to navigate views
-                        editable={true}
+                        editable={false}
                         allDay={false}
                         eventLimit={true} // allow "more" link when too many events
                         events={this.props.shiftStore.retrieveShift} //{this.state.events}is the original
-                        defaultTimedEventDuration={'02:00:00'}  
+                        defaultTimedEventDuration={'02:00:00'}
                         displayEventEnd={true}
-                        defaultView={'agendaWeek'}   
-                        slotDuration= {'00:30:00'}
-                        slotLabelInterval= {'30'}
-                        slotLabelFormat= {'h(:mm)a'}
+                        defaultView={'agendaWeek'}
+                        slotDuration={'00:30:00'}
+                        slotLabelInterval={'30'}
+                        slotLabelFormat={'h(:mm)a'}
                     />
+                    <PopUp />
+
                 </div>
             );
         } else {

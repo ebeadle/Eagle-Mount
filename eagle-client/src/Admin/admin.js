@@ -27,6 +27,27 @@ var Admin = observer(class Admin extends Component {
       text: 'Afternoon',
       value: 'afternoon'
     }]
+
+    this.skillLevels = [
+      {
+        text: 'Monoski',
+        value: 'Monoski',
+      },
+      {
+        text: 'Bi-ski',
+        value: 'Bi-ski'
+      },
+
+      {
+        text: "Tether",
+        value: 'tether',
+      },
+      {
+        text: "No Special Requirements",
+        value: "No special requirements"
+      }
+
+    ]
    console.log(this.time)
     this.date = null;
     this.time = null;
@@ -42,13 +63,15 @@ var Admin = observer(class Admin extends Component {
     console.log(date);
   }
 
-  handleSkill(event){
-    this.setState({ title: event.target.value});
+  handleSkill(event, d){
+    this.setState({ title: d.value });
   }
+
   
   handleTime(event, d){
    this.setState({time: d.value})
   }
+
 
   handleClick(){  
     //console.log(this.props)
@@ -93,8 +116,7 @@ var Admin = observer(class Admin extends Component {
           </Form.Field>
           <Form.Field>
             <label>Skill</label>
-            <input placeholder='Expert' type='text'
-                value={this.state.title} onChange={this.handleSkill}/>
+            <Dropdown onChange={this.handleSkill} placeholder='Skill Level' fluid selection options={this.skillLevels} />
           </Form.Field>
          
           <Button onClick={this.handleClick} color='blue' fluid size='large'>Submit</Button>
