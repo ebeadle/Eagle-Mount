@@ -101,14 +101,17 @@ var Admin = observer(class Admin extends Component {
   render() {
     return (
       <div>
+        
         <Form>
+          
           <Form.Field>
             <label>Date</label>
             {/* <input placeholder='02/12/2017' /> */}
             <DateInput type='text'
               dateChange={this.dateChange} />
           </Form.Field>
-
+          
+          
           <Form.Field>
 
             <label>Shift</label>
