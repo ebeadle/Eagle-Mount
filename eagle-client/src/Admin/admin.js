@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Checkbox, Form, Dropdown } from 'semantic-ui-react'
 import DateInput from '../SelectDate/selectDate'
-import {inject, observer} from 'mobx-react';
+import { inject, observer } from 'mobx-react';
 import { withRouter } from 'react-router-dom';
 import moment from 'moment';
 
@@ -11,8 +11,8 @@ import moment from 'moment';
 var Admin = observer(class Admin extends Component {
   constructor() {
     super()
-    this.state={
-       
+    this.state = {
+
       title: '', //skill
       start: '',
       end: '',
@@ -58,8 +58,8 @@ var Admin = observer(class Admin extends Component {
 
   }
 
-  dateChange(date){
-    this.date = date; 
+  dateChange(date) {
+    this.date = date;
     console.log(date);
   }
 
@@ -78,19 +78,20 @@ var Admin = observer(class Admin extends Component {
     console.log(this.state)
     //console.log(this.props.shiftStore);
     this.props.shiftStore.addNewShift(
-      {date: this.date,
-      time: this.state.time,
-      title: this.state.title,
-      start: this.date
+      {
+        date: this.date,
+        time: this.state.time,
+        title: this.state.title,
+        start: this.date
       }
-    ).then((res)=> {
-      if(res.data){
-        console.log("added shift"); 
-       this.props.history.push('/fancycalendar'); 
+    ).then((res) => {
+      if (res.data) {
+        console.log("added shift");
+        this.props.history.push('/fancycalendar');
       } else {
         console.log("failed")
       }
-    }).catch((e)=> {
+    }).catch((e) => {
       console.log(e)
     })
   }
@@ -105,20 +106,20 @@ var Admin = observer(class Admin extends Component {
             <label>Date</label>
             {/* <input placeholder='02/12/2017' /> */}
             <DateInput type='text'
-                dateChange={this.dateChange} />
+              dateChange={this.dateChange} />
           </Form.Field>
-          
+
           <Form.Field>
 
             <label>Shift</label>
             <Dropdown onChange={this.handleTime} placeholder='Morning or Afternoon' fluid selection options={this.shiftTime} />
-            
+
           </Form.Field>
           <Form.Field>
             <label>Skill</label>
             <Dropdown onChange={this.handleSkill} placeholder='Skill Level' fluid selection options={this.skillLevels} />
           </Form.Field>
-         
+
           <Button onClick={this.handleClick} color='blue' fluid size='large'>Submit</Button>
           {/* <Button type='submit'>Submit</Button> */}
         </Form>
