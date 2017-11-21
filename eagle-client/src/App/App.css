@@ -4,7 +4,7 @@ body, html {
       rgba(255, 255, 255, 0.45), 
       rgba(255, 255, 255, 0.45)
     ),
-    url(https://images.unsplash.com/photo-1508108712903-49b7ef9b1df8?auto=format&fit=crop&w=1350&q=60&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D)
+    url(../Home/pexels-photo-298007.jpeg)
     no-repeat center center fixed
     ;
     -webkit-background-size: cover;
@@ -53,7 +53,7 @@ body, html {
   font-size: 2em;
   font-family: 'Sonsie One', cursive;
   background-color: rgb(89, 161, 206);
-  background-image: url(http://eaglemount.org/wp-content/uploads/2016/10/mono-ski-camp-eagle-mount-650x433.jpg);
+  background-image: url(../Home/pexels-photo-298007.jpeg);
   background-repeat: no-repeat;
   background-size: auto;
 }
