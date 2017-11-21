@@ -14,23 +14,25 @@ var FancyCalendar = observer(class FancyCalendar extends Component {
         super(props);
         this.state = {
             events: [],
-            
+  
         }
         this.handleClose = this.handleClose.bind(this);
         this.eventClick = this.eventClick.bind(this);
         this.callFetch = this.callFetch.bind(this);
+        this.handleClose = this.handleClose.bind(this);
+       
     }
-    eventClick(e, jsE, v) {
-        delete e.source; //deletes the source object which caused Mobx to continuously loop. 
-
-        //this.props.shiftStore.setShift(e)
-        this.props.shiftStore.selectedShift = e
-        this.props.shiftStore.modalPopUp = true;
-        
-    }
-
-    handleClose = () => this.props.shiftStore.modalPopUp = false
+    handleClose = () => {this.props.shiftStore.modalPopUp=false};
     
+    
+    eventClick(e, jsE, v) {
+        console.log(e)
+        delete e.source; 
+        this.props.shiftStore.selectedShift = e;
+        this.props.shiftStore.modalPopUp = true;
+    }
+
+
     callFetch() {
         this.props.shiftStore.fetchShifts();
     }
@@ -40,8 +42,7 @@ var FancyCalendar = observer(class FancyCalendar extends Component {
     }
 
     render() {
-        //debugger;
-        if (true) {
+        
             return (
                 <div id="example-component">
                     
@@ -66,15 +67,11 @@ var FancyCalendar = observer(class FancyCalendar extends Component {
                         slotLabelInterval={'30'}
                         slotLabelFormat={'h(:mm)a'}
                     />
-                    <PopUp handleClose={this.handleClose}/>
+                    <PopUp handleClose={this.handleClose} />
 
                 </div>
             );
-        } else {
-            return (
-                <div>Loading</div>
-            )
-        }
+        
     }
 })
 

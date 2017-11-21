@@ -9,12 +9,11 @@ export default class ShiftStore {
       selectedShift: {},
       modalPopUp: false,
       success: null,
-      //setShift: action((selectedShift)=>{
-        //debugger;
-        //this.selectedShift = selectedShift;
-        //this.modalPopUp = true
-      //}),
-    
+      selectedShift: {},
+      modalPopUp: false,
+      setShift: action((selectedShift)=>{
+        this.selectedShift = selectedShift
+      }),
       get retrieveShift() { //this used to have just this.shift but it didn't render. Mobx wants the data filtered?
       //debugger;
       return this.shifts.map((s)=> {

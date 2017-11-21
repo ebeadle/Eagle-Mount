@@ -33,8 +33,7 @@ export default class App extends Component {
               <Route path='/Logout' render={() => <Logout />} />
               <Route path='/Calendar' render={() => <Calendar />} />
               <Route path='/FancyCalendar' render={() => <FancyCalendar />} />
-              <Route path='/Home' render={() =><HomePage />} />
-              <Redirect from='/' to="/Home"/>
+              <Route path='/Home' render={()=> <HomePage />} />
               <Footer />
             </div>
           </ Router>
