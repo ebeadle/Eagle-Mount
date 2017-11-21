@@ -14,20 +14,24 @@ var FancyCalendar = observer(class FancyCalendar extends Component {
         super(props);
         this.state = {
             events: [],
-            modalOpen: false,
-             
+  
         }
         
         this.eventClick = this.eventClick.bind(this);
         this.callFetch = this.callFetch.bind(this);
+        this.handleClose = this.handleClose.bind(this);
        
     }
-
+    handleClose = () => {this.props.shiftStore.modalPopUp=false};
+    
     
     eventClick(e, jsE, v) {
         console.log(e)
-        this.setState({modalOpen: true})
+        delete e.source; 
+        this.props.shiftStore.selectedShift = e;
+        this.props.shiftStore.modalPopUp = true;
     }
+
 
     callFetch() {
         this.props.shiftStore.fetchShifts();
@@ -38,7 +42,7 @@ var FancyCalendar = observer(class FancyCalendar extends Component {
     }
 
     render() {
-        if (true) {
+        
             return (
                 <div id="example-component">
                     
@@ -63,15 +67,11 @@ var FancyCalendar = observer(class FancyCalendar extends Component {
                         slotLabelInterval={'30'}
                         slotLabelFormat={'h(:mm)a'}
                     />
-                    <PopUp />
+                    <PopUp handleClose={this.handleClose} />
 
                 </div>
             );
-        } else {
-            return (
-                <div>Loading</div>
-            )
-        }
+        
     }
 })
 

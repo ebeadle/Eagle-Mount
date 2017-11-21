@@ -32,7 +32,7 @@ export default class App extends Component {
               <Route path='/Logout' render={() => <Logout />} />
               <Route path='/Calendar' render={() => <Calendar />} />
               <Route path='/FancyCalendar' render={() => <FancyCalendar />} />
-              < HomePage />
+              <Route path='/Home' render={()=> <HomePage />} />
               <Footer />
             </div>
           </ Router>

@@ -1,4 +1,4 @@
-import { extendObservable } from 'mobx';
+import { extendObservable, action } from 'mobx';
 var axios = require('axios');
 
 
@@ -7,6 +7,11 @@ export default class ShiftStore {
     extendObservable(this, {
       shifts: [],
       success: null,
+      selectedShift: {},
+      modalPopUp: false,
+      setShift: action((selectedShift)=>{
+        this.selectedShift = selectedShift
+      }),
       get retrieveShift() { //this used to have just this.shift but it didn't render. Mobx wants the data filtered?
       return this.shifts.map((s)=> {
           return s
