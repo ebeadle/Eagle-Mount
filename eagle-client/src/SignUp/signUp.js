@@ -49,7 +49,7 @@ constructor(props){
       skill: this.state.skill
       }
     ).then((res)=> {
-      if(res.data.email){
+      if(res.data.success){
         console.log("added user");
         this.props.history.push('/login');
       } else {
@@ -140,21 +140,13 @@ constructor(props){
 
               />
 
-               <Form.Input
-                fluid
-                icon='lock'
-                iconPosition='left'
-                placeholder='Skill Level'
-                type='text'
-                onChange={this.handleSkillChange}
-                value={this.state.skill}
-              />
+              
 
              
   
               <Button color='blue' fluid size='large' onClick={this.handleClick} >Sign Up</Button>
             </Segment>
-            <p> Eagle Mount considers Expert to be Bi-Ski certified. Intermediate blahhhh and Beginner will hang out with kids.</p>
+          
 
           </Form>
          
