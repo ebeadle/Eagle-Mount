@@ -6,6 +6,8 @@ export default class ShiftStore {
   constructor() {
     extendObservable(this, {
       shifts: [],
+      selectedShift: {},
+      modalPopUp: false,
       success: null,
       selectedShift: {},
       modalPopUp: false,
@@ -13,6 +15,7 @@ export default class ShiftStore {
         this.selectedShift = selectedShift
       }),
       get retrieveShift() { //this used to have just this.shift but it didn't render. Mobx wants the data filtered?
+      //debugger;
       return this.shifts.map((s)=> {
           return s
         })

@@ -3,17 +3,19 @@
 }
 
 .Home-header {
-  background-color: rgb(32, 100, 145);
+  background-color: #1B7FBD;
   height: 150px;
   padding: 20px;
   color: white;
 }
 
 .Home-title {
-  font-size: 3.5em;
-  font-family: 'Frijole', cursive;
+  font-size: 3em;
+  font-family: 'Crimson Text', serif;
   text-align: center;
-  color: rgb(74, 153, 226);
+  color:  rgb(3, 84, 150);
+  text-shadow: -4px 4px 3px #8093b3;
+  font-weight: 10em;
 }
 
 .background{

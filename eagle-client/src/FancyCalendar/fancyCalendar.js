@@ -16,7 +16,7 @@ var FancyCalendar = observer(class FancyCalendar extends Component {
             events: [],
   
         }
-        
+        this.handleClose = this.handleClose.bind(this);
         this.eventClick = this.eventClick.bind(this);
         this.callFetch = this.callFetch.bind(this);
         this.handleClose = this.handleClose.bind(this);

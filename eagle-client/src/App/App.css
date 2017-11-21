@@ -4,9 +4,7 @@ body, html {
       rgba(255, 255, 255, 0.45), 
       rgba(255, 255, 255, 0.45)
     ),
-    url(../Home/photo-1508108712903-49b7ef9b1df8.jpeg)
-    no-repeat center center fixed
-    ;
+    url(../Home/asoggetti-413830.jpg) no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -26,7 +24,7 @@ body, html {
 }
 
 .App-header {
-  background-color: #222;
+  background-color: #1B7FBD;
   height: 150px;
   padding: 20px;
   color: white;
@@ -52,8 +50,8 @@ body, html {
 .Home-intro {
   font-size: 2em;
   font-family: 'Sonsie One', cursive;
-  background-color: rgb(89, 161, 206);
-  background-image: url(../Home/photo-1508108712903-49b7ef9b1df8.jpeg);
+  background-color: #1B7FBD;
+  background-image: url(../Home/pexels-photo-298007.jpeg);
   background-repeat: no-repeat;
   background-size: auto;
 }
