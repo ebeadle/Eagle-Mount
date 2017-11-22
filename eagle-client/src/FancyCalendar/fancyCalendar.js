@@ -58,14 +58,15 @@ var FancyCalendar = observer(class FancyCalendar extends Component {
                         navLinks={true} // can click day/week names to navigate views
                         editable={false}
                         allDay={false}
+                        allDayText={""}
                         eventLimit={true} // allow "more" link when too many events
                         events={this.props.shiftStore.retrieveShift} //{this.state.events}is the original
                         //displayEventTime={true}
                         defaultTimedEventDuration={'02:00:00'}
                         displayEventEnd={true}
                         defaultView={'agendaWeek'}
-                        slotDuration={'00:30:00'}
-                        slotLabelInterval={'30'}
+                        //slotDuration={'00:30:00'}
+                        //slotLabelInterval={'30'}
                         slotLabelFormat={'h(:mm)a'}
                     />
                     <PopUp handleClose={this.handleClose} />

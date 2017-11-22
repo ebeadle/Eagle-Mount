@@ -2,13 +2,40 @@ import React, { Component } from 'react';
 import { inject, observer } from 'mobx-react';
 import { withRouter } from 'react-router-dom';
 import { Button, Form, Grid, Header, Image, Message, Segment, Modal, Icon, Table } from 'semantic-ui-react'
+var axios = require('axios');
 
 var PopUp = observer(class PopUp extends Component {
     constructor() {
         super()
+        this.deleteShift = this.deleteShift.bind(this)
     }
 
+    // function deleteData(clickEvent){
+        
+    //     var data =  $(clickEvent.srcElement).data().id
+    //     $.ajax({
+    //     url: {insert url},
+    //     type: 'DELETE',
+    //     data:{id:data},
+    //     success: function(result) {
+    //         setTable();
+    //     }
+    //     });
+    // }
 
+    deleteShift() {
+        console.log(this.props.shiftStore.selectedShift._id)
+        console.log('delete shift')
+        axios.post('/deleteShift', {
+            _id: this.props.shiftStore.selectedShift._id}
+        ).then((shiftObj) => {
+            if (shiftObj.data) {
+                this.shift = shiftObj.data;
+            } else {
+                console.log('NO')
+        }
+        })
+    }
 
     render() {
         return (
@@ -39,7 +66,7 @@ var PopUp = observer(class PopUp extends Component {
                         </Table>
                     </Modal.Content>
                     <Modal.Actions>
-                        <Button color='red'>
+                        <Button color='red' onClick={this.deleteShift} >
                             <Icon name='remove' /> Delete This Shift
                                 </Button>
                         <Button color='blue'>
