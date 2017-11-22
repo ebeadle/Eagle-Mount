@@ -6,35 +6,14 @@ var axios = require('axios');
 
 var PopUp = observer(class PopUp extends Component {
     constructor() {
+        
         super()
-        this.deleteShift = this.deleteShift.bind(this)
+        this.modalDelete = this.modalDelete.bind(this)
     }
 
-    // function deleteData(clickEvent){
-        
-    //     var data =  $(clickEvent.srcElement).data().id
-    //     $.ajax({
-    //     url: {insert url},
-    //     type: 'DELETE',
-    //     data:{id:data},
-    //     success: function(result) {
-    //         setTable();
-    //     }
-    //     });
-    // }
-
-    deleteShift() {
-        console.log(this.props.shiftStore.selectedShift._id)
-        console.log('delete shift')
-        axios.post('/deleteShift', {
-            _id: this.props.shiftStore.selectedShift._id}
-        ).then((shiftObj) => {
-            if (shiftObj.data) {
-                this.shift = shiftObj.data;
-            } else {
-                console.log('NO')
-        }
-        })
+    modalDelete(){
+        this.props.fancyCalendarDelete()
+        this.props.handleClose()
     }
 
     render() {
@@ -62,11 +41,10 @@ var PopUp = observer(class PopUp extends Component {
 
                             </Table.Body>
 
-
                         </Table>
                     </Modal.Content>
                     <Modal.Actions>
-                        <Button color='red' onClick={this.deleteShift} >
+                        <Button color='red' onClick={this.modalDelete} >
                             <Icon name='remove' /> Delete This Shift
                                 </Button>
                         <Button color='blue'>

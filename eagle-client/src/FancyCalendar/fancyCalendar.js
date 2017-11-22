@@ -20,6 +20,7 @@ var FancyCalendar = observer(class FancyCalendar extends Component {
         this.eventClick = this.eventClick.bind(this);
         this.callFetch = this.callFetch.bind(this);
         this.handleClose = this.handleClose.bind(this);
+        this.fancyCalendarDelete = this.fancyCalendarDelete.bind(this);
        
     }
     handleClose = () => {this.props.shiftStore.modalPopUp=false};
@@ -35,6 +36,10 @@ var FancyCalendar = observer(class FancyCalendar extends Component {
 
     callFetch() {
         this.props.shiftStore.fetchShifts();
+    }
+
+    fancyCalendarDelete(){
+        this.props.shiftStore.deleteShift();
     }
 
     componentDidMount() {
@@ -69,7 +74,7 @@ var FancyCalendar = observer(class FancyCalendar extends Component {
                         //slotLabelInterval={'30'}
                         slotLabelFormat={'h(:mm)a'}
                     />
-                    <PopUp handleClose={this.handleClose} />
+                    <PopUp fancyCalendarDelete={this.fancyCalendarDelete} handleClose={this.handleClose} />
 
                 </div>
             );

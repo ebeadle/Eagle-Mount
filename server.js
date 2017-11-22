@@ -210,7 +210,14 @@ app.post('/deleteShift', function(req, res, next){
           next(err);
       } else {
         console.log("WE GOT HERE")
-          res.json("successfully deleted a shift: ");
+        Shift.find(function(err, shift) {
+          console.log(shift)
+          if(err){
+            next(err)
+          } else {
+            res.json(shift);
+          }   
+        });
       }
   });
 });
