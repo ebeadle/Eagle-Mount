@@ -23,6 +23,7 @@ export default class ShiftStore {
     })
     this.addNewShift = this.addNewShift.bind(this);
     this.fetchShifts = this.fetchShifts.bind(this);
+    // this.deleteShift = this.deleteShift.bind(this);
   }
 
   addNewShift(newShiftObj) {
@@ -66,9 +67,25 @@ export default class ShiftStore {
    })
   }
 
+  // deleteShift(selectedShift){
+  //   console.log(selectedShift)
+  //   console.log('delete shift')
+  //   return new Promise((resolve, reject) => {
+  //     axios.get('/shift').then((shiftObj) => {
+  // if (shiftObj.data) {
+  //   this.shift = shiftObj.data;
+  // } else {
+  //   console.log('undefined')
+  //   reject(shiftObj);
+  // }
+  // resolve(shiftObj);
+  //   }).catch(function (err){
+  //     console.log(err)
+  //    })
+  //  })
+  }
 
 
 
-}
 
 

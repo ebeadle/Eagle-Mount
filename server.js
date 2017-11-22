@@ -198,27 +198,24 @@ app.get('/shift', function(req, res, next) {
   });
 });
 
-// app.delete('/deleteShift', function(req, res, next){
-//   Shift.findByIdAndRemove(req.body.id, function(err, shift){
-//       if(err){
-//           console.log(err);
-//           next(err);
-//       } else {
-//           res.json("successfully deleted a shift: " + shift.start);
-//       }
-//   });
-// });
 
-app.delete('/deleteShift', function(req, res, next){
-  Shift.findOneAndRemove(req.body.date, function(err, shift){
+
+app.post('/deleteShift', function(req, res, next){
+  Shift.findByIdAndRemove(req.body._id, function(err, shift){
+    console.log(req.body._id);
+    console.log(shift);
+    console.log("^REQ BODY ID IN DELETE")
       if(err){
           console.log(err);
           next(err);
       } else {
+        console.log("WE GOT HERE")
           res.json("successfully deleted a shift: ");
       }
   });
 });
+
+
 
 
 var port = process.env.PORT || 5000;

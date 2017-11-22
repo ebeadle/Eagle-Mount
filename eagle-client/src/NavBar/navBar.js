@@ -21,8 +21,7 @@ var Nav = observer(class Nav extends Component {
       <Menu>
         <Menu.Menu position='right'>
        <Link className="item" to="/admin">Admin</Link>
-       <Link className="item" to="/calendar">Open Shifts</Link>     
-       <Link className="item" to="/fancycalendar">Fancy Calendar</Link>
+       <Link className="item" to="/fancycalendar">Open Shifts</Link>     
        <Link className="item" to="/logout">Log Out</Link>
        </Menu.Menu>
       </Menu>
