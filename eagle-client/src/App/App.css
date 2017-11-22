@@ -11,9 +11,6 @@ body, html {
     background-size: cover;
 }
 
-
-
-
 .App {
   text-align: center;
 }
@@ -61,4 +58,3 @@ body, html {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
-

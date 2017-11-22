@@ -38,7 +38,6 @@ export default class App extends Component {
               <Footer />
             </div>
           </ Router>
-
         </div>
       </Provider>
     );
