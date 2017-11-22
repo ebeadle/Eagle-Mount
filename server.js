@@ -215,7 +215,7 @@ app.delete('/deleteShift', function(req, res, next){
           console.log(err);
           next(err);
       } else {
-          res.json("successfully deleted a shift: " + shift.start);
+          res.json("successfully deleted a shift: ");
       }
   });
 });

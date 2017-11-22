@@ -27,25 +27,22 @@ export default class ShiftStore {
 
   addNewShift(newShiftObj) {
     return new Promise((resolve, reject) => {
-      console.log(newShiftObj);
       axios.post("/open-shifts",
         {
           date: newShiftObj.date,
           time: newShiftObj.time,
           title: newShiftObj.title,
-          start: newShiftObj.date
+          start: newShiftObj.start
         }
       ).then((shiftObj) => {
         if (shiftObj.data) {
           axios.get("/shift").then((shiftObj) =>{
-            console.log(shiftObj);
             this.shifts = shiftObj.data
           })
         } else {
           console.log("shift add failed");
           reject(shiftObj);
         }
-        console.log(shiftObj);
         resolve(shiftObj);
       })
     })
@@ -56,10 +53,7 @@ export default class ShiftStore {
     console.log('fetching shift')
     return new Promise((resolve, reject) => {
       axios.get('/shift').then((shiftObj) => {
-      console.log(shiftObj)
-      console.log('^^^^^^^^^^^')
   if (shiftObj.data) {
-    console.log(shiftObj.data);
     this.shift = shiftObj.data;
   } else {
     console.log('undefined')
