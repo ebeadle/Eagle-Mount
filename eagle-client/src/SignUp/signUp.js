@@ -139,17 +139,9 @@ constructor(props){
                 onChange={this.handlePasswordChange}
 
               />
-
-              
-
-             
-  
               <Button color='blue' fluid size='large' onClick={this.handleClick} >Sign Up</Button>
             </Segment>
-          
-
-          </Form>
-         
+          </Form>         
         </Grid.Column>
       </Grid>
     </div>
