@@ -15,7 +15,6 @@ var Nav = observer(class Nav extends Component {
   render() {
     const { activeItem } = this.state
     var successLogin = this.props.userStore.user;
-    console.log(successLogin);
     if(successLogin){    
       return (
 
