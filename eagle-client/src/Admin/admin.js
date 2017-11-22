@@ -73,9 +73,15 @@ var Admin = observer(class Admin extends Component {
 
   handleClick(){  
   var m = moment(this.date)
-  m.set({hour:10, minute:30, second:0, millisecond:0})
-  var newTime = m.format()
-  console.log(newTime);
+  if(this.time === 'Morning'){
+     m.set({hour:10, minute:30, second:0, millisecond:0})
+    var newTime = m.format()
+    console.log(newTime);
+  } else {
+    m.set({hour:13, minute:30, second:0, millisecond:0})
+    var newTime = m.format()
+  }
+ 
   
     this.props.shiftStore.addNewShift(
       {
