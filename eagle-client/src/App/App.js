@@ -13,13 +13,14 @@ import ShiftStore from '../Stores/ShiftStore';
 import Calendar from '../Calendar/calendar';
 import Admin from '../Admin/admin';
 import Logout from '../Logout/logout';
-import Footer from '../Footer/footer';
+import HomePage from '../Home/Home';
+import Footer from '../Footer/Footer';
+//import Footer from '../Footer/footer';
 import FancyCalendar from '../FancyCalendar/fancyCalendar';
 import HomePage from '../Home/home';
 //import 'react-router';
 
-
-export default class App extends Component {
+export default class App extends React.Component {
   render() {
     return (
       <Provider userStore={new UserStore()} shiftStore={new ShiftStore()}>
@@ -38,12 +39,8 @@ export default class App extends Component {
               <Footer />
             </div>
           </ Router>
-
         </div>
       </Provider>
     );
   }
 }
-
-
-
