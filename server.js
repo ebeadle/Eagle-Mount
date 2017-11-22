@@ -14,6 +14,7 @@ var http = require('http');
 var path  = require('path');
 require('dotenv').config();
 
+mongoose.Promise = global.Promise;
 let mongodbUri = "mongodb://"+process.env.SERVER_MLAB_USER+":"+process.env.SERVER_MLAB_PASSWORD+"@ds259175.mlab.com:59175/eaglemount";
 console.log(mongodbUri);
 var mongooseUri = uriUtil.formatMongoose(mongodbUri);
@@ -81,8 +82,7 @@ app.post('/signup', function(req, res, next){
   user.skill = req.body.skill;
   user.admin = req.body.admin;
   User.findOne({email: user.email}, (err, foundUser)=> {
-   console.log(foundUser)
-   console.log("^^ FOUND USER")
+   
    if(err) {
      res.json({
        found: false,
@@ -91,8 +91,7 @@ app.post('/signup', function(req, res, next){
      });
    } else {
      user.save((error, userReturned)=> {
-       console.log(userReturned);
-       console.log("^USER RETURNED")
+      
        if(error){
          console.log(error);
          res.json({
@@ -104,7 +103,6 @@ app.post('/signup', function(req, res, next){
          res.json({
            userReturned: userReturned,
            found: true,
-           message: "Account Created",
            success: true
          });
        }
@@ -171,8 +169,7 @@ app.get('/logout', function(req, res){
 
 app.post('/open-shifts', function(req, res, next){
   var shift = new Shift();
-  console.log('SHIFT!!!!!!')
-  console.log(shift)
+  
   shift.date = req.body.date;
  
   shift.skill = req.body.skill;
@@ -192,7 +189,7 @@ app.post('/open-shifts', function(req, res, next){
 
 app.get('/shift', function(req, res, next) {
   Shift.find(function(err, shift) {
-    console.log(shift);
+    
     if(err){
       next(err)
     } else {
@@ -200,6 +197,29 @@ app.get('/shift', function(req, res, next) {
     }   
   });
 });
+
+// app.delete('/deleteShift', function(req, res, next){
+//   Shift.findByIdAndRemove(req.body.id, function(err, shift){
+//       if(err){
+//           console.log(err);
+//           next(err);
+//       } else {
+//           res.json("successfully deleted a shift: " + shift.start);
+//       }
+//   });
+// });
+
+app.delete('/deleteShift', function(req, res, next){
+  Shift.findOneAndRemove(req.body.date, function(err, shift){
+      if(err){
+          console.log(err);
+          next(err);
+      } else {
+          res.json("successfully deleted a shift: " + shift.start);
+      }
+  });
+});
+
 
 var port = process.env.PORT || 5000;
 
