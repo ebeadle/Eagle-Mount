@@ -1,5 +1,7 @@
 import { extendObservable, action } from 'mobx';
+
 var axios = require('axios');
+
 
 
 export default class ShiftStore {
@@ -14,8 +16,7 @@ export default class ShiftStore {
       setShift: action((selectedShift)=>{
         this.selectedShift = selectedShift
       }),
-      get retrieveShift() { //this used to have just this.shift but it didn't render. Mobx wants the data filtered?
-      //debugger;
+      get retrieveShift() { //this used to have just this.shift but it didn't render. Mobx wants the data filtered? 
       return this.shifts.map((s)=> {
           return s
         })
@@ -23,8 +24,24 @@ export default class ShiftStore {
     })
     this.addNewShift = this.addNewShift.bind(this);
     this.fetchShifts = this.fetchShifts.bind(this);
-    // this.deleteShift = this.deleteShift.bind(this);
+    this.deleteShift = this.deleteShift.bind(this);
   }
+
+  deleteShift() {
+    console.log(this.selectedShift._id)
+    console.log('delete shift')
+    axios.post('/deleteShift', {
+        _id: this.selectedShift._id}
+    ).then((shiftObj) => {
+      console.log(shiftObj)
+        if (shiftObj.data) {
+            this.shifts = shiftObj.data;
+
+        } else {
+           console.log("No")
+    }
+    })
+}
 
   addNewShift(newShiftObj) {
     return new Promise((resolve, reject) => {
@@ -38,6 +55,7 @@ export default class ShiftStore {
       ).then((shiftObj) => {
         if (shiftObj.data) {
           axios.get("/shift").then((shiftObj) =>{
+            console.log(shiftObj)
             this.shifts = shiftObj.data
           })
         } else {
@@ -55,7 +73,8 @@ export default class ShiftStore {
     return new Promise((resolve, reject) => {
       axios.get('/shift').then((shiftObj) => {
   if (shiftObj.data) {
-    this.shift = shiftObj.data;
+    console.log('fetchshifts 84')
+    this.shifts = shiftObj.data;
   } else {
     console.log('undefined')
     reject(shiftObj);
@@ -67,22 +86,7 @@ export default class ShiftStore {
    })
   }
 
-  // deleteShift(selectedShift){
-  //   console.log(selectedShift)
-  //   console.log('delete shift')
-  //   return new Promise((resolve, reject) => {
-  //     axios.get('/shift').then((shiftObj) => {
-  // if (shiftObj.data) {
-  //   this.shift = shiftObj.data;
-  // } else {
-  //   console.log('undefined')
-  //   reject(shiftObj);
-  // }
-  // resolve(shiftObj);
-  //   }).catch(function (err){
-  //     console.log(err)
-  //    })
-  //  })
+
   }
 
 
