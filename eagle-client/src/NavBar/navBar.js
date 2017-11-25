@@ -15,15 +15,13 @@ var Nav = observer(class Nav extends Component {
   render() {
     const { activeItem } = this.state
     var successLogin = this.props.userStore.user;
-    console.log(successLogin);
     if(successLogin){    
       return (
 
       <Menu>
         <Menu.Menu position='right'>
        <Link className="item" to="/admin">Admin</Link>
-       <Link className="item" to="/calendar">Open Shifts</Link>     
-       <Link className="item" to="/fancycalendar">Fancy Calendar</Link>
+       <Link className="item" to="/fancycalendar">Open Shifts</Link>     
        <Link className="item" to="/logout">Log Out</Link>
        </Menu.Menu>
       </Menu>

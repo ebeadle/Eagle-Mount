@@ -40,9 +40,7 @@ body, html {
 
 .footer {
   background-color: #1B7FBD;
-  color: white;
-  font-family: cursive;
-  font-size: 18px;
+  color: white; 
   margin-top: 70px;
   position:relative;  
 }

@@ -2,13 +2,19 @@ import React, { Component } from 'react';
 import { inject, observer } from 'mobx-react';
 import { withRouter } from 'react-router-dom';
 import { Button, Form, Grid, Header, Image, Message, Segment, Modal, Icon, Table } from 'semantic-ui-react'
+var axios = require('axios');
 
 var PopUp = observer(class PopUp extends Component {
     constructor() {
+        
         super()
+        this.modalDelete = this.modalDelete.bind(this)
     }
 
-
+    modalDelete(){
+        this.props.fancyCalendarDelete()
+        this.props.handleClose()
+    }
 
     render() {
         return (
@@ -35,11 +41,10 @@ var PopUp = observer(class PopUp extends Component {
 
                             </Table.Body>
 
-
                         </Table>
                     </Modal.Content>
                     <Modal.Actions>
-                        <Button color='red'>
+                        <Button color='red' onClick={this.modalDelete} >
                             <Icon name='remove' /> Delete This Shift
                                 </Button>
                         <Button color='blue'>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Checkbox, Form, Dropdown } from 'semantic-ui-react'
+import { Button, Checkbox, Form, Dropdown, Divider, Container } from 'semantic-ui-react'
 import DateInput from '../SelectDate/selectDate'
 import { inject, observer } from 'mobx-react';
 import { withRouter } from 'react-router-dom';
@@ -45,7 +45,6 @@ var Admin = observer(class Admin extends Component {
       }
 
     ]
-   console.log(this.time)
     this.date = null;
     this.time = null;
     this.dateChange = this.dateChange.bind(this);
@@ -57,7 +56,6 @@ var Admin = observer(class Admin extends Component {
 
   dateChange(date) {
     this.date = date;
-    console.log(date);
   }
 
   handleSkill(event, d){
@@ -70,16 +68,24 @@ var Admin = observer(class Admin extends Component {
   }
 
   handleClick(){  
-    //console.log(this.props)
-    console.log(this.state)
-    //console.log(this.props.shiftStore);
-    
+  var m = moment(this.date)
+  console.log(this.state.time)
+  if(this.state.time === 'morning'){
+    m.set({hour:10, minute:30, second:0, millisecond:0})
+    var newTime = m.format()
+    console.log(newTime);
+  } else {
+    m.set({hour:13, minute:30, second:0, millisecond:0})
+    var newTime = m.format()
+  }
+ 
+  
     this.props.shiftStore.addNewShift(
       {
-        date: this.date,
+        date: this.date,  
         time: this.state.time,
         title: this.state.title,
-        start: this.date
+        start: newTime
       }
     ).then((res) => {
       if (res.data) {
@@ -99,15 +105,14 @@ var Admin = observer(class Admin extends Component {
     return (
       <div>
         
-        <Form>
-          
+        <Form display='block'>
+        <Container>
           <Form.Field>
             <label>Date</label>
             {/* <input placeholder='02/12/2017' /> */}
             <DateInput type='text'
               dateChange={this.dateChange} />
           </Form.Field>
-          
           
           <Form.Field>
 
@@ -119,7 +124,8 @@ var Admin = observer(class Admin extends Component {
             <label>Skill</label>
             <Dropdown onChange={this.handleSkill} placeholder='Skill Level' fluid selection options={this.skillLevels} />
           </Form.Field>
-
+          </Container>
+          <Divider />
           <Button onClick={this.handleClick} color='blue' fluid size='large'>Submit</Button>
           {/* <Button type='submit'>Submit</Button> */}
         </Form>

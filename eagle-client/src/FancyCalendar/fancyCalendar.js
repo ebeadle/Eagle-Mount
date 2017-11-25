@@ -20,6 +20,7 @@ var FancyCalendar = observer(class FancyCalendar extends Component {
         this.eventClick = this.eventClick.bind(this);
         this.callFetch = this.callFetch.bind(this);
         this.handleClose = this.handleClose.bind(this);
+        this.fancyCalendarDelete = this.fancyCalendarDelete.bind(this);
        
     }
     handleClose = () => {this.props.shiftStore.modalPopUp=false};
@@ -27,7 +28,7 @@ var FancyCalendar = observer(class FancyCalendar extends Component {
     
     eventClick(e, jsE, v) {
         console.log(e)
-        delete e.source; 
+        delete e.source; //the event source data was being continuously looped by mobx so it gets deleted here before the rest of the event gets assigned.
         this.props.shiftStore.selectedShift = e;
         this.props.shiftStore.modalPopUp = true;
     }
@@ -35,6 +36,10 @@ var FancyCalendar = observer(class FancyCalendar extends Component {
 
     callFetch() {
         this.props.shiftStore.fetchShifts();
+    }
+
+    fancyCalendarDelete(){
+        this.props.shiftStore.deleteShift();
     }
 
     componentDidMount() {
@@ -58,16 +63,18 @@ var FancyCalendar = observer(class FancyCalendar extends Component {
                         navLinks={true} // can click day/week names to navigate views
                         editable={false}
                         allDay={false}
+                        allDayText={""}
                         eventLimit={true} // allow "more" link when too many events
                         events={this.props.shiftStore.retrieveShift} //{this.state.events}is the original
+                        //displayEventTime={true}
                         defaultTimedEventDuration={'02:00:00'}
                         displayEventEnd={true}
                         defaultView={'agendaWeek'}
-                        slotDuration={'00:30:00'}
-                        slotLabelInterval={'30'}
+                        //slotDuration={'00:30:00'}
+                        //slotLabelInterval={'30'}
                         slotLabelFormat={'h(:mm)a'}
                     />
-                    <PopUp handleClose={this.handleClose} />
+                    <PopUp fancyCalendarDelete={this.fancyCalendarDelete} handleClose={this.handleClose} />
 
                 </div>
             );
