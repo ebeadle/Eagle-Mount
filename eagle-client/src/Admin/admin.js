@@ -73,6 +73,7 @@ var Admin = observer(class Admin extends Component {
     //console.log(this.props)
     console.log(this.state)
     //console.log(this.props.shiftStore);
+    
     this.props.shiftStore.addNewShift(
       {
         date: this.date,
