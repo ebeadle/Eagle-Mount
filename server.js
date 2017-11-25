@@ -113,16 +113,21 @@ app.post('/signup', function(req, res, next){
 
 
 app.post('/getUser', (req, res, next) => {
-  User.findById( req.body.user.id, (err, userObj)=>{
-    if(err) {
-      console.log(err);
-    }else {
-      console.log(userObj);
-      done(null, userObj);
+  if (req.user){
+    User.findById(req.user._id, (err, foundUser) => {
+      if (err) {
+        console.log(err)
+      }
+      }).populate('shift').exec((err, user) => {
+        console.log("this is after the populate call")
+        console.log('user is:' + user)
+        res.json(user)
+      });
+  } else {
+      res.json({message:'nobody logged in '});
     }
+  });
     
-  })
-});
 
 app.post('/login',function(req, res, next){
   passport.authenticate('local', function(err, user){
@@ -171,14 +176,15 @@ app.post('/open-shifts', function(req, res, next){
   var shift = new Shift();
   
   shift.date = req.body.date;
- 
   shift.skill = req.body.skill;
-  
   shift.time = req.body.time;
   shift.title = req.body.title;
   shift.start = req.body.start
+  shift.user = req.body.user
+  console.log(req.body.user)
+  console.log("LOGGING USER********")
   shift.save(function(err, newShift){
-    console.log(newShift);
+    //console.log(newShift);
     if(err) {
       console.log(err)
     } else {
@@ -186,6 +192,28 @@ app.post('/open-shifts', function(req, res, next){
     }
   })
 });
+
+app.post('/userShifts', function (req, res, next) {
+  console.log(req)
+  //if (req.user) {
+      Shift.findById(req.user.shift, (err, user) => {
+          if (err) {
+              console.log(err);
+              next(err);
+          }
+      }).populate('user').exec((err, user) => {
+          if (user != null) {
+            console.log("post populate in /userShifts")
+              res.json(user);
+          }
+      });
+  // }else {
+  //     console.log("did not get user *******")
+  //     res.json("Something went wrong.")
+  // }
+});
+
+
 
 app.get('/shift', function(req, res, next) {
   Shift.find(function(err, shift) {
