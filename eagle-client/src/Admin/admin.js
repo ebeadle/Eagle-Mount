@@ -5,9 +5,6 @@ import { inject, observer } from 'mobx-react';
 import { withRouter } from 'react-router-dom';
 import moment from 'moment';
 
-
-
-
 var Admin = observer(class Admin extends Component {
   constructor() {
     super()
@@ -69,7 +66,6 @@ var Admin = observer(class Admin extends Component {
   handleTime(event, d){
    this.setState({time: d.value})
   }
-
 
   handleClick(){  
   var m = moment(this.date)

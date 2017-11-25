@@ -79,7 +79,6 @@ app.post('/signup', function(req, res, next){
   user.lastName = req.body.lastName;
   user.email = req.body.email;
   user.password = req.body.password;
-  user.skill = req.body.skill;
   user.admin = req.body.admin;
   User.findOne({email: user.email}, (err, foundUser)=> {
    

@@ -8,6 +8,7 @@ export default class UserStore {
     extendObservable(this, {
       user: null,
       success: null,
+      // admin: false,
       get retrieveUser() {
         return this.user
       }
@@ -25,7 +26,7 @@ export default class UserStore {
           lastName: newUserObj.lastName,
           email: newUserObj.email,
           password: newUserObj.password,
-          skill: newUserObj.skill,
+          admin: newUserObj.admin,
           message: newUserObj.message
         }
       ).then((userObj) => {
