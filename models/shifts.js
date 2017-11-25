@@ -5,8 +5,8 @@ var ShiftSchema = new mongoose.Schema({
   time: String,
   title: String, //this is going to skill I think
   start: String,
-  
+  user: {type: Schema.Types.ObjectId, ref: 'User'},
 
-})
+});
 
 module.exports = mongoose.model('Shift', ShiftSchema);

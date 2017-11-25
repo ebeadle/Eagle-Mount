@@ -25,6 +25,7 @@ export default class ShiftStore {
     this.addNewShift = this.addNewShift.bind(this);
     this.fetchShifts = this.fetchShifts.bind(this);
     this.deleteShift = this.deleteShift.bind(this);
+    this.claimShift = this.claimShift.bind(this);
   }
 
   deleteShift() {
@@ -50,7 +51,8 @@ export default class ShiftStore {
           date: newShiftObj.date,
           time: newShiftObj.time,
           title: newShiftObj.title,
-          start: newShiftObj.start
+          start: newShiftObj.start,
+         
         }
       ).then((shiftObj) => {
         if (shiftObj.data) {
@@ -64,6 +66,18 @@ export default class ShiftStore {
         }
         resolve(shiftObj);
       })
+    })
+  }
+
+  claimShift(shiftObj) {
+    return new Promise((resolve, reject) => {
+      axios.post('/userShifts', {
+        user: shiftObj.user
+      })
+      .then(() => {
+        console.log('this is claimShift()')
+      })
+      resolve(shiftObj)
     })
   }
   
