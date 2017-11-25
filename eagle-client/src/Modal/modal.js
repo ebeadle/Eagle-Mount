@@ -47,7 +47,7 @@ var PopUp = observer(class PopUp extends Component {
                         <Button color='red' onClick={this.modalDelete} >
                             <Icon name='remove' /> Delete This Shift
                                 </Button>
-                        <Button color='blue'>
+                        <Button color='blue' onClick={this.props.shiftStore.claimShift}>
                             <Icon name='checkmark' /> Claim This Shift
                                 </Button>
                     </Modal.Actions>
