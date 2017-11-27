@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { inject, observer } from 'mobx-react';
 import { withRouter } from 'react-router-dom';
 import { Button, Form, Grid, Header, Image, Message, Segment, Modal, Icon, Table } from 'semantic-ui-react'
+import NestedModal from "../Modal/nestedModal";
 var axios = require('axios');
 
 var PopUp = observer(class PopUp extends Component {
@@ -9,32 +10,19 @@ var PopUp = observer(class PopUp extends Component {
 
     super()
     this.modalDelete = this.modalDelete.bind(this)
-    this.claimShift = this.claimShift.bind(this)
+   
+   
+    
+      
   }
+  
 
   modalDelete() {
     this.props.fancyCalendarDelete()
     this.props.handleClose()
   }
 
-  claimShift() {
-    console.log(this.props.shiftStore.selectedShift._id)
-    console.log(this.props.userStore.user.user._id)
-   
-    
-      axios.post('/claimShift', {
-        shiftId: this.props.shiftStore.selectedShift._id,
-        userId: this.props.userStore.user.user._id
-      })
-      .then((res) => {
-        this.props.shiftStore.shifts = res.data
-        console.log(this.props.shiftStore.shifts)
-      }).then(()=> {
-        alert(this.props.userStore.user.user.firstName + 'has claimed shift. Thanks!')
-      }).then(()=> {
-        this.props.handleClose()
-      })
-  }
+  
 
   render() {
     if(this.props.userStore.user){
@@ -44,9 +32,9 @@ var PopUp = observer(class PopUp extends Component {
         <div>
 
           <Modal open={this.props.shiftStore.modalPopUp} onClose={this.props.handleClose} closeIcon>
-            <Header content='Eagle Mount' />
+          <Header content='Eagle Mount Volunteer Schedule' />
             <Modal.Content>
-              <p>Thanks for volunteering! We need someone to cover this shift:</p>
+              <p>No Longer Need This Shift Covered? Click "Delete This Shift" to remove it from the calendar</p>
               <Table collapsing>
                 <Table.Header>
                   <Table.Row>
@@ -79,9 +67,8 @@ var PopUp = observer(class PopUp extends Component {
     }else {
           return (
             <div>
-    
               <Modal open={this.props.shiftStore.modalPopUp} onClose={this.props.handleClose} closeIcon>
-                <Header content='Eagle Mount' />
+                <Header content='Eagle Mount Volunteer Schedule' />
                 <Modal.Content>
                   <p>Thanks for volunteering! We need someone to cover this shift:</p>
                   <Table collapsing>
@@ -106,9 +93,10 @@ var PopUp = observer(class PopUp extends Component {
                 </Modal.Content>
                 <Modal.Actions>
                  
-                  <Button color='blue' onClick={this.claimShift}>
+                  {/* <Button color='blue' onClick={this.claimShift}>
                     <Icon name='checkmark' /> Claim This Shift
-                              </Button>
+                              </Button> */}
+                    <NestedModal handleClose = {this.props.handleClose}/>
                 </Modal.Actions>
               </Modal>
             </div>
