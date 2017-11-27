@@ -13,15 +13,15 @@ constructor(props){
     lastName: "",
     email: "",
     password: "",
-    skill: "",
     message: "",
+    admin: ""
   }
   this.handleClick = this.handleClick.bind(this);
   this.handleFirstNameChange = this.handleFirstNameChange.bind(this);
   this.handleLastNameChange = this.handleLastNameChange.bind(this);
   this.handlePasswordChange = this.handlePasswordChange.bind(this);
   this.handleEmailChange = this.handleEmailChange.bind(this);
-  this.handleSkillChange = this.handleSkillChange.bind(this);
+ 
 }
 
   handleFirstNameChange(event) {
@@ -36,9 +36,7 @@ constructor(props){
   handlePasswordChange(event) {
     this.setState({ password: event.target.value});
   }
-  handleSkillChange(event) {
-    this.setState({ skill: event.target.value});
-  }
+ 
 
   handleClick(){
     this.props.userStore.signUpUser(
@@ -46,7 +44,8 @@ constructor(props){
       lastName: this.state.lastName,
       email: this.state.email,
       password: this.state.password,
-      skill: this.state.skill
+      admin: ""
+
       }
     ).then((res)=> {
       if(res.data.success){
@@ -58,7 +57,6 @@ constructor(props){
           lastName: "",
           email: "",
           password: "",
-          skill: "",
           message: this.props.userStore.user.message});
       }
     }).catch((e)=> {
