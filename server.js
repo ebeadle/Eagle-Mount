@@ -12,7 +12,7 @@ var uriUtil = require('mongodb-uri');
 var cookieParser = require('cookie-parser');
 var http = require('http');
 var path  = require('path');
-var {ensureAuthenticated} = require("../helpers/auth");
+var {ensureAuthenticated} = require("./eagle-client/src/helpers/auth");
 require('dotenv').config();
 
 mongoose.Promise = global.Promise;
