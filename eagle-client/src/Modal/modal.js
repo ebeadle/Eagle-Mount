@@ -18,7 +18,7 @@ var PopUp = observer(class PopUp extends Component {
 
   render() {
     if(this.props.userStore.user){
-    console.log(this.props.userStore.retrieveUser.user.admin); 
+   
     if (this.props.userStore.retrieveUser.user.admin === "true") {
       return (
         <div>

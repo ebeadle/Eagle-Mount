@@ -19,7 +19,7 @@ export default class UserStore {
   }
 
   signUpUser(newUserObj) {
-    console.log(newUserObj);
+    
     return new Promise((resolve, reject) => {
       axios.post("/signup",
         {
