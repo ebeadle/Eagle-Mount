@@ -75,8 +75,7 @@ app.use(express.static('./eagle-client/public'));
 app.post('/signup', function(req, res, next){
   
   var user = new User();
-  console.log(user)
-  console.log("user ^^ on signup")
+ 
   user.firstName = req.body.firstName;
   user.lastName = req.body.lastName;
   user.email = req.body.email;
