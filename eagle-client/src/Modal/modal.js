@@ -9,6 +9,7 @@ var PopUp = observer(class PopUp extends Component {
 
     super()
     this.modalDelete = this.modalDelete.bind(this)
+    this.claimShift = this.claimShift.bind(this)
   }
 
   modalDelete() {
@@ -16,10 +17,29 @@ var PopUp = observer(class PopUp extends Component {
     this.props.handleClose()
   }
 
+  claimShift() {
+    console.log(this.props.shiftStore.selectedShift._id)
+    console.log(this.props.userStore.user.user._id)
+   
+    
+      axios.post('/claimShift', {
+        shiftId: this.props.shiftStore.selectedShift._id,
+        userId: this.props.userStore.user.user._id
+      })
+      .then((res) => {
+        this.props.shiftStore.shifts = res.data
+        console.log(this.props.shiftStore.shifts)
+      }).then(()=> {
+        alert(this.props.userStore.user.user.firstName + 'has claimed shift. Thanks!')
+      }).then(()=> {
+        this.props.handleClose()
+      })
+  }
+
   render() {
     if(this.props.userStore.user){
    
-    if (this.props.userStore.retrieveUser.user.admin === "true") {
+    if (this.props.userStore.retrieveUser.user.admin === "admin") {
       return (
         <div>
 
@@ -86,7 +106,7 @@ var PopUp = observer(class PopUp extends Component {
                 </Modal.Content>
                 <Modal.Actions>
                  
-                  <Button color='blue' onClick={this.props.shiftStore.claimShift}>
+                  <Button color='blue' onClick={this.claimShift}>
                     <Icon name='checkmark' /> Claim This Shift
                               </Button>
                 </Modal.Actions>
@@ -98,7 +118,7 @@ var PopUp = observer(class PopUp extends Component {
     return (
       <div> Please Log in </div>
     )
-  }
+  } 
 }
 })
 

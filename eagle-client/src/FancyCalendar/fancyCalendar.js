@@ -62,6 +62,8 @@ var FancyCalendar = observer(class FancyCalendar extends Component {
                         defaultDate={moment()}
                         navLinks={true} // can click day/week names to navigate views
                         editable={false}
+                        eventColor={"green"}
+                    
                         allDay={false}
                         allDayText={""}
                         eventLimit={true} // allow "more" link when too many events

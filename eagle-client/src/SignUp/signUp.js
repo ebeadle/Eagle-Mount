@@ -57,6 +57,7 @@ constructor(props){
           lastName: "",
           email: "",
           password: "",
+          admin: '',
           message: this.props.userStore.user.message});
       }
     }).catch((e)=> {
