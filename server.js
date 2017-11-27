@@ -12,6 +12,7 @@ var uriUtil = require('mongodb-uri');
 var cookieParser = require('cookie-parser');
 var http = require('http');
 var path  = require('path');
+//var flash = require('connect-flash');
 var {ensureAuthenticated} = require("./eagle-client/src/helpers/auth");
 require('dotenv').config();
 
@@ -193,19 +194,33 @@ app.post('/open-shifts', ensureAuthenticated, function(req, res, next){
   })
 });
 
-app.post('/userShifts', function (req, res, next) {
-  console.log(req)
+app.post('/claimShift', function (req, res, next) {
+  console.log(req.body)
   //if (req.user) {
-      Shift.findById(req.user.shift, (err, user) => {
+      Shift.findByIdAndUpdate({_id: req.body.shiftId}, "user", (err, shift) => {
+        console.log(shift)
           if (err) {
               console.log(err);
               next(err);
+          } else {
+            shift.user = req.body.userId
           }
-      }).populate('user').exec((err, user) => {
-          if (user != null) {
-            console.log("post populate in /userShifts")
-              res.json(user);
-          }
+          shift.save((err, returnShift)=> {
+            if(err){
+              next(err)
+            } else {
+              Shift.find(function(err, shift) {
+                
+                if(err){
+                  next(err)
+                } else {
+                  console.log(shift)
+                  res.json(shift);
+                }   
+              });
+            }
+          })
+      
       });
   // }else {
   //     console.log("did not get user *******")

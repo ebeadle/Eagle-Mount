@@ -18,6 +18,7 @@ export default class ShiftStore {
       }),
       get retrieveShift() { //this used to have just this.shift but it didn't render. Mobx wants the data filtered? 
       return this.shifts.map((s)=> {
+        console.log(s)
           return s
         })
       }
@@ -25,7 +26,6 @@ export default class ShiftStore {
     this.addNewShift = this.addNewShift.bind(this);
     this.fetchShifts = this.fetchShifts.bind(this);
     this.deleteShift = this.deleteShift.bind(this);
-    this.claimShift = this.claimShift.bind(this);
   }
 
   deleteShift() {
@@ -69,17 +69,7 @@ export default class ShiftStore {
     })
   }
 
-  claimShift(shiftObj) {
-    return new Promise((resolve, reject) => {
-      axios.post('/userShifts', {
-        user: shiftObj.user
-      })
-      .then(() => {
-        console.log('this is claimShift()')
-      })
-      resolve(shiftObj)
-    })
-  }
+
   
 
   fetchShifts(shiftObj){
