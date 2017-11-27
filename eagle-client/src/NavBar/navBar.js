@@ -15,32 +15,37 @@ var Nav = observer(class Nav extends Component {
   render() {
     const { activeItem } = this.state
     var successLogin = this.props.userStore.user;
-    if(successLogin){    
+    //var adminTrue = this.props.userStore.retrieveUser.user.admin === "true"
+    //if success Login and admin return amin and logout else if success login and admin is string return log out else return sign up login
+    if(successLogin && (this.props.userStore.retrieveUser.user.admin==="true")){   
+      
       return (
 
       <Menu>
         <Menu.Menu position='right'>
-       <Link className="item" to="/admin">Admin</Link>
-       <Link className="item" to="/fancycalendar">Open Shifts</Link>     
+        <Link className="item" to="/admin">Admin</Link>
        <Link className="item" to="/logout">Log Out</Link>
        </Menu.Menu>
       </Menu>
     )
+  
+  } else if(successLogin && (this.props.userStore.retrieveUser.user.admin === "")) {
+    return (
+      <Menu>
+        <Menu.Menu position='right'>
+       <Link className="item" to="/logout">Log Out</Link>
+       </Menu.Menu>
+      </Menu>
+          )
   } else {
     return (
-
-      
-            <Menu>
-             <Menu.Menu position='right'>
-             {/* <Link className="item" to="/"> 
-             <Image alt="Eagle-Mount Bozeman" src="https://static1.squarespace.com/static/55e10aede4b023ac4136bb15/566634a9a976afddc7098140/5673106fc647ad862c4cb8f1/1450381490626/Eaglemount.png" width="140" height="85" />
-             </Link> */}
-             <Link className="item" to="/login"> Login</Link>
-             <Link className="item" to="/signup">Sign Up</Link>
-             </Menu.Menu>
-            
-            </Menu>
-          )
+                  <Menu>
+                   <Menu.Menu position='right'>
+                   <Link className="item" to="/login"> Login</Link>
+                   <Link className="item" to="/signup">Sign Up</Link>
+                   </Menu.Menu>
+                  </Menu>
+                )
   }
   }
 });
