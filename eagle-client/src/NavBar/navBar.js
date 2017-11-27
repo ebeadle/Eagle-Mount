@@ -16,7 +16,7 @@ var Nav = observer(class Nav extends Component {
     const { activeItem } = this.state
     var successLogin = this.props.userStore.user;
     if (successLogin) {
-      if (this.props.userStore.retrieveUser.user.admin === "true") {
+      if (this.props.userStore.retrieveUser.user.admin === "admin") {
         return (
 
           <Menu>
@@ -26,8 +26,9 @@ var Nav = observer(class Nav extends Component {
             </Menu.Menu>
           </Menu>
         )
-
-      } else if (this.props.userStore.retrieveUser.user.admin === "") {
+      } 
+      
+    if (this.props.userStore.retrieveUser.user.admin === "") {
         return (
           <Menu>
             <Menu.Menu position='right'>
@@ -36,7 +37,8 @@ var Nav = observer(class Nav extends Component {
           </Menu>
         )
       } 
-    }else {
+    }
+    if(!successLogin) {
         return (
           <Menu>
             <Menu.Menu position='right'>
