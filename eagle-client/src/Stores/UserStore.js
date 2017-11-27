@@ -32,6 +32,7 @@ export default class UserStore {
         }
       ).then((userObj) => {
         if (userObj.data) {
+          console.log(userObj)
           this.user = userObj.data
         } else {
         

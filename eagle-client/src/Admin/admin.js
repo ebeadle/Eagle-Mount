@@ -18,11 +18,11 @@ var Admin = observer(class Admin extends Component {
     this.shiftTime = [
       {
         text: 'Morning',
-        value: 'morning',
+        value: 'Morning',
      },
     {
       text: 'Afternoon',
-      value: 'afternoon'
+      value: 'Afternoon'
     }]
 
     this.skillLevels = [
@@ -37,11 +37,11 @@ var Admin = observer(class Admin extends Component {
 
       {
         text: "Tether",
-        value: 'tether',
+        value: 'Tether',
       },
       {
         text: "No Special Requirements",
-        value: "No special requirements"
+        value: "No Special Requirements"
       }
 
     ]

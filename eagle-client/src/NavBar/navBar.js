@@ -15,40 +15,42 @@ var Nav = observer(class Nav extends Component {
   render() {
     const { activeItem } = this.state
     var successLogin = this.props.userStore.user;
+    console.log(this.props.userStore.user);
     if (successLogin) {
-      if (this.props.userStore.retrieveUser.user.admin === "admin") {
-        return (
-
+      if(this.props.userStore.user.user.admin === "admin"){
+        return(
           <Menu>
             <Menu.Menu position='right'>
               <Link className="item" to="/admin">Admin</Link>
               <Link className="item" to="/logout">Log Out</Link>
             </Menu.Menu>
           </Menu>
-        )
-      } 
+        ) 
+    } else {
       
-    if (this.props.userStore.retrieveUser.user.admin === "") {
         return (
-          <Menu>
-            <Menu.Menu position='right'>
-              <Link className="item" to="/logout">Log Out</Link>
-            </Menu.Menu>
-          </Menu>
-        )
-      } 
-    }
-    if(!successLogin) {
-        return (
-          <Menu>
-            <Menu.Menu position='right'>
-              <Link className="item" to="/login"> Login</Link>
-              <Link className="item" to="/signup">Sign Up</Link>
-            </Menu.Menu>
-          </Menu>
-        )
-      }
-    }
-  });
+                    <Menu>
+                      <Menu.Menu position='right'>
+                        <Link className="item" to="/logout">Log Out</Link>
+                      </Menu.Menu>
+                    </Menu>
+                  )
+    
+    
+    } 
+    
+  }else {
+      return (
+        <Menu>
+          <Menu.Menu position='right'>
+            <Link className="item" to="/login"> Login</Link>
+            <Link className="item" to="/signup">Sign Up</Link>
+          </Menu.Menu>
+        </Menu>
+      )
+  }
+
+  }
+});
 
 export default withRouter(inject('userStore')(Nav));
