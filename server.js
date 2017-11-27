@@ -12,6 +12,7 @@ var uriUtil = require('mongodb-uri');
 var cookieParser = require('cookie-parser');
 var http = require('http');
 var path  = require('path');
+var {ensureAuthenticated} = require("../helpers/auth");
 require('dotenv').config();
 
 mongoose.Promise = global.Promise;
@@ -172,7 +173,7 @@ app.get('/logout', function(req, res){
   }
 });
 
-app.post('/open-shifts', function(req, res, next){
+app.post('/open-shifts', ensureAuthenticated, function(req, res, next){
   var shift = new Shift();
   
   shift.date = req.body.date;
@@ -215,7 +216,7 @@ app.post('/userShifts', function (req, res, next) {
 
 
 
-app.get('/shift', function(req, res, next) {
+app.get('/shift', ensureAuthenticated, function(req, res, next) {
   Shift.find(function(err, shift) {
     
     if(err){
