@@ -30,8 +30,12 @@ var FancyCalendar = observer(class FancyCalendar extends Component {
     delete e.source; //the event source data was being continuously looped by mobx so it gets deleted here before the rest of the event gets assigned.
     this.props.shiftStore.selectedShift = e;
     this.props.shiftStore.modalPopUp = true;
+    console.log(this.props.shiftStore.selectedShift.user)
     if(this.props.shiftStore.selectedShift.user){
       this.props.shiftStore.modalPopUp = false;
+    } 
+    if (this.props.userStore.user.admin === "admin"){
+      this.props.shiftStore.modalPopUp = true
     }
   }
 
@@ -61,22 +65,21 @@ var FancyCalendar = observer(class FancyCalendar extends Component {
     if (this.props.userStore.user) {
 
       return (
-        <div id="example-component">
+        <div >
 
           <FullCalendar
-            id="your-custom-ID"
             header={{
               left: 'prev,next today myCustomButton',
               center: 'title',
-              right: 'month,basicWeek,basicDay'
+              right: 'month'
             }}
             eventClick={this.eventClick}
             defaultDate={moment()}
             navLinks={true} // can click day/week names to navigate views
             editable={false}
             eventRender={this.eventRender}
-            allDay={false}
-            allDayText={""}
+            allDaySlot={false}
+            allDayText={false}
             eventLimit={true} // allow "more" link when too many events
             events={this.props.shiftStore.retrieveShift} //{this.state.events}is the original
             displayEventTime={true}
@@ -86,6 +89,9 @@ var FancyCalendar = observer(class FancyCalendar extends Component {
             //slotDuration={'00:30:00'}
             //slotLabelInterval={'30'}
             slotLabelFormat={'h(:mm)a'}
+            minTime={'9:00:00'}
+            maxTime={'19:00:00'}
+            height={550}
           />
           <PopUp fancyCalendarDelete={this.fancyCalendarDelete} handleClose={this.handleClose} />
 

@@ -40,6 +40,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(session({ secret: "moby" }));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(express.static('./eagle-client/public'));
 
 passport.use(new LocalStrategy({ username: "email", password: "password" },  (email, password, done) => {
   User.findOne({
@@ -71,7 +72,7 @@ passport.deserializeUser(function(id, done){
   });
 });
 
-app.use(express.static('./eagle-client/public'));
+
 
 app.post('/signup', function(req, res, next){
   
@@ -239,6 +240,7 @@ app.post('/claimShift', function (req, res, next) {
                 if(err){
                   next(err)
                 } else {
+                  console.log(shift)
                   res.json(shift);
                 }   
               });
