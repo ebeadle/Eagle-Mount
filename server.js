@@ -12,6 +12,7 @@ var uriUtil = require('mongodb-uri');
 var cookieParser = require('cookie-parser');
 var http = require('http');
 var path  = require('path');
+var nodemailer = require('nodemailer');
 //var flash = require('connect-flash');
 var {ensureAuthenticated} = require("./eagle-client/src/helpers/auth");
 require('dotenv').config();
@@ -195,6 +196,37 @@ app.post('/open-shifts', ensureAuthenticated, function(req, res, next){
 });
 
 app.post('/claimShift', function (req, res, next) {
+  nodemailer.createTestAccount((err, account) => {
+    let transporter = nodemailer.createTransport({
+      // host: 'smtp.gmail.com',
+      // port: 587,
+      // secure: false, // true for 465, false for other ports
+      service: 'gmail',
+      auth: {
+        user: 'reekkmtcs@gmail.com',
+        pass: 'codeschool#1'
+    }
+  });
+  console.log("%%%%%")
+  //console.log(user)
+  let mailOptions = {
+    from: '"Rob, Em, Erin, Kyle, Kate" <reekkmtcs@gmail.com>',
+    to: 'emilykimmel406@gmail.com', 
+    subject: 'Hello ✔',
+    text: 'Hi there!',
+    html:  '<p>This email confirms that a volunteer shift has been claimed </p>' 
+  };
+  transporter.sendMail(mailOptions, (error, info) => {
+    console.log(mailOptions)
+    if (error) {
+        console.log(error)
+        //return error;
+    } else {
+      console.log(info)
+      console.log("an email was sent? maybe?")
+    }
+  });
+});
   console.log(req.body)
   //if (req.user) {
       Shift.findByIdAndUpdate({_id: req.body.shiftId}, "user", (err, shift) => {
@@ -214,7 +246,7 @@ app.post('/claimShift', function (req, res, next) {
                 if(err){
                   next(err)
                 } else {
-                  console.log(shift)
+                  //console.log(shift)
                   res.json(shift);
                 }   
               });
