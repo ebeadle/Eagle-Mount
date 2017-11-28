@@ -13,7 +13,6 @@ var cookieParser = require('cookie-parser');
 var http = require('http');
 var path  = require('path');
 var nodemailer = require('nodemailer');
-//var flash = require('connect-flash');
 var {ensureAuthenticated} = require("./eagle-client/src/helpers/auth");
 require('dotenv').config();
 
@@ -207,30 +206,24 @@ app.post('/claimShift', function (req, res, next) {
         pass: 'codeschool#1'
     }
   });
-  console.log("%%%%%")
-  //console.log(user)
-  let mailOptions = {
-    from: '"Rob, Em, Erin, Kyle, Kate" <reekkmtcs@gmail.com>',
+   let mailOptions = {
+    from: '"Volunteer Calendar" <reekkmtcs@gmail.com>',
     to: 'emilykimmel406@gmail.com', 
     subject: 'Hello ✔',
     text: 'Hi there!',
     html:  '<p>This email confirms that a volunteer shift has been claimed </p>' 
   };
   transporter.sendMail(mailOptions, (error, info) => {
-    console.log(mailOptions)
+    
     if (error) {
         console.log(error)
-        //return error;
-    } else {
-      console.log(info)
-      console.log("an email was sent? maybe?")
+        //return error
     }
   });
 });
-  console.log(req.body)
-  //if (req.user) {
+  
       Shift.findByIdAndUpdate({_id: req.body.shiftId}, "user", (err, shift) => {
-        console.log(shift)
+        
           if (err) {
               console.log(err);
               next(err);
@@ -246,7 +239,6 @@ app.post('/claimShift', function (req, res, next) {
                 if(err){
                   next(err)
                 } else {
-                  //console.log(shift)
                   res.json(shift);
                 }   
               });
@@ -254,22 +246,17 @@ app.post('/claimShift', function (req, res, next) {
           })
       
       });
-  // }else {
-  //     console.log("did not get user *******")
-  //     res.json("Something went wrong.")
-  // }
 });
 
 
 
 app.get('/shift', ensureAuthenticated, function(req, res, next) {
-  Shift.find(function(err, shift) {
-    
+  Shift.find(function(err, shift) { 
     if(err){
       next(err)
-    } else {
-      res.json(shift);
-    }   
+    }  
+  }).populate('user').exec((err, shift) => {
+    res.json(shift)
   });
 });
 
@@ -278,15 +265,11 @@ app.get('/shift', ensureAuthenticated, function(req, res, next) {
 app.post('/deleteShift', function(req, res, next){
   Shift.findByIdAndRemove(req.body._id, function(err, shift){
     console.log(req.body._id);
-    console.log(shift);
-    console.log("^REQ BODY ID IN DELETE")
       if(err){
           console.log(err);
           next(err);
       } else {
-        console.log("WE GOT HERE")
         Shift.find(function(err, shift) {
-          console.log(shift)
           if(err){
             next(err)
           } else {
