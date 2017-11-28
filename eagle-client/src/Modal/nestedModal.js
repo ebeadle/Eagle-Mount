@@ -13,16 +13,14 @@ var NestedModal = observer(class PopUp extends Component {
     this.claimShift = this.claimShift.bind(this)
 
   }
-  claimShift() {
-    console.log(this.props.shiftStore.selectedShift._id)
-  
+  claimShift() {  
       axios.post('/claimShift', {
         shiftId: this.props.shiftStore.selectedShift._id,
-        userId: this.props.userStore.user._id
+        userId: this.props.userStore.user._id,
+        userFirst: this.props.userStore.user.firstName
       })
       .then((res) => {
         this.props.shiftStore.shifts = res.data
-        console.log(this.props.shiftStore.shifts)
       })
   }
 
@@ -31,7 +29,6 @@ var NestedModal = observer(class PopUp extends Component {
 
   render() {
     const { open } = this.state
-    console.log(this.props.userStore.user._id);
     return (
       <div>
         <Modal
@@ -42,9 +39,10 @@ var NestedModal = observer(class PopUp extends Component {
           size='small'
           trigger={<Button onClick={this.claimShift} primary icon>Claim This Shift<Icon name='right chevron' /></Button>}
         >
-          <Modal.Header>Thank you {this.props.shiftStore.selectedShift._id} for covering this Shift!</Modal.Header>
+          <Modal.Header>Thank you {this.props.userStore.user.firstName} for covering this Shift!  </Modal.Header>
           <Modal.Content>
-            <p>See you in the {this.props.shiftStore.selectedShift.time} on {this.props.shiftStore.selectedShift.date} We appreciate you!</p>
+            <p>See you in the {this.props.shiftStore.selectedShift.time} on {this.props.shiftStore.selectedShift.date} An Email has been sent to the Eagle Mount Office confirming you'll cover this shift.
+            We appreciate you!</p>
             
           </Modal.Content>
           <Modal.Actions>

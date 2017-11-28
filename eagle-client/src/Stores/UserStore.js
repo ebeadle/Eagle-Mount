@@ -8,7 +8,6 @@ export default class UserStore {
     extendObservable(this, {
       user: null,
       success: null,
-      // admin: false,
       get retrieveUser() {
         return this.user
       }
@@ -19,7 +18,7 @@ export default class UserStore {
   }
 
   signUpUser(newUserObj) {
-    console.log(newUserObj);
+   
     return new Promise((resolve, reject) => {
       axios.post("/signup",
         {
@@ -31,14 +30,12 @@ export default class UserStore {
           message: newUserObj.message
         }
       ).then((userObj) => {
-        //console.log(userObj.data.userReturned.admin);
         if (userObj.data) {
-          console.log(userObj.data)
           this.user = userObj.data.userReturned
         } else {
           reject(userObj);
         }
-        console.log(userObj);
+    
         resolve(userObj);
       })
     })
@@ -52,9 +49,7 @@ export default class UserStore {
           password: userObj.password
         }
       ).then((loggedInUser) => {
-        console.log(loggedInUser)
         if (loggedInUser.data.success) {
-         //debugger;
           this.user=loggedInUser.data.user
         } else {
           this.message='incorrect username or password'
@@ -65,7 +60,6 @@ export default class UserStore {
   }
   logout() {
     axios.get('/logout').then((res)=> {
-      console.log(res);
       if (res) { 
         this.user = null;  
         sessionStorage.removeItem('user');

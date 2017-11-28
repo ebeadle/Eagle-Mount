@@ -27,11 +27,21 @@ var FancyCalendar = observer(class FancyCalendar extends Component {
 
 
   eventClick(e, jsE, v) {
-    console.log(e)
     delete e.source; //the event source data was being continuously looped by mobx so it gets deleted here before the rest of the event gets assigned.
     this.props.shiftStore.selectedShift = e;
     this.props.shiftStore.modalPopUp = true;
+    if(this.props.shiftStore.selectedShift.user){
+      this.props.shiftStore.modalPopUp = false;
+    }
   }
+
+
+  eventRender(event, element) {
+    if(event.user){
+    console.log(event.user.firstName)
+    element.append(`Claimed by: ${event.user.firstName}`)
+  }
+}
 
 
   callFetch() {
@@ -43,6 +53,7 @@ var FancyCalendar = observer(class FancyCalendar extends Component {
   }
 
   componentDidMount() {
+    console.log(this.props.shiftStore)
     this.callFetch();
   }
 
@@ -63,8 +74,7 @@ var FancyCalendar = observer(class FancyCalendar extends Component {
             defaultDate={moment()}
             navLinks={true} // can click day/week names to navigate views
             editable={false}
-            // eventColor={"green"}
-
+            eventRender={this.eventRender}
             allDay={false}
             allDayText={""}
             eventLimit={true} // allow "more" link when too many events
@@ -84,7 +94,7 @@ var FancyCalendar = observer(class FancyCalendar extends Component {
     } else {
       return (
         <div>
-          <Card>
+          <Card centered color={'black'}>
             <Image src='/assets/images/avatar/large/matthew.png' />
             <Card.Content>
               <Card.Header>
