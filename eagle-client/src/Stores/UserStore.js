@@ -19,7 +19,7 @@ export default class UserStore {
   }
 
   signUpUser(newUserObj) {
-    
+    console.log(newUserObj);
     return new Promise((resolve, reject) => {
       axios.post("/signup",
         {
@@ -31,11 +31,11 @@ export default class UserStore {
           message: newUserObj.message
         }
       ).then((userObj) => {
+        //console.log(userObj.data.userReturned.admin);
         if (userObj.data) {
-          console.log(userObj)
-          this.user = userObj.data
+          console.log(userObj.data)
+          this.user = userObj.data.userReturned
         } else {
-        
           reject(userObj);
         }
         console.log(userObj);
