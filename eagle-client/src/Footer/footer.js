@@ -28,7 +28,7 @@ export default class Footer extends Component {
                   <List link inverted>
                     <a className="item" target="_blank" rel="noopener noreferrer" href="//eaglemount.org/">Eagle Mount Bozeman Official Website</a> 
                     <Link className="item" to="/contactinfo">Contact Us?</Link>
-                    <a title="Weather at North Entrance" className="item" target="_blank" rel="noopener noreferrer" href='https://forecast.weather.gov/MapClick.php?zoneid=WYZ001'>Current Weather</a> 
+                    <a title="Bridger Bowl" className="item" target="_blank" rel="noopener noreferrer" href='https://bridgerbowl.com/weather/snow-report'>Bridger Bowl Snow Report</a> 
                   </List>
                 </Grid.Column>
                 {/* <Grid.Column width={5}> */}
