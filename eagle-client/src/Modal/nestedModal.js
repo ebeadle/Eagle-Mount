@@ -15,11 +15,10 @@ var NestedModal = observer(class PopUp extends Component {
   }
   claimShift() {
     console.log(this.props.shiftStore.selectedShift._id)
-    console.log(this.props.userStore.user.user._id)
   
       axios.post('/claimShift', {
         shiftId: this.props.shiftStore.selectedShift._id,
-        userId: this.props.userStore.user.user._id
+        userId: this.props.userStore.user._id
       })
       .then((res) => {
         this.props.shiftStore.shifts = res.data
@@ -32,7 +31,7 @@ var NestedModal = observer(class PopUp extends Component {
 
   render() {
     const { open } = this.state
-    console.log(this.props.userStore.user.user._id);
+    console.log(this.props.userStore.user._id);
     return (
       <div>
         <Modal
