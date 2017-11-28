@@ -15,10 +15,10 @@ var Nav = observer(class Nav extends Component {
   render() {
     const { activeItem } = this.state
     var successLogin = this.props.userStore.user;
-    console.log(this.props.userStore.user);
+    console.log(this.props.userStore.userReturned);
     if (successLogin) { 
-      console.log(this.props.userStore.user.user.admin)
-      if(this.props.userStore.user.user.admin === "admin"){
+      console.log(this.props.userStore.user.admin)
+      if(this.props.userStore.user.admin === "admin"){
         return(
           <Menu>
             <Menu.Menu position='right'>
@@ -32,7 +32,7 @@ var Nav = observer(class Nav extends Component {
         return (
                     <Menu>
                       <Menu.Menu position='right'>
-                      <Link className="item" to="/signup">Sign Up</Link>
+                      
                         <Link className="item" to="/logout">Log Out</Link>
                       </Menu.Menu>
                     </Menu>

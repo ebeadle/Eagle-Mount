@@ -54,7 +54,8 @@ export default class UserStore {
       ).then((loggedInUser) => {
         console.log(loggedInUser)
         if (loggedInUser.data.success) {
-          this.user=loggedInUser.data
+         //debugger;
+          this.user=loggedInUser.data.user
         } else {
           this.message='incorrect username or password'
         }
