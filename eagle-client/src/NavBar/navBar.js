@@ -17,7 +17,8 @@ var Nav = observer(class Nav extends Component {
     var successLogin = this.props.userStore.user;
     console.log(this.props.userStore.user);
     if (successLogin) { 
-      if(this.props.userStore.user.admin === "admin"){
+      console.log(this.props.userStore.user.user.admin)
+      if(this.props.userStore.user.user.admin === "admin"){
         return(
           <Menu>
             <Menu.Menu position='right'>
