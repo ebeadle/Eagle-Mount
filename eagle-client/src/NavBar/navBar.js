@@ -15,9 +15,7 @@ var Nav = observer(class Nav extends Component {
   render() {
     const { activeItem } = this.state
     var successLogin = this.props.userStore.user;
-    console.log(this.props.userStore.userReturned);
     if (successLogin) { 
-      console.log(this.props.userStore.user.admin)
       if(this.props.userStore.user.admin === "admin"){
         return(
           <Menu>

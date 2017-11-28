@@ -69,11 +69,9 @@ var Admin = observer(class Admin extends Component {
 
   handleClick(){  
   var m = moment(this.date)
-  console.log(this.state.time)
   if(this.state.time === 'Morning'){
     m.set({hour:10, minute:30, second:0, millisecond:0})
     var newTime = m.format()
-    console.log(newTime);
   } else {
     m.set({hour:13, minute:30, second:0, millisecond:0})
     var newTime = m.format()

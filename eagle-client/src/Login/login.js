@@ -35,12 +35,12 @@ var Login = observer(class Login extends Component {
       password: this.state.password,
       
     }).then((userStore)=>{
-      console.log(userStore);
+    
         if (userStore.success){
           
         this.props.history.push('/fancycalendar'); 
         } else {
-          console.log(userStore)
+        
           this.setState({
             message: userStore.message,
             email: "",
