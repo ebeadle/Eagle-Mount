@@ -29,7 +29,7 @@ export default class App extends Component {
             <div>
               <Nav />
               <Switch>
-                <Route exact path="/" component={HomePage} />
+                <Route exact path='/' component={HomePage} />
                 <Route path='/Admin' render={() => <Admin />} />
                 <Route path='/Signup' render={() => <SignUp />} />
                 <Route path='/Login' render={() => <Login />} />
