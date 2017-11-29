@@ -23,6 +23,11 @@ var PopUp = observer(class PopUp extends Component {
   }
 
 
+  componentDidMount() {
+   
+    this.props.userStore.verifyUser() //checks user session so that page can refresh
+  }
+
 
   render() {
     if (this.props.userStore.user) {
