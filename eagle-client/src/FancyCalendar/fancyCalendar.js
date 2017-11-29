@@ -98,6 +98,7 @@ var FancyCalendar = observer(class FancyCalendar extends Component {
         </div>
       );
     } else {
+      
       return (
         <div>
           <Card centered color={'black'}>
@@ -112,7 +113,8 @@ var FancyCalendar = observer(class FancyCalendar extends Component {
                 </Card.Description>
             </Card.Content>
             
-          </Card> </div>
+          </Card> 
+          </div>
       )
     }
 
