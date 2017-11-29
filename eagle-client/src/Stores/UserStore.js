@@ -66,6 +66,7 @@ export default class UserStore {
         sessionStorage.removeItem('user');
       }  else {
         console.log('undefined');
+        this.props.history.push('/fancycalendar');
       }
     }, function(err){
       console.log(err);
