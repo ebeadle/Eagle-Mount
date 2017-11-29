@@ -136,13 +136,8 @@ constructor(props){
                 type='password'
                 value={this.state.password}
                 onChange={this.handlePasswordChange}
-
               />
-
               
-
-             
-  
               <Button color='blue' fluid size='large' onClick={this.handleClick} >Sign Up</Button>
             </Segment>
           
