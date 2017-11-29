@@ -97,6 +97,9 @@ var Admin = observer(class Admin extends Component {
     })
   }
 
+  componentDidMount() {
+    this.props.userStore.verifyUser() //checks user session so that page can refresh
+  }
 
 
   render() {
@@ -135,4 +138,4 @@ var Admin = observer(class Admin extends Component {
 
 })
 
-export default withRouter(inject('shiftStore')(Admin));
+export default withRouter(inject('shiftStore', 'userStore')(Admin));

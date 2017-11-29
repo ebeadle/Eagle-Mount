@@ -114,17 +114,20 @@ app.post('/signup', function(req, res, next){
 });
 
 
-app.post('/getUser', (req, res, next) => {
+app.get('/getUser', (req, res, next) => {
+  console.log(req.user)
+  console.log("!!!!!!!!!!!!!!!!!!!")
   if (req.user){
+
     User.findById(req.user._id, (err, foundUser) => {
       if (err) {
         console.log(err)
+      } else {
+        res.json(foundUser)
+        console.log(foundUser)
+        console.log("found user")
       }
-      }).populate('shift').exec((err, user) => {
-        console.log("this is after the populate call")
-        console.log('user is:' + user)
-        res.json(user)
-      });
+      })
   } else {
       res.json({message:'nobody logged in '});
     }

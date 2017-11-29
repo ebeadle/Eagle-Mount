@@ -27,6 +27,11 @@ var NestedModal = observer(class PopUp extends Component {
   open = () => this.setState({ open: true })
   close = () => this.setState({ open: false })
 
+  componentDidMount() {
+    
+    this.props.userStore.verifyUser() //checks user session so that page can refresh
+  }
+
   render() {
     const { open } = this.state
     return (

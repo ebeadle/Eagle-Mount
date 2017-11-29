@@ -57,8 +57,9 @@ var FancyCalendar = observer(class FancyCalendar extends Component {
   }
 
   componentDidMount() {
-    console.log(this.props.shiftStore)
+    console.log(this.props.userStore)
     this.callFetch();
+    this.props.userStore.verifyUser() //checks user session so that page can refresh
   }
 
   render() {
@@ -99,7 +100,7 @@ var FancyCalendar = observer(class FancyCalendar extends Component {
       );
     } else {
       return (
-        <div>
+                  <div>
           <Card centered color={'black'}>
             <Image src='/assets/images/avatar/large/matthew.png' />
             <Card.Content>

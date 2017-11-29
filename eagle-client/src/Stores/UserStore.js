@@ -15,6 +15,7 @@ export default class UserStore {
     this.signUpUser = this.signUpUser.bind(this);
     this.loginUser = this.loginUser.bind(this);
     this.logout = this.logout.bind(this);
+    this.verifyUser = this.verifyUser.bind(this);
   }
 
   signUpUser(newUserObj) {
@@ -70,5 +71,17 @@ export default class UserStore {
       console.log(err);
     });
    
+  }
+
+  verifyUser(userObj){
+    axios.get('/getUser').then((res)=>{
+      if(res){
+        console.log(res.data)
+        this.user = res.data;
+      } else {
+        console.log('log in') 
+        this.props.history.push('/login')
+      }
+    })
   }
 }
