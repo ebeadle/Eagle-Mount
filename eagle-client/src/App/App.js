@@ -26,8 +26,9 @@ export default class App extends Component {
       <Provider userStore={new UserStore()} shiftStore={new ShiftStore()}>
         <div>
           <Router>
-            <div>
+            <div style={{display: 'flex', flexDirection: 'column', minHeight: '100vh'}}>
               <Nav />
+              <div style={{ flex: 1}}>
               <Switch>
                 <Route exact path="/" component={HomePage} />
                 <Route path='/Admin' render={() => <Admin />} />
@@ -39,6 +40,7 @@ export default class App extends Component {
                 <Route path='/Home' render={() => <HomePage />} />
                 <Route component={NotFound} />
               </Switch>
+              </div>
               <Footer />
             </div>
           </ Router>
