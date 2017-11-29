@@ -19,7 +19,9 @@ var Nav = observer(class Nav extends Component {
       if(this.props.userStore.user.admin === "admin"){
         return(
           <Menu>
+            
             <Menu.Menu position='right'>
+           
               <Link className="item" to="/admin">Admin</Link>
               <Link className="item" to="/logout">Log Out</Link>
             </Menu.Menu>
@@ -30,7 +32,7 @@ var Nav = observer(class Nav extends Component {
         return (
                     <Menu>
                       <Menu.Menu position='right'>
-                      
+                  
                         <Link className="item" to="/logout">Log Out</Link>
                       </Menu.Menu>
                     </Menu>
@@ -43,6 +45,7 @@ var Nav = observer(class Nav extends Component {
       return (
         <Menu>
           <Menu.Menu position='right'>
+        
             <Link className="item" to="/login"> Login</Link>
             <Link className="item" to="/signup">Sign Up</Link>
           </Menu.Menu>

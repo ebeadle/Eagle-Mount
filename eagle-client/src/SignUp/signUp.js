@@ -83,7 +83,7 @@ constructor(props){
         verticalAlign='middle'
       >
         <Grid.Column style={{ maxWidth: 450 }}>
-          <Header as='h2' color='blue' textAlign='center'>
+          <Header as='h2' className= 'header' textAlign='center'>
             
             {' '}Sign Up
           </Header>
@@ -140,10 +140,7 @@ constructor(props){
               
               <Button color='blue' fluid size='large' onClick={this.handleClick} >Sign Up</Button>
             </Segment>
-          
-
           </Form>
-         
         </Grid.Column>
       </Grid>
     </div>
