@@ -43,7 +43,7 @@ var Nav = observer(class Nav extends Component {
     
   }else {
       return (
-        <Menu>
+        <Menu color="violet">
           <Menu.Menu position='right'>
         
             <Link className="item" to="/login"> Login</Link>
