@@ -26,23 +26,19 @@ export default class App extends Component {
       <Provider userStore={new UserStore()} shiftStore={new ShiftStore()}>
         <div>
           <Router>
-            <div style={{display: 'flex', flexDirection: 'column', minHeight: '100vh'}}>
+            <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
               <Nav />
-              <div style={{ flex: 1}}>
-              <Switch>
-<<<<<<< HEAD
-                <Route exact path='/' component={HomePage} />
-=======
->>>>>>> 236a7453d6127b416263c41f8434f9ea1dcf7223
-                <Route path='/Admin' render={() => <Admin />} />
-                <Route path='/Signup' render={() => <SignUp />} />
-                <Route path='/Login' render={() => <Login />} />
-                <Route path='/Logout' render={() => <Logout />} />
-                <Route path='/Calendar' render={() => <Calendar />} />
-                <Route path='/FancyCalendar' render={() => <FancyCalendar />} />
-                <Route path='/' render={() => <HomePage />} />
-                <Route component={NotFound} />
-              </Switch>
+              <div style={{ flex: 1 }}>
+                <Switch>
+                  <Route exact path='/' component={HomePage} />
+                  <Route path='/Admin' render={() => <Admin />} />
+                  <Route path='/Signup' render={() => <SignUp />} />
+                  <Route path='/Login' render={() => <Login />} />
+                  <Route path='/Logout' render={() => <Logout />} />
+                  <Route path='/Calendar' render={() => <Calendar />} />
+                  <Route path='/FancyCalendar' render={() => <FancyCalendar />} />
+                  <Route component={NotFound} />
+                </Switch>
               </div>
               <Footer />
             </div>
