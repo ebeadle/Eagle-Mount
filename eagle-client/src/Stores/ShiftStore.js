@@ -30,8 +30,10 @@ export default class ShiftStore {
     axios.post('/deleteShift', {
         _id: this.selectedShift._id}
     ).then((shiftObj) => {
+        
         if (shiftObj.data) {
             this.shifts = shiftObj.data;
+            this.fetchShifts();
         } else {
            console.log("No")
     }
