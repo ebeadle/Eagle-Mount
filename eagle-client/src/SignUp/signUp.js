@@ -14,6 +14,7 @@ var SignUp = observer(class SignUp extends Component {
       lastName: "",
       email: "",
       password: "",
+      confirmPassword: "",
       message: "",
       admin: ""
     }
@@ -50,6 +51,7 @@ var SignUp = observer(class SignUp extends Component {
 
 
   handleClick() {
+    if(this.state.password === this.state.confirmPassword){
     this.props.userStore.signUpUser(
       {
 
@@ -79,6 +81,7 @@ var SignUp = observer(class SignUp extends Component {
       console.log(e)
     })
   }
+}
 
   render() {
 
@@ -154,7 +157,7 @@ var SignUp = observer(class SignUp extends Component {
                   onChange={this.handleConfirmPasswordChange}
                 />
 
-                <Button color='blue' fluid size='large' onClick={this.handleClick} >Sign Up</Button>
+                <Button color='black' fluid size='large' onClick={this.handleClick} >Sign Up</Button>
               </Segment>
             </Form>
           </Grid.Column>

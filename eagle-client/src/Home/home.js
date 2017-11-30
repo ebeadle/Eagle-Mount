@@ -13,7 +13,7 @@ class HomePage extends Component {
                 as='h1'
                 content='Slope Scheduler'
                 //inverted
-                style={{ fontSize: '4em', fontWeight: 'normal', marginBottom: 0, marginTop: '1em' }}
+                style={{ fontSize: '4em', fontWeight: 'normal', marginBottom: 0, marginTop: '1em', borderColor: 'black' }}
               />
               <Header
                 textAlign='center' as='h3'

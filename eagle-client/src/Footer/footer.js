@@ -10,6 +10,7 @@ import {
   List,
   Segment
  } from 'semantic-ui-react';
+import './footer.css';
  
 export default class Footer extends Component {
   
@@ -20,25 +21,18 @@ export default class Footer extends Component {
           <Container>
             <Grid divided inverted stackable>
             <Grid.Column width={5}>
-                <Image as={Link} to="/" alt='slope scheduler' src='./img/logo.png' size='small' />        
+                <Image as={Link} to="/" alt='logo' src='./img/logo.png' size='small'/>        
                 </Grid.Column>
 
                 <Grid.Column width={6}>
                   <Header inverted as='h7'>
                   </Header>
                   <List link inverted>
-                  
-                  <a title="Bridger Bowl" className="item" target="_blank" rel="noopener noreferrer" href='http://eaglemount.org/'>Eagle Mount Website</a> 
-                    <a title="Bridger Bowl" className="item" target="_blank" rel="noopener noreferrer" href='https://bridgerbowl.com/weather/snow-report'>Bridger Bowl Snow Report</a> 
+                    <a className="item" target="_blank" rel="noopener noreferrer" href="//eaglemount.org/">Eagle Mount Website</a> 
+                
+                    <a title="Bridger Bowl Snow Report" className="item" target="_blank" rel="noopener noreferrer" href='//bridgerbowl.com/weather/snow-report'>Bridger Bowl Snow Report</a> 
                   </List>
                 </Grid.Column>
-                {/* <Grid.Column width={5}> */}
-                  {/* <Header inverted as='h5'>
-                  </Header> */}
-                  {/* <Weather /> */}
-                {/* </Grid.Column> */}
-                
-              {/* </Grid.Row> */}
             </Grid>
           </Container>
       </div>
