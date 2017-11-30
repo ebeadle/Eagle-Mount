@@ -26,7 +26,7 @@ export default class App extends Component {
       <Provider userStore={new UserStore()} shiftStore={new ShiftStore()}>
         <div>
           <Router>
-            <div style={{display: 'flex', flexDirection: 'column', minHeight: '100vh'}}>
+            <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
               <Nav />
               <div style={{ flex: 1}}>
               <Switch>
