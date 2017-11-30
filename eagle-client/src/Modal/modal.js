@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { inject, observer } from 'mobx-react';
 import { withRouter } from 'react-router-dom';
-import { Button, Form, Grid, Header, Image, Message, Segment, Modal, Icon, Table } from 'semantic-ui-react'
+import { Button, Header, Modal, Icon, Table } from 'semantic-ui-react'
 import NestedModal from "../Modal/nestedModal";
-var axios = require('axios');
 
 var PopUp = observer(class PopUp extends Component {
   constructor() {
@@ -22,6 +21,11 @@ var PopUp = observer(class PopUp extends Component {
     this.props.handleClose()
   }
 
+
+  componentDidMount() {
+   
+    this.props.userStore.verifyUser() //checks user session so that page can refresh
+  }
 
 
   render() {

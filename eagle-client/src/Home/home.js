@@ -1,17 +1,28 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
+import {Container, Header} from 'semantic-ui-react'
 
-import './home.css'
+
 class HomePage extends Component {
 
   render() {
     return (
-      <div className="Home" className="background">
-        <header className="Home-header">
-        </header>
-        <h1 className="Home-title">Welcome to Eagle Mount</h1>
-
-      </div>
+            <Container text>
+              <Header
+                as='h1'
+                content='Welcome to the Eagle Mount Volunteer Calendar'
+                //inverted
+                style={{ fontSize: '4em', fontWeight: 'normal', marginBottom: 0, marginTop: '1em' }}
+              />
+              <Header
+                as='h3'
+                content='Login here to view shifts that need a volunteer'
+                //inverted
+                style={{ fontSize: '1.7em', fontWeight: 'normal' }}
+              />
+              
+            </Container>
+          
     );
   }
 }

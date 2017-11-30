@@ -15,6 +15,7 @@ export default class UserStore {
     this.signUpUser = this.signUpUser.bind(this);
     this.loginUser = this.loginUser.bind(this);
     this.logout = this.logout.bind(this);
+    this.verifyUser = this.verifyUser.bind(this);
   }
 
   signUpUser(newUserObj) {
@@ -65,10 +66,23 @@ export default class UserStore {
         sessionStorage.removeItem('user');
       }  else {
         console.log('undefined');
+        this.props.history.push('/fancycalendar');
       }
     }, function(err){
       console.log(err);
     });
    
+  }
+
+  verifyUser(userObj){
+    axios.get('/getUser').then((res)=>{
+      if(res){
+       
+        this.user = res.data;
+      } else {
+        console.log('log in') 
+        this.props.history.push('/login')
+      }
+    })
   }
 }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Checkbox, Form, Dropdown, Divider, Container } from 'semantic-ui-react'
+import { Button, Form, Header, Card, Dropdown, Divider, Container } from 'semantic-ui-react'
 import DateInput from '../SelectDate/selectDate'
 import { inject, observer } from 'mobx-react';
 import { withRouter } from 'react-router-dom';
@@ -74,7 +74,7 @@ var Admin = observer(class Admin extends Component {
     var newTime = m.format()
   } else {
     m.set({hour:13, minute:30, second:0, millisecond:0})
-    var newTime = m.format()
+    newTime = m.format()
   }
  
   
@@ -97,13 +97,21 @@ var Admin = observer(class Admin extends Component {
     })
   }
 
+  componentDidMount() {
+    this.props.userStore.verifyUser() //checks user session so that page can refresh
+  }
 
 
   render() {
     return (
       <div>
-        
+     
+         <Card centered color={'black'}>
+         <Header display='center'>
+         Admin
+         </Header>
         <Form display='block'>
+      
         <Container>
           <Form.Field>
             <label>Date</label>
@@ -124,9 +132,10 @@ var Admin = observer(class Admin extends Component {
           </Form.Field>
           </Container>
           <Divider />
-          <Button onClick={this.handleClick} color='blue' fluid size='large'>Submit</Button>
+          <Button onClick={this.handleClick} color='black' fluid size='small'>Submit</Button>
           {/* <Button type='submit'>Submit</Button> */}
         </Form>
+        </Card> 
       </div>
 
     )
@@ -135,4 +144,4 @@ var Admin = observer(class Admin extends Component {
 
 })
 
-export default withRouter(inject('shiftStore')(Admin));
+export default withRouter(inject('shiftStore', 'userStore')(Admin));
