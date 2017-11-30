@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { withRouter, Link } from 'react-router-dom';
 import { Menu } from 'semantic-ui-react';
 import { inject, observer } from 'mobx-react';
+import './navBar.css'
 
 var Nav = observer(class Nav extends Component {
   state = {}
@@ -13,7 +14,7 @@ var Nav = observer(class Nav extends Component {
     if (successLogin) { 
       if(this.props.userStore.user.admin === "admin"){
         return(
-          <Menu>
+          <Menu className='navbar'>
             
             <Menu.Menu position='right'>
            
@@ -26,7 +27,7 @@ var Nav = observer(class Nav extends Component {
     } else {
       
         return (
-                    <Menu>
+                    <Menu className='navbar'>
                       <Menu.Menu position='right'>
                       <Link className="item" to="/fancyCalendar">Calendar</Link>
                         <Link className="item" to="/logout">Log Out</Link>
@@ -39,7 +40,7 @@ var Nav = observer(class Nav extends Component {
     
   }else {
       return (
-        <Menu color="violet">
+        <Menu className='navbar'>
           <Menu.Menu position='right'>
         
             <Link className="item" to="/login"> Login</Link>

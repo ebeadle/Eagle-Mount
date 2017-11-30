@@ -30,6 +30,7 @@ export default class App extends Component {
               <Nav />
               <div style={{ flex: 1}}>
               <Switch>
+        
                 <Route path='/Admin' render={() => <Admin />} />
                 <Route path='/Signup' render={() => <SignUp />} />
                 <Route path='/Login' render={() => <Login />} />

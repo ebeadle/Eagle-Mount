@@ -6,27 +6,19 @@ import NestedModal from "../Modal/nestedModal";
 
 var PopUp = observer(class PopUp extends Component {
   constructor() {
-
     super()
     this.modalDelete = this.modalDelete.bind(this)
-
-
-
-
   }
-
 
   modalDelete() {
     this.props.fancyCalendarDelete()
     this.props.handleClose()
+    this.props.shiftStore.fetchShifts();
   }
-
 
   componentDidMount() {
-   
     this.props.userStore.verifyUser() //checks user session so that page can refresh
   }
-
 
   render() {
     if (this.props.userStore.user) {
@@ -96,10 +88,6 @@ var PopUp = observer(class PopUp extends Component {
                 </Table>
               </Modal.Content>
               <Modal.Actions>
-
-                {/* <Button color='blue' onClick={this.claimShift}>
-                    <Icon name='checkmark' /> Claim This Shift
-                              </Button> */}
                 <NestedModal handleClose={this.props.handleClose} />
               </Modal.Actions>
             </Modal>

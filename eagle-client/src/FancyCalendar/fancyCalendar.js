@@ -8,6 +8,7 @@ import {Image, Card} from 'semantic-ui-react'
 import PopUp from "../Modal/modal";
 
 
+
 var FancyCalendar = observer(class FancyCalendar extends Component {
   constructor(props) {
     super(props);

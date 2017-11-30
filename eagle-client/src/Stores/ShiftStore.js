@@ -35,6 +35,7 @@ export default class ShiftStore {
         } else {
            console.log("No")
     }
+    this.fetchShifts();
     })
 }
 

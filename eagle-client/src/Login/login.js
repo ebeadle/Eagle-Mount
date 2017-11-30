@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { Button, Form, Grid, Header, Segment } from 'semantic-ui-react'
 import {inject, observer} from 'mobx-react';
-import './login.css'
+import './login.css';
+
 // var axios = require('axios');
 
 var Login = observer(class Login extends Component {
