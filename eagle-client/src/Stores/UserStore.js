@@ -77,7 +77,7 @@ export default class UserStore {
   verifyUser(userObj){
     axios.get('/getUser').then((res)=>{
       if(res){
-        console.log(res.data)
+       
         this.user = res.data;
       } else {
         console.log('log in') 

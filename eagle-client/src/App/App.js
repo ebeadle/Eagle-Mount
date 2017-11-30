@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {
   BrowserRouter as Router,
-  Route, Redirect, Switch
+  Route, Switch
 } from 'react-router-dom';
 import './App.css';
 import SignUp from '../SignUp/signUp';
@@ -17,8 +17,7 @@ import Footer from '../Footer/footer';
 import FancyCalendar from '../FancyCalendar/fancyCalendar';
 import HomePage from '../Home/home';
 import NotFound from './NotFound.jsx';
-//import Welcome from '../Home/welcome'
-//import 'react-router';
+
 
 
 export default class App extends Component {

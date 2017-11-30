@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Checkbox, Form, Grid, Header, Card, Dropdown, Divider, Container } from 'semantic-ui-react'
+import { Button, Form, Header, Card, Dropdown, Divider, Container } from 'semantic-ui-react'
 import DateInput from '../SelectDate/selectDate'
 import { inject, observer } from 'mobx-react';
 import { withRouter } from 'react-router-dom';
@@ -74,7 +74,7 @@ var Admin = observer(class Admin extends Component {
     var newTime = m.format()
   } else {
     m.set({hour:13, minute:30, second:0, millisecond:0})
-    var newTime = m.format()
+    newTime = m.format()
   }
  
   
