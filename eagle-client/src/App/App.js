@@ -31,6 +31,7 @@ export default class App extends Component {
               <div style={{ flex: 1 }}>
                 <Switch>
                   <Route exact path='/' component={HomePage} />
+                  <Route path='/Home' render={() => <HomePage />} />
                   <Route path='/Admin' render={() => <Admin />} />
                   <Route path='/Signup' render={() => <SignUp />} />
                   <Route path='/Login' render={() => <Login />} />
