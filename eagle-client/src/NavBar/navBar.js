@@ -18,9 +18,9 @@ var Nav = observer(class Nav extends Component {
             
             <Menu.Menu position='right'>
            
-              <Link className="item" to="/admin">Admin</Link>
-              <Link className="item" to="/fancyCalendar">Calendar</Link>
-              <Link className="item" to="/logout">Log Out</Link>
+              <Link className='item' id="navItem" to="/admin">Admin</Link>
+              <Link className='item'id="navItem" to="/fancyCalendar">Calendar</Link>
+              <Link className='item' id="navItem"to="/logout">Log Out</Link>
             </Menu.Menu>
           </Menu>
         ) 
@@ -29,8 +29,8 @@ var Nav = observer(class Nav extends Component {
         return (
                     <Menu className='navbar'>
                       <Menu.Menu position='right'>
-                      <Link className="item" to="/fancyCalendar">Calendar</Link>
-                        <Link className="item" to="/logout">Log Out</Link>
+                      <Link className='item' id="navItem" to="/fancyCalendar">Calendar</Link>
+                        <Link className='item' id="navItem" to="/logout">Log Out</Link>
                       </Menu.Menu>
                     </Menu>
                   )
@@ -43,8 +43,8 @@ var Nav = observer(class Nav extends Component {
         <Menu className='navbar'>
           <Menu.Menu position='right'>
         
-            <Link className="item" to="/login"> Login</Link>
-            <Link className="item" to="/signup">Sign Up</Link>
+            <Link className='item' id="navItem" to="/login"> Login</Link>
+            <Link className='item' id="navItem" to="/signup">Sign Up</Link>
           </Menu.Menu>
         </Menu>
       )

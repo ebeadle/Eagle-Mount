@@ -93,6 +93,7 @@ var FancyCalendar = observer(class FancyCalendar extends Component {
             minTime={'9:00:00'}
             maxTime={'19:00:00'}
             height={550}
+            eventBackgroundColor={'#4d9b9b;'}
           />
           <PopUp fancyCalendarDelete={this.fancyCalendarDelete} handleClose={this.handleClose} />
 
