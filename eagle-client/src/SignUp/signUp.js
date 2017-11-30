@@ -79,7 +79,14 @@ var SignUp = observer(class SignUp extends Component {
       }
     }).catch((e) => {
       console.log(e)
+      
     })
+  } else {
+    this.setState({
+      message: "Passwords do not match"
+    })
+    console.log("passwords do not match")
+    
   }
 }
 
