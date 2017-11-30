@@ -1,17 +1,8 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
-import {
-  Button,
-  Container,
-  Divider,
-  Grid,
-  Header,
-  Icon
-} from 'semantic-ui-react'
-import { Link } from 'react-router-dom'
-//import { Button } from 'reactstrap';
-//import 'bootstrap/dist/css/bootstrap.css';
-//import './home.css'
+import {Container, Header} from 'semantic-ui-react'
+
+
 class HomePage extends Component {
 
   render() {
@@ -29,10 +20,7 @@ class HomePage extends Component {
                 //inverted
                 style={{ fontSize: '1.7em', fontWeight: 'normal' }}
               />
-              <Button primary size='huge' >Login
-                <Link to='/login'></Link>
-                <Icon name='right arrow' />
-              </Button>
+              
             </Container>
           
     );

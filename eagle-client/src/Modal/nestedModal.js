@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { inject, observer } from 'mobx-react';
 import { withRouter } from 'react-router-dom';
-import { Button, Form, Grid, Header, Image, Message, Segment, Modal, Icon, Table } from 'semantic-ui-react'
+import { Button, Modal, Icon } from 'semantic-ui-react'
 var axios = require('axios');
 var NestedModal = observer(class PopUp extends Component {
   constructor() {
@@ -13,7 +13,9 @@ var NestedModal = observer(class PopUp extends Component {
     this.claimShift = this.claimShift.bind(this)
 
   }
-  claimShift() {  
+  claimShift() { 
+
+    return new Promise((resolve, reject) => {
       axios.post('/claimShift', {
         shiftId: this.props.shiftStore.selectedShift._id,
         userId: this.props.userStore.user._id,
@@ -21,8 +23,10 @@ var NestedModal = observer(class PopUp extends Component {
       })
       .then((res) => {
         this.props.shiftStore.shifts = res.data
+        this.props.shiftStore.fetchShifts();
+        resolve(res);
       })
-  }
+  })}
 
   open = () => this.setState({ open: true })
   close = () => this.setState({ open: false })

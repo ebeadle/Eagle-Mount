@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import FullCalendar from 'fullcalendar-reactwrapper';
 import 'fullcalendar-reactwrapper/dist/css/fullcalendar.min.css'
 import moment from 'moment';
 import { withRouter } from 'react-router-dom';
 import { inject, observer } from 'mobx-react';
-import { Button, Form, Grid, Header, Image, Message, Segment, Modal, Icon, Card} from 'semantic-ui-react'
-import PopUp from "../Modal/modal"
+import {Image, Card} from 'semantic-ui-react'
+import PopUp from "../Modal/modal";
 
 
 var FancyCalendar = observer(class FancyCalendar extends Component {
@@ -23,14 +22,16 @@ var FancyCalendar = observer(class FancyCalendar extends Component {
     this.fancyCalendarDelete = this.fancyCalendarDelete.bind(this);
 
   }
-  handleClose = () => { this.props.shiftStore.modalPopUp = false };
+  handleClose = () => {  
+    this.props.shiftStore.modalPopUp = false
+  
+  };
 
 
   eventClick(e, jsE, v) {
     delete e.source; //the event source data was being continuously looped by mobx so it gets deleted here before the rest of the event gets assigned.
     this.props.shiftStore.selectedShift = e;
     this.props.shiftStore.modalPopUp = true;
-    console.log(this.props.shiftStore.selectedShift.user)
     if(this.props.shiftStore.selectedShift.user){
       this.props.shiftStore.modalPopUp = false;
     } 
@@ -42,7 +43,6 @@ var FancyCalendar = observer(class FancyCalendar extends Component {
 
   eventRender(event, element) {
     if(event.user){
-    console.log(event.user.firstName)
     element.append(`Claimed by: ${event.user.firstName}`)
   }
 }
@@ -57,7 +57,6 @@ var FancyCalendar = observer(class FancyCalendar extends Component {
   }
 
   componentDidMount() {
-    console.log(this.props.userStore)
     this.callFetch();
     this.props.userStore.verifyUser() //checks user session so that page can refresh
   }

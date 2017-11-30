@@ -8,8 +8,6 @@ export default class ShiftStore {
   constructor() {
     extendObservable(this, {
       shifts: [],
-      selectedShift: {},
-      modalPopUp: false,
       success: null,
       selectedShift: {},
       modalPopUp: false,

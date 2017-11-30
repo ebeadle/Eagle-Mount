@@ -2,10 +2,6 @@ import React, { Component } from 'react';
 import { withRouter, Link } from 'react-router-dom';
 import { Menu } from 'semantic-ui-react';
 import { inject, observer } from 'mobx-react';
-import { Image } from 'semantic-ui-react'
-
-
-// var axios = require('axios');
 
 var Nav = observer(class Nav extends Component {
   state = {}
@@ -13,7 +9,6 @@ var Nav = observer(class Nav extends Component {
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
   render() {
-    const { activeItem } = this.state
     var successLogin = this.props.userStore.user;
     if (successLogin) { 
       if(this.props.userStore.user.admin === "admin"){
