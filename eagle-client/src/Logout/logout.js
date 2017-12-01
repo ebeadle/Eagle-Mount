@@ -6,7 +6,7 @@ var Logout = observer(class Logout extends Component {
 
   componentDidMount() {
     this.props.userStore.logout();
-    this.props.history.push('/home'); 
+    this.props.history.push('/'); 
   }
   render () {
     return (
