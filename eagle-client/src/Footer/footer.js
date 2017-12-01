@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-//import Weather from '../weather/Weather';
+import './footer.css';
+
 import {
   Container,
   Grid,

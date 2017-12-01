@@ -4,6 +4,9 @@
 
 }
 
+#navItem {
+  color: white !important;
+}
 .ui.menu {
   display: -webkit-box;
   display: -ms-flexbox;
