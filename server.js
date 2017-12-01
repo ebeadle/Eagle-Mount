@@ -35,6 +35,12 @@ db.once('open', function () {
   console.log('Eagle-Mount database connected.');
 });
 
+if (process.env.NODE_ENV === 'production') { 
+  app.use(express.static("./eagle-client/build"));
+} else {
+  app.use(express.static("public"));  
+}
+
 app.use(bodyParser.json({ type: 'application/json' }));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(session({ secret: "moby" }));
