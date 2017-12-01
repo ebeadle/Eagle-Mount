@@ -164,7 +164,7 @@ var SignUp = observer(class SignUp extends Component {
                   onChange={this.handleConfirmPasswordChange}
                 />
 
-                <Button color='black' fluid size='large' onClick={this.handleClick} >Sign Up</Button>
+                <Button  fluid size='large' onClick={this.handleClick} >Sign Up</Button>
               </Segment>
             </Form>
           </Grid.Column>

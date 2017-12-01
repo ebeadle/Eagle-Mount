@@ -31,3 +31,33 @@
 /* #Content{
   background-color: rgb(133, 8, 150);
 } */
+
+.textContainer {
+  margin-top: 2em;
+  margin-bottom: 2em;
+  background-color: rgba(131, 189, 197, 0.2);
+  
+}
+
+.icon {
+  margin: centered;
+}
+
+i.icon.snowflake:before {
+  content: "\f2dc";
+  margin-left: 275px;
+}
+
+element.style {
+  font-size: 4em;
+  font-weight: normal;
+  margin-top: 0.5em;
+  margin-bottom: 0px;
+}
+
+element.style {
+  font-size: 1.5em;
+  font-weight: normal;
+  margin-top: 10px;
+  margin-bottom: 2em;
+}
