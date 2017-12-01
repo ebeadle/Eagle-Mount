@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
 import { inject, observer } from 'mobx-react';
+import ReactPasswordStrength from 'react-password-strength';
 import "./signUp.css";
-var ReactPasswordStrength = require('react-password-strength');
 var axios = require('axios');
 
 var SignUp = observer(class SignUp extends Component {
@@ -14,6 +14,7 @@ var SignUp = observer(class SignUp extends Component {
       lastName: "",
       email: "",
       password: "",
+      confirmPassword: "",
       message: "",
       admin: ""
     }
@@ -21,9 +22,9 @@ var SignUp = observer(class SignUp extends Component {
     this.handleFirstNameChange = this.handleFirstNameChange.bind(this);
     this.handleLastNameChange = this.handleLastNameChange.bind(this);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
-    this.handleConfirmPasswordChange = this.handleConfirmPasswordChange.bind(this);
+    this.changeCallback = this.changeCallback.bind(this);
     this.handleEmailChange = this.handleEmailChange.bind(this);
-  
+
   }
 
   handleFirstNameChange(event) {
@@ -37,55 +38,54 @@ var SignUp = observer(class SignUp extends Component {
   }
   handlePasswordChange(event) {
     this.setState({ password: event.target.value });
+  } 
+  changeCallback(event) {
+    this.setState({ confirmPassword: event.password });
   }
-  handleConfirmPasswordChange(event) {
-    this.setState({ confirmPassword: event.target.value });
-  }
-
-  // myScore(){
-
-
-
-  // }
-  // myPasswordLbl(){
-
-  //   <h1><ReactPasswordStrength/></h1>
-
-  // }
 
   handleClick() {
-    this.props.userStore.signUpUser(
-      {
+    if (this.state.password === this.state.confirmPassword) {
+      this.props.userStore.signUpUser(
+        {
 
-        firstName: this.state.firstName,
-        lastName: this.state.lastName,
-        email: this.state.email,
-        password: this.state.password,
-        confirmPassword: this.state.confirmPassword,
-        admin: ""
+          firstName: this.state.firstName,
+          lastName: this.state.lastName,
+          email: this.state.email,
+          password: this.state.password,
+          confirmPassword: this.state.confirmPassword,
+          admin: ""
 
-      }
-    ).then((res) => {
-      if (res.data.success) {
-        console.log("added user");
-        this.props.history.push('/login');
-      } else {
-        this.setState({
-          firstName: "",
-          lastName: "",
-          email: "",
-          password: "",
-          admin: '',
-          message: this.props.userStore.user.message
-        });
-      }
-    }).catch((e) => {
-      console.log(e)
-    })
+        }
+      ).then((res) => {
+        if (res.data.success) {
+          console.log("added user");
+          this.props.history.push('/login');
+        } else {
+          this.setState({
+            firstName: "",
+            lastName: "",
+            email: "",
+            password: "",
+            admin: '',
+            message: this.props.userStore.user.message
+          });
+        }
+      }).catch((e) => {
+        console.log(e)
+
+      })
+    } else {
+      this.setState({
+        message: "Passwords do not match"
+      })
+      console.log("passwords do not match")
+
+    }
   }
 
   render() {
-
+    console.log(this.state)
+    
     return (
       <div className='login-form'>
 
@@ -137,6 +137,8 @@ var SignUp = observer(class SignUp extends Component {
                   value={this.state.email}
                   onChange={this.handleEmailChange}
                 />
+
+
                 <Form.Input
                   fluid
                   icon='lock'
@@ -146,18 +148,25 @@ var SignUp = observer(class SignUp extends Component {
                   value={this.state.password}
                   onChange={this.handlePasswordChange}
                 />
-                {/* Here is the changes for react-password-strength*/
-              //   <ReactPasswordStrength
-              //   className="checkPasswordStrengthClass"
-              //   style={{ display: 'none' }}
-              //   minLength={5}
-              //   minScore={2}
-              //   scoreWords={['weak', 'okay', 'good', 'strong', 'stronger']}
-              //   changeCallback={myPasswordLbl}
-              //   inputProps={{ name: "password_input", autoComplete: "off", className: "form-control" }}
-              // />
-                }
 
+                <ReactPasswordStrength
+                  minLength={5}
+                  minScore={2}
+                  scoreWords={['weak', 'okay', 'good', 'strong', 'stronger']}
+                  inputProps={{ placeholder: 'Confirm password', name: "password_input", autoComplete: "off", className: "form-control" }}
+                  placeholder='Confirm Password'
+                  type='password'
+                  value={this.state.confirmPassword}
+                  changeCallback={this.changeCallback}
+                />
+                {/*
+                  <ReactPasswordStrength
+                  className="checkPasswordStrengthClass"
+                  minLength={5}
+                  minScore={2}
+                  scoreWords={['weak', 'okay', 'good', 'strong', 'stronger']}
+                  inputProps={{ name: "password_input", autoComplete: "off", className: "form-control" }}
+                />
                 <Form.Input
                   fluid
                   icon='lock'
@@ -166,9 +175,9 @@ var SignUp = observer(class SignUp extends Component {
                   type='password'
                   value={this.state.confirmPassword}
                   onChange={this.handleConfirmPasswordChange}
-                />
+               /> */}
 
-                <Button color='blue' fluid size='large' onClick={this.handleClick} >Sign Up</Button>
+                <Button fluid size='large' onClick={this.handleClick} >Sign Up</Button>
               </Segment>
             </Form>
           </Grid.Column>

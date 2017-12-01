@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import './footer.css'
-//import Weather from '../weather/Weather';
+import './footer.css';
+
 import {
   Container,
   Grid,
@@ -9,8 +9,9 @@ import {
   Image,
   List,
   Segment
-} from 'semantic-ui-react';
-
+ } from 'semantic-ui-react';
+import './footer.css';
+ 
 export default class Footer extends Component {
 
   render() {
@@ -36,6 +37,23 @@ export default class Footer extends Component {
 
           </Grid>
         </Container>
+       {   //       <div>
+          //       <Image as={Link} to="/" alt='logo' src='./img/logo.png' size='small'/>  
+          //       </div>      
+          //       </Grid.Column>
+
+          //       <Grid.Column width={6}>
+          //         <Header inverted as='h7'>
+          //         </Header>
+          //         <List link inverted>
+          //           <a className="item" target="_blank" rel="noopener noreferrer" href="//eaglemount.org/">Eagle Mount Website</a> 
+                
+          //           <a title="Bridger Bowl Snow Report" className="item" target="_blank" rel="noopener noreferrer" href='//bridgerbowl.com/weather/snow-report'>Bridger Bowl Snow Report</a> 
+          //         </List>
+          //       </Grid.Column>
+          //   </Grid>
+          // </Container>
+       }
       </div>
     )
   }

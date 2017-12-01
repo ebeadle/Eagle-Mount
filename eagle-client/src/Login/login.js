@@ -60,7 +60,7 @@ var Login = observer(class Login extends Component {
   render() {
 
     return (
-      <div className='login-form'>
+      <div className='login-form' >
 
         <style>{`
         body > div,
@@ -74,6 +74,7 @@ var Login = observer(class Login extends Component {
           textAlign='center'
           style={{ height: '100%' }}
           verticalAlign='middle'
+          
         >
           <Grid.Column style={{ maxWidth: 450 }}>
             <Header className='header' as='h2' textAlign='center'>
@@ -91,6 +92,7 @@ var Login = observer(class Login extends Component {
                   placeholder='E-mail address'
                   onChange={this.handleEmail}
                   value={this.state.email}
+                  
                 />
                 <Form.Input
                   fluid
@@ -102,7 +104,7 @@ var Login = observer(class Login extends Component {
                   value={this.state.password}
                 />
 
-                <Button onClick={this.handleClick} color='black' fluid size='large'>Login</Button>
+                <Button onClick={this.handleClick} fluid size='large'>Login</Button>
               </Segment>
             </Form>
           </Grid.Column>
