@@ -79,7 +79,14 @@ var SignUp = observer(class SignUp extends Component {
       }
     }).catch((e) => {
       console.log(e)
+      
     })
+  } else {
+    this.setState({
+      message: "Passwords do not match"
+    })
+    console.log("passwords do not match")
+    
   }
 }
 
@@ -157,7 +164,7 @@ var SignUp = observer(class SignUp extends Component {
                   onChange={this.handleConfirmPasswordChange}
                 />
 
-                <Button color='black' fluid size='large' onClick={this.handleClick} >Sign Up</Button>
+                <Button  fluid size='large' onClick={this.handleClick} >Sign Up</Button>
               </Segment>
             </Form>
           </Grid.Column>

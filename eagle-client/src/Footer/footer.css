@@ -7,3 +7,8 @@
   position:relative;  
 }
 
+.ui.inverted.divided.grid:not([class*="vertically divided"])>.column:not(.row):first-child, .ui.inverted.divided.grid:not([class*="vertically divided"])>.row>.column:first-child {
+  box-shadow: none;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
