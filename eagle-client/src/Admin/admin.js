@@ -4,6 +4,7 @@ import DateInput from '../SelectDate/selectDate'
 import { inject, observer } from 'mobx-react';
 import { withRouter } from 'react-router-dom';
 import moment from 'moment';
+import './admin.css'
 
 var Admin = observer(class Admin extends Component {
   constructor() {
@@ -106,8 +107,8 @@ var Admin = observer(class Admin extends Component {
     return (
       <div>
      
-         <Card centered color={'black'}>
-         <Header display='center'>
+         <Card className='admin-card' centered color={'black'}>
+         <Header textAlign='centered'>
          Admin
          </Header>
         <Form display='block'>
@@ -132,7 +133,7 @@ var Admin = observer(class Admin extends Component {
           </Form.Field>
           </Container>
           <Divider />
-          <Button onClick={this.handleClick} color='black' fluid size='small'>Submit</Button>
+          <Button className='admin-button' color='black' onClick={this.handleClick} fluid size='small'>Submit</Button>
           {/* <Button type='submit'>Submit</Button> */}
         </Form>
         </Card> 

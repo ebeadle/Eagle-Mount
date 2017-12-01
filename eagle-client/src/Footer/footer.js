@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-//import Weather from '../weather/Weather';
+import './footer.css';
+
 import {
   Container,
   Grid,
@@ -20,7 +21,9 @@ export default class Footer extends Component {
           <Container>
             <Grid divided inverted stackable>
             <Grid.Column width={5}>
-                <Image as={Link} to="/" alt='logo' src='./img/logo.png' size='small'/>        
+                <div>
+                <Image as={Link} to="/" alt='logo' src='./img/logo.png' size='small'/>  
+                </div>      
                 </Grid.Column>
 
                 <Grid.Column width={6}>

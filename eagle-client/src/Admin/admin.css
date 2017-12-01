@@ -1,0 +1,17 @@
+.admin-card {
+  /* margin-left: 25%;
+  margin-right: 25%;
+  width: 50%;
+  height: 100%;
+  display: flex; */
+  padding: 35px !important;
+ 
+}
+
+.admin-button{
+  margin-left: 30%;
+  margin-right: 30%;
+  width: 40%;
+  color: black
+}
+
