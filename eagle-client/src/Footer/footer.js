@@ -27,7 +27,7 @@ export default class Footer extends Component {
                 </Grid.Column>
 
                 <Grid.Column width={6}>
-                  <Header inverted as='h7'>
+                  <Header inverted as='h4'>
                   </Header>
                   <List link inverted>
                     <a className="item" target="_blank" rel="noopener noreferrer" href="//eaglemount.org/">Eagle Mount Website</a> 
