@@ -36,7 +36,7 @@ export default class App extends Component {
                 <Route path='/Logout' render={() => <Logout />} />
                 <Route path='/Calendar' render={() => <Calendar />} />
                 <Route path='/FancyCalendar' render={() => <FancyCalendar />} />
-                <Route path='/' render={() => <HomePage />} />
+                <Route exact path='/' render={() => <HomePage />} />
                 <Route component={NotFound} />
               </Switch>
               </div>
