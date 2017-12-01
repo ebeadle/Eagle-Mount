@@ -13,7 +13,6 @@ var cookieParser = require('cookie-parser');
 var http = require('http');
 var path  = require('path');
 var nodemailer = require('nodemailer');
-var {ensureAuthenticated} = require("./eagle-client/src/helpers/auth");
 require('dotenv').config();
 
 mongoose.Promise = global.Promise;
@@ -183,7 +182,7 @@ app.get('/logout', function(req, res){
   }
 });
 
-app.post('/open-shifts', ensureAuthenticated, function(req, res, next){
+app.post('/open-shifts', function(req, res, next){
   var shift = new Shift();
   
   shift.date = req.body.date;
