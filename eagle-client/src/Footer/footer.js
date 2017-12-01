@@ -8,7 +8,7 @@ import {
   Header,
   Image,
   List,
-  Segment
+  
  } from 'semantic-ui-react';
 import './footer.css';
  
