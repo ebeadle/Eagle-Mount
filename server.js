@@ -260,7 +260,7 @@ app.post('/claimShift', function (req, res, next) {
 
 
 
-app.get('/shift', ensureAuthenticated, function(req, res, next) {
+app.get('/shift', function(req, res, next) {
   Shift.find(function(err, shift) { 
     if(err){
       next(err)
