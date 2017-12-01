@@ -30,14 +30,14 @@ export default class App extends Component {
               <Nav />
               <div style={{ flex: 1}}>
               <Switch>
-        
+                <Route exact path='/' component={HomePage} />
+                <Route path='/Home' render={() => <HomePage />} />
                 <Route path='/Admin' render={() => <Admin />} />
                 <Route path='/Signup' render={() => <SignUp />} />
                 <Route path='/Login' render={() => <Login />} />
                 <Route path='/Logout' render={() => <Logout />} />
                 <Route path='/Calendar' render={() => <Calendar />} />
                 <Route path='/FancyCalendar' render={() => <FancyCalendar />} />
-                <Route path='/' render={() => <HomePage />} />
                 <Route component={NotFound} />
               </Switch>
               </div>

@@ -47,7 +47,11 @@ var SignUp = observer(class SignUp extends Component {
 
 
   // }
+  // myPasswordLbl(){
 
+  //   <h1><ReactPasswordStrength/></h1>
+
+  // }
 
   handleClick() {
     this.props.userStore.signUpUser(
@@ -142,8 +146,18 @@ var SignUp = observer(class SignUp extends Component {
                   value={this.state.password}
                   onChange={this.handlePasswordChange}
                 />
-                {/* Here is the changes for react-password-strength*/}
-              
+                {/* Here is the changes for react-password-strength*/
+              //   <ReactPasswordStrength
+              //   className="checkPasswordStrengthClass"
+              //   style={{ display: 'none' }}
+              //   minLength={5}
+              //   minScore={2}
+              //   scoreWords={['weak', 'okay', 'good', 'strong', 'stronger']}
+              //   changeCallback={myPasswordLbl}
+              //   inputProps={{ name: "password_input", autoComplete: "off", className: "form-control" }}
+              // />
+                }
+
                 <Form.Input
                   fluid
                   icon='lock'
