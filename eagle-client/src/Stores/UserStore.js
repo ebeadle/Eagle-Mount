@@ -16,6 +16,7 @@ export default class UserStore {
     this.loginUser = this.loginUser.bind(this);
     this.logout = this.logout.bind(this);
     this.verifyUser = this.verifyUser.bind(this);
+  
   }
 
   signUpUser(newUserObj) {
@@ -56,7 +57,9 @@ export default class UserStore {
           this.message='incorrect username or password'
         }
         resolve(loggedInUser.data);
+        console.log(loggedInUser);
       })
+      
     })
   }
   logout() {
@@ -77,7 +80,6 @@ export default class UserStore {
   verifyUser(userObj){
     axios.get('/getUser').then((res)=>{
       if(res){
-       
         this.user = res.data;
       } else {
         console.log('log in') 
@@ -85,4 +87,6 @@ export default class UserStore {
       }
     })
   }
-}
+
+
+};

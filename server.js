@@ -120,23 +120,30 @@ app.post('/signup', function(req, res, next){
 
 
 app.get('/getUser', (req, res, next) => {
-  console.log(req.user)
-  console.log("!!!!!!!!!!!!!!!!!!!")
   if (req.user){
-
     User.findById(req.user._id, (err, foundUser) => {
       if (err) {
         console.log(err)
-      } else {
-        res.json(foundUser)
-        console.log(foundUser)
-        console.log("found user")
-      }
-      })
+      } 
+      //else {
+    //res.json(foundUser)
+    // console.log(foundUser)
+    //console.log("found user")
+  //} 
+      }).populate('shifts').exec((err, foundUser) => {
+        console.log(foundUser.shifts);
+        console.log('^user in getuser')
+    res.json(foundUser)
+  })
   } else {
       res.json({message:'nobody logged in '});
     }
   });
+  
+
+
+
+
     
 
 app.post('/login',function(req, res, next){
@@ -172,6 +179,18 @@ app.post('/login',function(req, res, next){
   
 });
 
+
+
+app.get('/userShifts', function(req, res, next) {
+  User.findById(function(err, user) { 
+    if(err){
+      next(err)
+    }  
+  }).populate('shift').exec((err, user) => {
+    res.json(user)
+  });
+});
+
 app.get('/logout', function(req, res){
   if(req.user) {
     req.logout();
@@ -191,8 +210,8 @@ app.post('/open-shifts', function(req, res, next){
   shift.title = req.body.title;
   shift.start = req.body.start
   shift.user = req.body.user
-  console.log(req.body.user)
-  console.log("LOGGING USER********")
+  
+
   shift.save(function(err, newShift){
     //console.log(newShift);
     if(err) {
@@ -206,9 +225,6 @@ app.post('/open-shifts', function(req, res, next){
 app.post('/claimShift', function (req, res, next) {
   nodemailer.createTestAccount((err, account) => {
     let transporter = nodemailer.createTransport({
-      // host: 'smtp.gmail.com',
-      // port: 587,
-      // secure: false, // true for 465, false for other ports
       service: 'gmail',
       auth: {
         user: 'reekkmtcs@gmail.com',
@@ -223,16 +239,13 @@ app.post('/claimShift', function (req, res, next) {
     html:  '<p>This email confirms that a volunteer shift has been claimed </p>' 
   };
   transporter.sendMail(mailOptions, (error, info) => {
-    
     if (error) {
         console.log(error)
-        //return error
     }
   });
 });
   
       Shift.findByIdAndUpdate({_id: req.body.shiftId}, "user", (err, shift) => {
-        
           if (err) {
               console.log(err);
               next(err);
@@ -243,12 +256,21 @@ app.post('/claimShift', function (req, res, next) {
             if(err){
               next(err)
             } else {
+              //console.log(req.user);
+              User.findByIdAndUpdate({_id: req.body.userId}, 'shift', (err, user) =>{
+                //console.log(req.body.shift)
+                //console.log('this is req.body.shift')
+                user.shifts.push(req.body.shiftId)
+                user.save((err, returnUser)=> {
+                  console.log(returnUser);
+                })
+              });
               Shift.find(function(err, shift) {
                 
                 if(err){
                   next(err)
                 } else {
-                  console.log(shift)
+
                   res.json(shift);
                 }   
               });
@@ -256,6 +278,9 @@ app.post('/claimShift', function (req, res, next) {
           })
       
       });
+
+
+
 });
 
 
@@ -274,7 +299,7 @@ app.get('/shift', function(req, res, next) {
 
 app.post('/deleteShift', function(req, res, next){
   Shift.findByIdAndRemove(req.body._id, function(err, shift){
-    console.log(req.body._id);
+    
       if(err){
           console.log(err);
           next(err);
