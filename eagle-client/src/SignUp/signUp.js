@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
-import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
+import { Button, Form, Grid, Header, Segment } from 'semantic-ui-react'
 import { inject, observer } from 'mobx-react';
 import ReactPasswordStrength from 'react-password-strength';
 import "./signUp.css";
 var axios = require('axios');
+//var ReactPasswordStrength = require('react-password-strength');
 
 var SignUp = observer(class SignUp extends Component {
 
@@ -102,7 +103,7 @@ var SignUp = observer(class SignUp extends Component {
   }
 
   render() {
-    console.log(this.state)
+    
 
     return (
       <div className='login-form'>

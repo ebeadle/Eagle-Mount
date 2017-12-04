@@ -8,7 +8,7 @@ import {
   Header,
   Image,
   List,
-  Segment
+  
  } from 'semantic-ui-react';
 import './footer.css';
  
@@ -42,11 +42,11 @@ export default class Footer extends Component {
           //       </div>      
           //       </Grid.Column>
 
-          //       <Grid.Column width={6}>
-          //         <Header inverted as='h7'>
-          //         </Header>
-          //         <List link inverted>
-          //           <a className="item" target="_blank" rel="noopener noreferrer" href="//eaglemount.org/">Eagle Mount Website</a> 
+                <Grid.Column width={6}>
+                  <Header inverted as='h4'>
+                  </Header>
+                  <List link inverted>
+                    <a className="item" target="_blank" rel="noopener noreferrer" href="//eaglemount.org/">Eagle Mount Website</a> 
                 
           //           <a title="Bridger Bowl Snow Report" className="item" target="_blank" rel="noopener noreferrer" href='//bridgerbowl.com/weather/snow-report'>Bridger Bowl Snow Report</a> 
           //         </List>

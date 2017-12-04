@@ -20,6 +20,7 @@ var Nav = observer(class Nav extends Component {
            
               <Link className='item' id="navItem" to="/admin">Admin</Link>
               <Link className='item'id="navItem" to="/fancyCalendar">Calendar</Link>
+              <Link className='item'id="navItem" to="/dashBoard">Dashboard</Link>
               <Link className='item' id="navItem"to="/logout">Log Out</Link>
             </Menu.Menu>
           </Menu>
@@ -29,6 +30,7 @@ var Nav = observer(class Nav extends Component {
         return (
                     <Menu className='navbar'>
                       <Menu.Menu position='right'>
+                      <Link className='item'id="navItem" to="/dashBoard">Dashboard</Link>
                       <Link className='item' id="navItem" to="/fancyCalendar">Calendar</Link>
                         <Link className='item' id="navItem" to="/logout">Log Out</Link>
                       </Menu.Menu>
@@ -41,6 +43,11 @@ var Nav = observer(class Nav extends Component {
   }else {
       return (
         <Menu className='navbar'>
+          <div className="calIcon">
+          <h2 id='navItem' className="icon">
+                <i className="calendar icon" ></i>
+              </h2>
+          </div>
           <Menu.Menu position='right'>
         
             <Link className='item' id="navItem" to="/login"> Login</Link>

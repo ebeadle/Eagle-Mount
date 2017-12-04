@@ -4,14 +4,17 @@ body, html {
       rgba(255, 255, 255, 0.45), 
       rgba(255, 255, 255, 0.45)
     ),
-    url(../Home/grey-asoggetti.jpg) no-repeat center center fixed;
+    url('/img/grey-asoggetti.jpg') no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
 }
 
-
+.screenShot {
+  height: 200px;
+  width: 200px;
+}
 
 
 .App {
