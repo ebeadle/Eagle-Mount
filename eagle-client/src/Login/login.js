@@ -76,12 +76,12 @@ var Login = observer(class Login extends Component {
           verticalAlign='middle'
           
         >
-          <Grid.Column style={{ maxWidth: 450 }}>
+          <Grid.Column style={{ maxWidth: 450 }} >
             <Header className='header' as='h2' textAlign='center'>
 
               {' '}Login
           </Header>
-            <Form size='large'>
+            <Form size='large' >
               <p className='message'>{this.state.message}</p>
               <Segment stacked>
 
@@ -103,7 +103,7 @@ var Login = observer(class Login extends Component {
                   onChange={this.handlePassword}
                   value={this.state.password}
                 />
-
+      
                 <Button onClick={this.handleClick} fluid size='large'>Login</Button>
               </Segment>
             </Form>
