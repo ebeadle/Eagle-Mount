@@ -42,7 +42,7 @@ var Nav = observer(class Nav extends Component {
       return (
         <Menu className='navbar'>
           <div className="calIcon">
-          <h2 className="icon">
+          <h2 id='navItem' className="icon">
                 <i className="calendar icon" ></i>
               </h2>
           </div>
