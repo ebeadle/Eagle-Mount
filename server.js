@@ -13,7 +13,6 @@ var cookieParser = require('cookie-parser');
 var http = require('http');
 var path  = require('path');
 var nodemailer = require('nodemailer');
-var {ensureAuthenticated} = require("./eagle-client/src/helpers/auth");
 require('dotenv').config();
 
 mongoose.Promise = global.Promise;
@@ -34,6 +33,12 @@ db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function () {
   console.log('Eagle-Mount database connected.');
 });
+
+if (process.env.NODE_ENV === 'production') { 
+  app.use(express.static("./eagle-client/build"));
+} else {
+  app.use(express.static("public"));  
+}
 
 app.use(bodyParser.json({ type: 'application/json' }));
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -177,7 +182,7 @@ app.get('/logout', function(req, res){
   }
 });
 
-app.post('/open-shifts', ensureAuthenticated, function(req, res, next){
+app.post('/open-shifts', function(req, res, next){
   var shift = new Shift();
   
   shift.date = req.body.date;
@@ -255,7 +260,7 @@ app.post('/claimShift', function (req, res, next) {
 
 
 
-app.get('/shift', ensureAuthenticated, function(req, res, next) {
+app.get('/shift', function(req, res, next) {
   Shift.find(function(err, shift) { 
     if(err){
       next(err)
