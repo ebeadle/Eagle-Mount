@@ -16,6 +16,7 @@ import Logout from '../Logout/logout';
 import Footer from '../Footer/footer';
 import FancyCalendar from '../FancyCalendar/fancyCalendar';
 import HomePage from '../Home/home';
+import Dashboard from '../Dashboard/dashboard'
 import NotFound from './NotFound.jsx';
 
 
@@ -36,6 +37,7 @@ export default class App extends Component {
                 <Route path='/Logout' render={() => <Logout />} />
                 <Route path='/Calendar' render={() => <Calendar />} />
                 <Route path='/FancyCalendar' render={() => <FancyCalendar />} />
+                <Route path='/Dashboard' render={() => <Dashboard />} />
                 <Route exact path='/' render={() => <HomePage />} />
                 <Route component={NotFound} />
               </Switch>
