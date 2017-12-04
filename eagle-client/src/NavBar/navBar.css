@@ -21,3 +21,19 @@
   min-height: 2.85714286em;
 }
 
+<<<<<<< HEAD
+/* .item {
+  color: white !important
+} */
+
+.ui.menu:first-child {
+  margin-top: 0;
+  color: white;
+
+}
+
+.calIcon {
+  margin-left: 10px;
+}
+=======
+>>>>>>> origin

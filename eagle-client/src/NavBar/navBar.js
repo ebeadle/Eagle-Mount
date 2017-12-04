@@ -41,6 +41,11 @@ var Nav = observer(class Nav extends Component {
   }else {
       return (
         <Menu className='navbar'>
+          <div className="calIcon">
+          <h2 className="icon">
+                <i className="calendar icon" ></i>
+              </h2>
+          </div>
           <Menu.Menu position='right'>
         
             <Link className='item' id="navItem" to="/login"> Login</Link>

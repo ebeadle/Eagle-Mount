@@ -39,13 +39,16 @@
   
 }
 
-.icon {
-  margin: centered;
+.ui.icon.header {
+  /* display: inline-block;
+  text-align: center; */
+  position: relative;
+  margin: .5rem 0 1rem;
 }
 
 i.icon.snowflake:before {
   content: "\f2dc";
-  margin-left: 275px;
+  margin-left: 300px;
 }
 
 element.style {
