@@ -94,7 +94,7 @@ var Admin = observer(class Admin extends Component {
         console.log("failed")
       }
     }).catch((e) => {
-      console.log(e)
+      
     })
   }
 
