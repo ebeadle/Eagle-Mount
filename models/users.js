@@ -14,7 +14,8 @@ var UserSchema = new mongoose.Schema({
     }
   },
   admin: String,
-  shift: {type: Schema.Types.ObjectId, ref: 'Shift'}
+  shifts: [{type: Schema.Types.ObjectId, ref: 'Shift'}]
+  
 })
 
 module.exports = mongoose.model('User', UserSchema);
