@@ -5,7 +5,16 @@
 .header {
   color: rgb(0, 0, 0)
 }
-
+.confirmPasswordStyle{
+  border: 1px solid #ee0000;
+  background-color: purple;
+}
+.formPadder{
+  height:12.5px;
+}
+.formControl{
+  color:red;
+}
 /* the input fields */
 .ui.form input[type=text], .ui.form input[type=password], .ui.form input[type=url] {
   font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;

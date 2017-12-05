@@ -103,7 +103,7 @@ var SignUp = observer(class SignUp extends Component {
   }
 
   render() {
-    
+
 
     return (
       <div className='login-form'>
@@ -131,8 +131,7 @@ var SignUp = observer(class SignUp extends Component {
               <Segment stacked>
                 <Form.Input
                   fluid
-                  icon='lock'
-                  iconPosition='left'
+                  style={{height: '47.41px', fontSize: '18px'}}                  
                   placeholder='First Name'
                   type='text'
                   value={this.state.firstName}
@@ -141,8 +140,7 @@ var SignUp = observer(class SignUp extends Component {
 
                 <Form.Input
                   fluid
-                  icon='lock'
-                  iconPosition='left'
+                  style={{height: '47.41px', fontSize: '18px'}}                  
                   placeholder='Last Name'
                   type='text'
                   value={this.state.lastName}
@@ -150,29 +148,33 @@ var SignUp = observer(class SignUp extends Component {
                 />
 
                 <Form.Input
+                  style={{height: '47.41px', fontSize: '18px'}}
                   fluid
-                  icon='user'
-                  iconPosition='left'
                   placeholder='E-mail address'
                   value={this.state.email}
                   onChange={this.handleEmailChange}
                 />
 
-                <ReactPasswordStrength
-                minLength={5}
-                minScore={2}
-                scoreWords={['weak', 'okay', 'good', 'strong', 'stronger']}
-                inputProps={{ placeholder: 'Confirm Password!', name: "password_input", autoComplete: "off", className: "form-control" }}
-                placeholder='Confirm Password'
-                type='password'
-                value={this.state.password}
-                changeCallback={this.changeCallback}
-              />
+            
+                  <ReactPasswordStrength
+                    minLength={5}
+                    minScore={2}
+                    scoreWords={['weak', 'okay', 'good', 'strong', 'stronger']}
+                    inputProps={{ placeholder: 'Password', name: "password_input", autoComplete: "off", className: "form-control" }}
+                    placeholder='Confirm Password'
+                    type='password'
+                    value={this.state.password}
+                    changeCallback={this.changeCallback}
+                    style={{border: 'none'}}
+                    
+                  />
+                  <div className='formPadder'>
+                  </div>
+                
 
                 <Form.Input
                   fluid
-                  icon='lock'
-                  iconPosition='left'
+                  style={{height: '47.41px', fontSize: '18px'}}                  
                   placeholder='Password'
                   type='password'
                   value={this.state.confirmPassword}
