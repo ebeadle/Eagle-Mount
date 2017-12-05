@@ -49,7 +49,7 @@ var SignUp = observer(class SignUp extends Component {
 
   handleClick() {
     console.log("The test worked:" + this.state.score);
-    if (this.state.password === this.state.confirmPassword && (this.state.score >= 3)) {
+    if (this.state.password === this.state.confirmPassword && (this.state.score >= 2)) {
       this.props.userStore.signUpUser(
         {
 
@@ -80,7 +80,7 @@ var SignUp = observer(class SignUp extends Component {
       })
     } else {
 
-      if ((this.state.password !== this.state.confirmPassword) && (this.state.score < 3)) {
+      if ((this.state.password !== this.state.confirmPassword) && (this.state.score < 2)) {
         this.setState({
           message: "Passwords Do Not Match & Not Strong Enough!"
         })
@@ -92,7 +92,7 @@ var SignUp = observer(class SignUp extends Component {
         })
         console.log("passwords do not match")
       }
-      else if (this.state.score < 3) {
+      else if (this.state.score < 2) {
         this.setState({
           message: "Not Strong Enough!"
         })
