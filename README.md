@@ -1,6 +1,6 @@
 # Slope Scheduler: 
 :date:
-THe Slope Scheduler has been designed with Eagle Mount’s adaptive ski-program in mind.  Their organization matches volunteers with participants for a ski date.  During those times when a designated volunteer needs a substitute, this app will provide a user friendly interface for Eagle Mount to display the time and needs for the desired shift. 
+The Slope Scheduler has been designed with Eagle Mount’s adaptive ski-program in mind.  Their organization matches volunteers with participants for a ski date.  During those times when a designated volunteer needs a substitute, this app will provide a user friendly interface for Eagle Mount to display the time and needs for the desired shift. 
 
 [View Application] (https://slope-scheduler.herokuapp.com/)
 
