@@ -78,15 +78,17 @@ export default class UserStore {
   }
 
   verifyUser(userObj){
-    axios.get('/getUser').then((res)=>{
-      if(res){
-        this.user = res.data;
-      } else {
-        console.log('log in') 
-        this.props.history.push('/login')
-      }
-    })
+    return new Promise((resolve, reject)=>{
+      axios.get('/getUser').then((res)=>{
+        if(res.data.message !== "nobody logged in"){
+          this.user = res.data;
+          resolve();
+        } else {
+          reject(res.data.message);
+          //console.log('log in') 
+          //this.props.history.push('/login')
+        }
+      })
+   });
   }
-
-
 };

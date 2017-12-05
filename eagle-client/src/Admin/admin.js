@@ -99,7 +99,10 @@ var Admin = observer(class Admin extends Component {
   }
 
   componentDidMount() {
-    this.props.userStore.verifyUser() //checks user session so that page can refresh
+    this.props.userStore.verifyUser().then(()=>{ //checks user session so that page can refresh
+  }, (errorMessage)=>{
+      this.props.history.push('/login')
+    });
   }
 
 
