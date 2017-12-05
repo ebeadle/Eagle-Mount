@@ -136,7 +136,7 @@ app.get('/getUser', (req, res, next) => {
     res.json(foundUser)
   })
   } else {
-      res.json({message:'nobody logged in '});
+      res.json({message:'nobody logged in'});
     }
   });
   

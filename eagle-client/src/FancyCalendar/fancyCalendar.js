@@ -59,7 +59,10 @@ var FancyCalendar = observer(class FancyCalendar extends Component {
 
   componentDidMount() {
     this.callFetch();
-    this.props.userStore.verifyUser() //checks user session so that page can refresh
+    this.props.userStore.verifyUser().then(()=>{ //checks user session so that page can refresh
+  }, (errorMessage)=>{
+      this.props.history.push('/login')
+    });
   }
 
   render() {
