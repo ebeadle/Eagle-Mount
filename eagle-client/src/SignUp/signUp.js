@@ -2,18 +2,21 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { Button, Form, Grid, Header, Segment } from 'semantic-ui-react'
 import { inject, observer } from 'mobx-react';
+import ReactPasswordStrength from 'react-password-strength';
 import "./signUp.css";
+var axios = require('axios');
 //var ReactPasswordStrength = require('react-password-strength');
 
 var SignUp = observer(class SignUp extends Component {
+
   constructor(props) {
     super(props)
     this.state = {
       firstName: "",
       lastName: "",
       email: "",
-      password: "",
       confirmPassword: "",
+      password: "",
       message: "",
       admin: ""
     }
@@ -21,9 +24,9 @@ var SignUp = observer(class SignUp extends Component {
     this.handleFirstNameChange = this.handleFirstNameChange.bind(this);
     this.handleLastNameChange = this.handleLastNameChange.bind(this);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
-    this.handleConfirmPasswordChange = this.handleConfirmPasswordChange.bind(this);
+    this.changeCallback = this.changeCallback.bind(this);
     this.handleEmailChange = this.handleEmailChange.bind(this);
-  
+
   }
 
   handleFirstNameChange(event) {
@@ -36,60 +39,71 @@ var SignUp = observer(class SignUp extends Component {
     this.setState({ email: event.target.value });
   }
   handlePasswordChange(event) {
-    this.setState({ password: event.target.value });
-  }
-  handleConfirmPasswordChange(event) {
     this.setState({ confirmPassword: event.target.value });
   }
-
-  // myScore(){
-
-
-
-  // }
-
+  changeCallback(event) {
+    //score is located in event object as event.score
+    this.setState({ password: event.password });
+    this.setState({ score: event.score });
+  }
 
   handleClick() {
-    if(this.state.password === this.state.confirmPassword){
-    this.props.userStore.signUpUser(
-      {
+    console.log("The test worked:" + this.state.score);
+    if (this.state.password === this.state.confirmPassword && (this.state.score >= 3)) {
+      this.props.userStore.signUpUser(
+        {
 
-        firstName: this.state.firstName,
-        lastName: this.state.lastName,
-        email: this.state.email,
-        password: this.state.password,
-        confirmPassword: this.state.confirmPassword,
-        admin: ""
+          firstName: this.state.firstName,
+          lastName: this.state.lastName,
+          email: this.state.email,
+          password: this.state.password,
+          confirmPassword: this.state.confirmPassword,
+          admin: ""
 
-      }
-    ).then((res) => {
-      if (res.data.success) {
-        console.log("added user");
-        this.props.history.push('/login');
-      } else {
+        }
+      ).then((res) => {
+        if (res.data.success) {
+
+          this.props.history.push('/fancyCalendar');
+        } else {
+          this.setState({
+            firstName: "",
+            lastName: "",
+            email: "",
+            password: "",
+            admin: '',
+            message: this.props.userStore.user.message
+          });
+        }
+      }).catch((e) => {
+
+      })
+    } else {
+
+      if ((this.state.password !== this.state.confirmPassword) && (this.state.score < 3)) {
         this.setState({
-          firstName: "",
-          lastName: "",
-          email: "",
-          password: "",
-          admin: '',
-          message: this.props.userStore.user.message
-        });
+          message: "Passwords Do Not Match & Not Strong Enough!"
+        })
+        console.log("Passwords Do Not Match & Not Strong Enough!")
       }
-    }).catch((e) => {
-      console.log(e)
-      
-    })
-  } else {
-    this.setState({
-      message: "Passwords do not match"
-    })
-    console.log("passwords do not match")
-    
+      else if (this.state.password !== this.state.confirmPassword) {
+        this.setState({
+          message: "Passwords Do Not Match!"
+        })
+        console.log("passwords do not match")
+      }
+      else if (this.state.score < 3) {
+        this.setState({
+          message: "Not Strong Enough!"
+        })
+        console.log("Not Strong Enough!")
+      }
+
+    }
   }
-}
 
   render() {
+    
 
     return (
       <div className='login-form'>
@@ -134,6 +148,7 @@ var SignUp = observer(class SignUp extends Component {
                   value={this.state.lastName}
                   onChange={this.handleLastNameChange}
                 />
+
                 <Form.Input
                   fluid
                   icon='user'
@@ -142,28 +157,29 @@ var SignUp = observer(class SignUp extends Component {
                   value={this.state.email}
                   onChange={this.handleEmailChange}
                 />
+
+                <ReactPasswordStrength
+                minLength={5}
+                minScore={2}
+                scoreWords={['weak', 'okay', 'good', 'strong', 'stronger']}
+                inputProps={{ placeholder: 'Confirm Password!', name: "password_input", autoComplete: "off", className: "form-control" }}
+                placeholder='Confirm Password'
+                type='password'
+                value={this.state.password}
+                changeCallback={this.changeCallback}
+              />
+
                 <Form.Input
                   fluid
                   icon='lock'
                   iconPosition='left'
                   placeholder='Password'
                   type='password'
-                  value={this.state.password}
+                  value={this.state.confirmPassword}
                   onChange={this.handlePasswordChange}
                 />
-                {/* Here is the changes for react-password-strength*/}
-              
-                <Form.Input
-                  fluid
-                  icon='lock'
-                  iconPosition='left'
-                  placeholder='Confirm Password'
-                  type='password'
-                  value={this.state.confirmPassword}
-                  onChange={this.handleConfirmPasswordChange}
-                />
 
-                <Button  fluid size='large' onClick={this.handleClick} >Sign Up</Button>
+                <Button fluid size='large' onClick={this.handleClick} >Sign Up</Button>
               </Segment>
             </Form>
           </Grid.Column>
