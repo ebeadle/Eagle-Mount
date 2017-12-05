@@ -158,6 +158,17 @@ var SignUp = observer(class SignUp extends Component {
                   onChange={this.handleEmailChange}
                 />
 
+                <ReactPasswordStrength
+                minLength={5}
+                minScore={2}
+                scoreWords={['weak', 'okay', 'good', 'strong', 'stronger']}
+                inputProps={{ placeholder: 'Confirm Password!', name: "password_input", autoComplete: "off", className: "form-control" }}
+                placeholder='Confirm Password'
+                type='password'
+                value={this.state.password}
+                changeCallback={this.changeCallback}
+              />
+
                 <Form.Input
                   fluid
                   icon='lock'
@@ -166,17 +177,6 @@ var SignUp = observer(class SignUp extends Component {
                   type='password'
                   value={this.state.confirmPassword}
                   onChange={this.handlePasswordChange}
-                />
-
-                <ReactPasswordStrength
-                  minLength={5}
-                  minScore={2}
-                  scoreWords={['weak', 'okay', 'good', 'strong', 'stronger']}
-                  inputProps={{ placeholder: 'Confirm Password!', name: "password_input", autoComplete: "off", className: "form-control" }}
-                  placeholder='Confirm Password'
-                  type='password'
-                  value={this.state.password}
-                  changeCallback={this.changeCallback}
                 />
 
                 <Button fluid size='large' onClick={this.handleClick} >Sign Up</Button>
