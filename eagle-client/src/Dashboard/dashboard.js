@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, Image, Table } from 'semantic-ui-react';
+import { Grid, Table } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import { inject, observer } from 'mobx-react';
 import { withRouter } from 'react-router-dom';

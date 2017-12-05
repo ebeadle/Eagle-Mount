@@ -40,16 +40,10 @@
 }
 
 .ui.icon.header {
-  /* display: inline-block;
-  text-align: center; */
-  position: relative;
-  margin: .5rem 0 1rem;
+  display: flex;
+  text-align: center;
 }
 
-i.icon.snowflake:before {
-  content: "\f2dc";
-  margin-left: 300px;
-}
 
 element.style {
   font-size: 4em;

@@ -1,14 +1,34 @@
-# Eagle-Mount
+# Slope Scheduler: 
+:date:
+The Slope Scheduler has been designed with Eagle Mount’s adaptive ski-program in mind.  Their organization matches volunteers with participants for a ski date.  During those times when a designated volunteer needs a substitute, this app will provide a user friendly interface for Eagle Mount to display the time and needs for the desired shift. 
 
-Sources:
+[View Application] (https://slope-scheduler.herokuapp.com/)
 
-https://static.pexels.com/photos/298007/pexels-photo-298007.jpeg
+### Prior to running:
 
-https://images.unsplash.com/photo-1508108712903-49b7ef9b1df8?auto=format&fit=crop&w=1350&q=60&ixid=dW5zcGxhc2guY29tOzs7Ozs=
+- `npm install` inside root
+- `npm install` inside client
 
-https://static.pexels.com/photos/414459/pexels-photo-414459.jpeg
+- `npm run build` inside client prior to pushing to master
+- add `.env` file inside root directory (this should never be committed to github) and use the code found on our slack channel
 
-Photo by asoggetti on Unsplash
+### Running in local environment:
+
+- `npm start` inside root
+- `npm start` inside client
+
+### Features: 
+
+- users can login to view a calendar that shows which days and times need a volunteer to fill-in on a shift.
+
+- users can view the shifts that they've selected on their dashboard.
+
+- administrators receive an email that notifies them that a shift has been selected by a particular volunteer.
+
+### Sources:
+-The background photo is a [Photo by Asoggetti on Unsplash](https://images.unsplash.com/photo-1512229146678-994d3f1e31bf?auto=format&fit=crop&w=1049&q=80&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D)
+
+### License:
 
 ISC License (ISC)
 Copyright (c) <2017> <Rob Herrmann, Katharina Ten, Erin Beadle, Emily Kimmel, Kyle Bigart>
