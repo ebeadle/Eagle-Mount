@@ -22,12 +22,14 @@ class HomePage extends Component {
           <Header
             textAlign='center' as='h3'
             content='Login to view shifts that need a volunteer'
-            //inverted
+            
             style={{ fontSize: '1.5em', fontWeight: 'normal', marginTop: 0, marginBottom: '2em' }}
           />
-          <h2 className="ui icon header">
+           <Container>
+              <h2 className="ui icon header">
                 <i className="snowflake outline icon"></i>
               </h2>
+           </Container>
           </div>
           <Segment style={{ padding: '1em 0em' }} vertical>
           <Grid container stackable verticalAlign='center'>
