@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
-import {Container, Header, Icon, Grid, Segment, Image} from 'semantic-ui-react';
+import {Container, Header, Grid, Segment} from 'semantic-ui-react';
 import './home.css';
 
 
