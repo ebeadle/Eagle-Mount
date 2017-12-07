@@ -61,9 +61,10 @@ var SignUp = observer(class SignUp extends Component {
 
         }
       ).then((res) => {
-        if (res.data.success) {
+        console.log(res.data.success)
+        if (res.data.success === true) {
 
-          this.props.history.push('/fancyCalendar');
+          this.props.history.push('/login');
         } else {
           this.setState({
             firstName: "",
@@ -99,6 +100,10 @@ var SignUp = observer(class SignUp extends Component {
       }
 
     }
+  }
+
+  componentDidMount(){
+    this.props.userStore.verifyUser()
   }
 
   render() {
