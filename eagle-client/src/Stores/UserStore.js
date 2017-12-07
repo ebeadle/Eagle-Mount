@@ -33,7 +33,8 @@ export default class UserStore {
         }
       ).then((userObj) => {
         if (userObj.data) {
-          this.user = userObj.data.userReturned
+          //Do not want to login user that signed up because observer resets user
+          // this.user = userObj.data.userReturned
         } else {
           reject(userObj);
         }
