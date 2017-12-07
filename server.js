@@ -20,6 +20,7 @@ let mongodbUri = "mongodb://"+process.env.SERVER_MLAB_USER+":"+process.env.SERVE
 console.log(mongodbUri);
 var mongooseUri = uriUtil.formatMongoose(mongodbUri);
 //var mongooseUri = 'mongodb://localhost/eaglemount';    need for robo mongo
+var http = require('https');
 
 
 var options = {
@@ -88,6 +89,50 @@ app.post('/signup', function(req, res, next){
   user.email = req.body.email;
   user.password = req.body.password;
   user.admin = req.body.admin;
+  // Kate's code.
+  user.confirmed = false;
+
+  //Kate's code start here
+  var options = {
+    "method": "POST",
+    "hostname": "api.sendgrid.com",
+    "port": null,
+    "path": "/v3/mail/send",
+    "headers": {
+      "authorization": "Bearer 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",
+      "content-type": "application/json"
+    }
+  };
+
+  console.log("Email is processing for " + user.email);
+
+  var req = http.request(options, function (res) {
+    var chunks = [];
+
+    res.on("data", function (chunk) {
+      chunks.push(chunk);
+    });
+
+    res.on("end", function () {
+      var body = Buffer.concat(chunks);
+      console.log(body.toString());
+    });
+  });
+
+  req.write(JSON.stringify({ personalizations: 
+    [ { to: [ { email: user.email, name: user.firstName } ],
+        subject: 'Confirm Email' } ],
+    from: { email: 'do-not-reply@eaglemount.org', name: 'Eagle Mount' },
+    reply_to: { email: 'do-not-reply@eaglemount.org', name: 'Eagle Mount' },
+    subject: 'Confirm Email',
+    content: 
+    [ { type: 'text/html',
+        value: '<html><p>Hello! Please confirm your email by following this link: <a href="http://localhost:5000/confirm?email=' + user.email + '">Confirm</a></p></html>' } ] }));
+  req.end();
+  console.log("Email processed.");
+
+// End Kate's code
+
   User.findOne({email: user.email}, (err, foundUser)=> {
    
    if(err) {
@@ -118,32 +163,99 @@ app.post('/signup', function(req, res, next){
   });
 });
 
+//Kate's code
+app.get('/confirm', function(req, res, next) {
+  if (req.query.email) {
+    console.log("Confirmation for: " + req.query.email);
+    var email = req.query.email;
+    var user = new User();
+    if (req.query && req.query.email) {
+      User.findOneAndUpdate({email: req.query.email}, {$set: {confirmed: true}}, {upsert: true}, function(error, update_entry) {
+        if (error) {
+          console.log("Error: " + JSON.stringify(error));
+          res.status(404).end();
+        } else {
+          console.log("Successful confirmation of " + email);
+          //Kate's code start here
+          var options = {
+            "method": "POST",
+            "hostname": "api.sendgrid.com",
+            "port": null,
+            "path": "/v3/mail/send",
+            "headers": {
+              "authorization": "Bearer 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",
+              "content-type": "application/json"
+            }
+          };
+  
+          console.log("Email is processing for " + email);
+  
+          var req = http.request(options, function (res) {
+            var chunks = [];
+  
+            res.on("data", function (chunk) {
+              chunks.push(chunk);
+            });
+  
+            res.on("end", function () {
+              var body = Buffer.concat(chunks);
+              console.log(body.toString());
+            });
+          });
+  
+          req.write(JSON.stringify({ personalizations: 
+            [ { to: [ { email: email, name: "New User" } ],
+                subject: 'Successful confirmation' } ],
+            from: { email: 'do-not-reply@eaglemount.org', name: 'Eagle Mount' },
+            reply_to: { email: 'do-not-reply@eaglemount.org', name: 'Eagle Mount' },
+            subject: 'Successful Confirmation',
+            content: 
+            [ { type: 'text/html',
+                value: '<html><p>Your email has been successfully confirmed. Thank you!</p></html>' } ] }));
+          req.end();
+          console.log("Email processed.");
+  
+        // End Kate's code
+        if (req.user){
+          
+              User.findById(req.user._id, (err, foundUser) => {
+                if (err) {
+                  console.log(err)
+                } else {
+                  res.json(foundUser)
+                  console.log(foundUser)
+                  console.log("found user")
+                }
+                })
+            } else {
+                res.redirect('http://localhost:3000/logout');
+              }
+        }
+      })
+    }
+  }
+  
+});
+//The end Kate's code
 
 app.get('/getUser', (req, res, next) => {
+  console.log(req.user)
+  console.log("!!!!!!!!!!!!!!!!!!!")
   if (req.user){
+
     User.findById(req.user._id, (err, foundUser) => {
       if (err) {
         console.log(err)
-      } 
-      //else {
-    //res.json(foundUser)
-    // console.log(foundUser)
-    //console.log("found user")
-  //} 
-      }).populate('shifts').exec((err, foundUser) => {
-        console.log(foundUser.shifts);
-        console.log('^user in getuser')
-    res.json(foundUser)
-  })
+      } else {
+        res.json(foundUser)
+        console.log(foundUser)
+        console.log("found user")
+      }
+      })
   } else {
-      res.json({message:'nobody logged in'});
+      res.json({message:'nobody logged in '});
     }
   });
-  
-
-
-
-
     
 
 app.post('/login',function(req, res, next){
@@ -179,18 +291,6 @@ app.post('/login',function(req, res, next){
   
 });
 
-
-
-app.get('/userShifts', function(req, res, next) {
-  User.findById(function(err, user) { 
-    if(err){
-      next(err)
-    }  
-  }).populate('shift').exec((err, user) => {
-    res.json(user)
-  });
-});
-
 app.get('/logout', function(req, res){
   if(req.user) {
     req.logout();
@@ -210,8 +310,8 @@ app.post('/open-shifts', function(req, res, next){
   shift.title = req.body.title;
   shift.start = req.body.start
   shift.user = req.body.user
-  
-
+  console.log(req.body.user)
+  console.log("LOGGING USER********")
   shift.save(function(err, newShift){
     //console.log(newShift);
     if(err) {
@@ -225,6 +325,9 @@ app.post('/open-shifts', function(req, res, next){
 app.post('/claimShift', function (req, res, next) {
   nodemailer.createTestAccount((err, account) => {
     let transporter = nodemailer.createTransport({
+      // host: 'smtp.gmail.com',
+      // port: 587,
+      // secure: false, // true for 465, false for other ports
       service: 'gmail',
       auth: {
         user: 'reekkmtcs@gmail.com',
@@ -239,13 +342,16 @@ app.post('/claimShift', function (req, res, next) {
     html:  '<p>This email confirms that a volunteer shift has been claimed </p>' 
   };
   transporter.sendMail(mailOptions, (error, info) => {
+    
     if (error) {
         console.log(error)
+        //return error
     }
   });
 });
   
       Shift.findByIdAndUpdate({_id: req.body.shiftId}, "user", (err, shift) => {
+        
           if (err) {
               console.log(err);
               next(err);
@@ -256,21 +362,12 @@ app.post('/claimShift', function (req, res, next) {
             if(err){
               next(err)
             } else {
-              //console.log(req.user);
-              User.findByIdAndUpdate({_id: req.body.userId}, 'shift', (err, user) =>{
-                //console.log(req.body.shift)
-                //console.log('this is req.body.shift')
-                user.shifts.push(req.body.shiftId)
-                user.save((err, returnUser)=> {
-                  console.log(returnUser);
-                })
-              });
               Shift.find(function(err, shift) {
                 
                 if(err){
                   next(err)
                 } else {
-
+                  console.log(shift)
                   res.json(shift);
                 }   
               });
@@ -278,9 +375,6 @@ app.post('/claimShift', function (req, res, next) {
           })
       
       });
-
-
-
 });
 
 
@@ -299,7 +393,7 @@ app.get('/shift', function(req, res, next) {
 
 app.post('/deleteShift', function(req, res, next){
   Shift.findByIdAndRemove(req.body._id, function(err, shift){
-    
+    console.log(req.body._id);
       if(err){
           console.log(err);
           next(err);

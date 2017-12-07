@@ -5,7 +5,6 @@ import { inject, observer } from 'mobx-react';
 import ReactPasswordStrength from 'react-password-strength';
 import "./signUp.css";
 var axios = require('axios');
-//var ReactPasswordStrength = require('react-password-strength');
 
 var SignUp = observer(class SignUp extends Component {
 
@@ -47,7 +46,7 @@ var SignUp = observer(class SignUp extends Component {
   }
 
   handleClick() {
-    console.log("The test worked:" + this.state.score);
+    //console.log("The test worked:" + this.state.score);
     if (this.state.password === this.state.confirmPassword && (this.state.score >= 1)) {
       this.props.userStore.signUpUser(
         {
@@ -62,7 +61,6 @@ var SignUp = observer(class SignUp extends Component {
         }
       ).then((res) => {
         if (res.data.success) {
-
           this.props.history.push('/fancyCalendar');
         } else {
           this.setState({

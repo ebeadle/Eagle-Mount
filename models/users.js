@@ -7,6 +7,7 @@ var UserSchema = new mongoose.Schema({
   lastName: String,
   email: {type: String, required: true, unique: true},
   // email: String,
+  confirmed: Boolean, // Kate's confirmation code.
   password: {
     type: String,
     set: function(password) {

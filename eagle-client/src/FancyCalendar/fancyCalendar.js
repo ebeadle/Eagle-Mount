@@ -66,11 +66,10 @@ var FancyCalendar = observer(class FancyCalendar extends Component {
   }
 
   render() {
-    if (this.props.userStore.user) {
-
+    if (this.props.userStore.user && this.props.userStore.user.confirmed) {
+      console.log(this.props.userStore.confirmed);
       return (
         <div >
-
           <FullCalendar
             header={{
               left: 'prev,next today myCustomButton',
@@ -102,6 +101,25 @@ var FancyCalendar = observer(class FancyCalendar extends Component {
 
         </div>
       );
+    } else if (this.props.userStore.user && !this.props.userStore.user.confirmed) {
+      console.log("\nSTART\n" + JSON.stringify(this.props.userStore.user) + "\nEND\n");
+      return (
+        <div>
+          <Card centered color={'black'}>
+            <Image src='/assets/images/avatar/large/matthew.png' />
+            <Card.Content>
+              <Card.Header>
+                Welcome to the Eagle Mount Calendar!
+                </Card.Header>
+             
+              <Card.Description>
+               Please check your email and follow the link therein to confirm it.
+                </Card.Description>
+            </Card.Content>
+            
+          </Card> 
+          </div>
+      )
     } else {
       
       return (
