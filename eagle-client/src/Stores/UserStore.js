@@ -1,6 +1,6 @@
 import { extendObservable } from 'mobx';
 var axios = require('axios');
-
+var http = require('https');
 
 
 export default class UserStore {
@@ -27,6 +27,7 @@ export default class UserStore {
           firstName: newUserObj.firstName,
           lastName: newUserObj.lastName,
           email: newUserObj.email,
+          confirmed: false,
           password: newUserObj.password,
           admin: newUserObj.admin,
           message: newUserObj.message
@@ -36,8 +37,7 @@ export default class UserStore {
           this.user = userObj.data.userReturned
         } else {
           reject(userObj);
-        }
-    
+        }    
         resolve(userObj);
       })
     })
