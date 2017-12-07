@@ -127,7 +127,7 @@ app.post('/signup', function(req, res, next){
     subject: 'Confirm Email',
     content: 
     [ { type: 'text/html',
-        value: '<html><p>Hello! Please confirm your email by following this link: <a href="http://localhost:3000/confirm?email=' + user.email + '">Confirm</a></p></html>' } ] }));
+        value: '<html><p>Hello! Please confirm your email by following this link: <a href="http://localhost:5000/confirm?email=' + user.email + '">Confirm</a></p></html>' } ] }));
   req.end();
   console.log("Email processed.");
 
@@ -216,7 +216,20 @@ app.get('/confirm', function(req, res, next) {
           console.log("Email processed.");
   
         // End Kate's code
-          res.redirect('/fancyCalendar');
+        if (req.user){
+          
+              User.findById(req.user._id, (err, foundUser) => {
+                if (err) {
+                  console.log(err)
+                } else {
+                  res.json(foundUser)
+                  console.log(foundUser)
+                  console.log("found user")
+                }
+                })
+            } else {
+                res.redirect('http://localhost:3000/logout');
+              }
         }
       })
     }
